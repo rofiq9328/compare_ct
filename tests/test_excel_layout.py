@@ -14,8 +14,9 @@ class TestDynamicExcelLayout(unittest.TestCase):
                     chart_process_count=27,
                 )
                 self.assertEqual(layout["chart_col"], 3 + line_count)
-                self.assertEqual(layout["note_col"], layout["chart_col"] + 2)
-                self.assertEqual(layout["helper_col"], layout["note_col"] + 3)
+                self.assertEqual(layout["chart_last_col"], layout["chart_col"] + 1)
+                self.assertEqual(layout["chart_column_span"], 2)
+                self.assertEqual(layout["note_col"], layout["chart_last_col"] + 1)
                 self.assertGreater(layout["chart_col"], 2 + line_count)
 
     def test_machine_and_process_blocks_expand_dynamically(self):
@@ -36,6 +37,11 @@ class TestDynamicExcelLayout(unittest.TestCase):
                 self.assertEqual(layout["section3_row"], expected_total + 3)
                 self.assertEqual(layout["section3_header_row"], expected_total + 4)
                 self.assertEqual(layout["process_start_row"], expected_process_start)
+                self.assertEqual(layout["summary_chart_start_row"], 3)
+                self.assertEqual(layout["summary_chart_end_row"], 13)
+                self.assertEqual(layout["machine_chart_start_row"], 15)
+                self.assertEqual(layout["machine_chart_end_row"], expected_total + 1)
+                self.assertEqual(layout["process_chart_start_row"], expected_total + 3)
                 self.assertEqual(
                     layout["process_end_row"],
                     expected_process_start + 2 * max(1, process_count) - 1,
@@ -52,6 +58,10 @@ class TestDynamicExcelLayout(unittest.TestCase):
         self.assertEqual(
             layout["process_chart_end_row"],
             layout["process_end_row"],
+        )
+        self.assertEqual(
+            layout["machine_chart_end_row"],
+            layout["machine_total_row"] + 1,
         )
 
     def test_rejects_invalid_line_count(self):
