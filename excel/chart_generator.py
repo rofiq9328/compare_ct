@@ -210,6 +210,8 @@ def _table_column_range(
         ws.Cells(first_row, column),
         ws.Cells(last_row, column),
     )
+
+
 def _build_table_row_plan(
     layout: Mapping[str, int],
     machine_count: int,
@@ -248,7 +250,6 @@ def _worksheet_cell_reference(ws: Any, row: int, column: int) -> str:
 
 
 def _update_chart_series_from_table(
-    excel: Any,
     chart_object: Any,
     ws: Any,
     labels: Sequence[str],
@@ -440,7 +441,7 @@ def generate_charts(
 
         stage = "Memperbarui grafik Summary dari tabel"
         _update_chart_series_from_table(
-            excel, summary_chart, ws, labels,
+            summary_chart, ws, labels,
             header_row=3,
             line_start_col=3,
             category_col=2,
@@ -453,7 +454,7 @@ def generate_charts(
 
         stage = "Memperbarui grafik Penggunaan Mesin dari tabel"
         _update_chart_series_from_table(
-            excel, machine_chart, ws, labels,
+            machine_chart, ws, labels,
             header_row=16,
             line_start_col=3,
             category_col=2,
@@ -466,7 +467,7 @@ def generate_charts(
 
         stage = "Memperbarui grafik Penggunaan Operator dari tabel"
         _update_chart_series_from_table(
-            excel, process_chart, ws, labels,
+            process_chart, ws, labels,
             header_row=section3_header_row,
             line_start_col=3,
             category_col=2,
