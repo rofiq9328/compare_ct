@@ -3,6 +3,7 @@ import unittest
 from excel.chart_generator import (
     _build_chart_data,
     _build_table_row_plan,
+    _position_chart,
     _table_column_range,
     _worksheet_cell_reference,
 )
@@ -139,6 +140,41 @@ class TestDynamicChartData(unittest.TestCase):
             _table_column_range(
                 Worksheet(), column=3, data_rows=(17, 19, 22)
             )
+
+    def test_chart_keeps_original_height_and_uses_two_column_width(self):
+        class Cell:
+            def __init__(self, row, column):
+                self.Left = column * 50.0
+                self.Top = row * 20.0
+
+        class Range:
+            def __init__(self, start, end):
+                self.Left = start.Left
+                self.Top = start.Top
+                self.Width = (end.Left + 50.0) - start.Left
+
+        class Worksheet:
+            def Cells(self, row, column):
+                return Cell(row, column)
+
+            def Range(self, start, end):
+                return Range(start, end)
+
+        class ChartObject:
+            Left = 0.0
+            Top = 0.0
+            Width = 500.0
+            Height = 275.0
+            Placement = 1
+
+        chart = ChartObject()
+        _position_chart(chart, Worksheet(), chart_col=7, anchor_row=17)
+
+        self.assertEqual(chart.Left, 350.0)
+        self.assertEqual(chart.Top, 340.0)
+        self.assertEqual(chart.Width, 100.0)
+        self.assertEqual(chart.Height, 275.0)
+        self.assertEqual(chart.Placement, 2)
 
     def test_chart_sources_use_visible_table_row_positions(self):
         layout = calculate_excel_layout(
