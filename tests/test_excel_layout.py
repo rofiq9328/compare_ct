@@ -37,11 +37,14 @@ class TestDynamicExcelLayout(unittest.TestCase):
                 self.assertEqual(layout["section3_row"], expected_total + 3)
                 self.assertEqual(layout["section3_header_row"], expected_total + 4)
                 self.assertEqual(layout["process_start_row"], expected_process_start)
-                self.assertEqual(layout["summary_chart_start_row"], 3)
+                self.assertEqual(layout["summary_chart_anchor_row"], 4)
+                self.assertEqual(layout["summary_chart_start_row"], 4)
                 self.assertEqual(layout["summary_chart_end_row"], 13)
-                self.assertEqual(layout["machine_chart_start_row"], 15)
+                self.assertEqual(layout["machine_chart_anchor_row"], 17)
+                self.assertEqual(layout["machine_chart_start_row"], 17)
                 self.assertEqual(layout["machine_chart_end_row"], expected_total + 1)
-                self.assertEqual(layout["process_chart_start_row"], expected_total + 3)
+                self.assertEqual(layout["process_chart_anchor_row"], expected_process_start)
+                self.assertEqual(layout["process_chart_start_row"], expected_process_start)
                 self.assertEqual(
                     layout["process_end_row"],
                     expected_process_start + 2 * max(1, process_count) - 1,
