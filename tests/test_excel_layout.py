@@ -11,7 +11,7 @@ class TestDynamicExcelLayout(unittest.TestCase):
                     machine_count=9,
                     process_count=27,
                     line_count=line_count,
-                    chart_process_count=15,
+                    chart_process_count=27,
                 )
                 self.assertEqual(layout["chart_col"], 3 + line_count)
                 self.assertEqual(layout["note_col"], layout["chart_col"] + 2)
@@ -41,19 +41,18 @@ class TestDynamicExcelLayout(unittest.TestCase):
                     expected_process_start + 2 * max(1, process_count) - 1,
                 )
 
-    def test_chart_uses_top_fifteen_but_table_keeps_all_process_rows(self):
+    def test_chart_expands_to_include_every_process_row(self):
         layout = calculate_excel_layout(
             machine_count=8,
             process_count=34,
             line_count=6,
-            chart_process_count=15,
         )
         self.assertEqual(layout["allocated_process_count"], 34)
+        self.assertEqual(layout["chart_process_count"], 34)
         self.assertEqual(
             layout["process_chart_end_row"],
-            layout["process_start_row"] + 29,
+            layout["process_end_row"],
         )
-        self.assertLess(layout["process_chart_end_row"], layout["process_end_row"])
 
     def test_rejects_invalid_line_count(self):
         with self.assertRaises(ValueError):
