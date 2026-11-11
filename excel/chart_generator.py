@@ -337,62 +337,44 @@ def _update_chart_series_from_table(
                 pass
 
 
+def _chart_row_bounds(data_rows: Sequence[int], block_height: int = 2) -> tuple[int, int]:
+    """Return exact worksheet rows occupied by the chart's table variables."""
+    rows = list(data_rows)
+    if not rows:
+        raise ChartGeneratorError("Tidak ada baris tabel untuk menentukan ukuran grafik.")
+    if block_height < 1:
+        raise ValueError("block_height minimal 1.")
+    if any(current - previous != block_height for previous, current in zip(rows, rows[1:])):
+        raise ChartGeneratorError("Baris chart tidak mengikuti blok tabel dua baris.")
+    return rows[0], rows[-1] + block_height - 1
+
+
 def _position_chart(
     chart_object: Any,
     ws: Any,
     chart_col: int,
-    anchor_row: int,
-    *,
-    height: float | None = None,
-) -> None:
-    """Align chart to the agreed row and two-column area.
-
-    Width always follows the template's two-column chart slot. Height is
-    retained from the template unless an explicit process-chart height is
-    supplied for readability with many operator categories.
-    """
-    if anchor_row < 1:
+    first_row: int,
+    last_row: int,
+) -> float:
+    """Fit chart exactly over the two chart columns and its variable table rows."""
+    if first_row < 1 or last_row < first_row:
         raise ChartGeneratorError(
-            f"Baris awal grafik tidak valid: {anchor_row}."
+            f"Rentang baris grafik tidak valid: {first_row}:{last_row}."
         )
 
-    anchor_range = ws.Range(
-        ws.Cells(anchor_row, chart_col),
-        ws.Cells(anchor_row, chart_col + CHART_COLUMN_SPAN - 1),
+    target_range = ws.Range(
+        ws.Cells(first_row, chart_col),
+        ws.Cells(last_row, chart_col + CHART_COLUMN_SPAN - 1),
     )
-    chart_object.Placement = 2  # xlMove
-    chart_object.Left = float(anchor_range.Left)
-    chart_object.Top = float(anchor_range.Top)
-    chart_object.Width = float(anchor_range.Width)
-    if height is not None:
-        if height <= 0:
-            raise ChartGeneratorError("Tinggi grafik harus lebih besar dari nol.")
-        chart_object.Height = float(height)
 
-
-def _machine_chart_height(machine_category_count: int) -> float:
-    """Fit one machine category into each two-row table block."""
-    if (
-        isinstance(machine_category_count, bool)
-        or not isinstance(machine_category_count, int)
-        or machine_category_count < 0
-    ):
-        raise ValueError("machine_category_count harus bilangan bulat >= 0.")
-
-    # Each machine variable, including TOTAL MESIN, occupies two 24.95 pt rows.
-    return max(260.0, 49.9 * max(1, machine_category_count))
-
-
-def _operator_chart_height(process_count: int) -> float:
-    """Match operator chart height to every two-row process block in the table."""
-    if isinstance(process_count, bool) or not isinstance(process_count, int) or process_count < 0:
-        raise ValueError("process_count harus bilangan bulat >= 0.")
-
-    # The report assigns 24.95 pt to each row and each process uses two rows.
-    # Match that full height so every process category gets the same vertical
-    # space as its corresponding visible table block, with chart chrome allowance
-    # for the empty/one-process case.
-    return max(160.0, 49.9 * max(1, process_count))
+    # xlMove keeps the chart attached to cells without automatic resize.
+    # This run then explicitly sets all edges to the actual table range.
+    chart_object.Placement = 2
+    chart_object.Left = float(target_range.Left)
+    chart_object.Top = float(target_range.Top)
+    chart_object.Width = float(target_range.Width)
+    chart_object.Height = float(target_range.Height)
+    return float(chart_object.Height)
 
 
 def generate_charts(
@@ -484,9 +466,11 @@ def generate_charts(
             category_col=2,
             data_rows=row_plan["summary"],
         )
-        _position_chart(
+        summary_chart_rows = _chart_row_bounds(row_plan["summary"])
+        summary_height = _position_chart(
             summary_chart, ws, chart_col,
-            anchor_row=layout["summary_chart_anchor_row"],
+            first_row=summary_chart_rows[0],
+            last_row=summary_chart_rows[1],
         )
 
         stage = "Memperbarui grafik Penggunaan Mesin dari tabel"
@@ -497,10 +481,11 @@ def generate_charts(
             category_col=2,
             data_rows=row_plan["machines"],
         )
-        _position_chart(
+        machine_chart_rows = _chart_row_bounds(row_plan["machines"])
+        machine_height = _position_chart(
             machine_chart, ws, chart_col,
-            anchor_row=layout["machine_chart_anchor_row"],
-            height=_machine_chart_height(len(row_plan["machines"])),
+            first_row=machine_chart_rows[0],
+            last_row=machine_chart_rows[1],
         )
 
         stage = "Memperbarui grafik Penggunaan Operator dari tabel"
@@ -511,10 +496,11 @@ def generate_charts(
             category_col=2,
             data_rows=row_plan["processes"],
         )
-        _position_chart(
+        operator_chart_rows = _chart_row_bounds(row_plan["processes"])
+        operator_height = _position_chart(
             process_chart, ws, chart_col,
-            anchor_row=layout["process_chart_anchor_row"],
-            height=_operator_chart_height(process_count),
+            first_row=operator_chart_rows[0],
+            last_row=operator_chart_rows[1],
         )
 
         stage = "Menyimpan workbook"
@@ -538,19 +524,22 @@ def generate_charts(
             "chart_column_span": CHART_COLUMN_SPAN,
             "chart_data_layout": "ONE_VARIABLE_ROW_PER_CATEGORY",
             "chart_anchor_rows": {
-                "summary": layout["summary_chart_anchor_row"],
-                "machines": layout["machine_chart_anchor_row"],
-                "operators": layout["process_chart_anchor_row"],
+                "summary": summary_chart_rows[0],
+                "machines": machine_chart_rows[0],
+                "operators": operator_chart_rows[0],
             },
-            "chart_height_mode": "MACHINE_AND_OPERATOR_DYNAMIC",
-            "machine_chart_height": _machine_chart_height(len(row_plan["machines"])),
-            "operator_chart_height": _operator_chart_height(process_count),
-            "operator_table_height": 49.9 * max(1, process_count),
+            "chart_end_rows": {
+                "summary": summary_chart_rows[1],
+                "machines": machine_chart_rows[1],
+                "operators": operator_chart_rows[1],
+            },
+            "chart_heights": {
+                "summary": summary_height,
+                "machines": machine_height,
+                "operators": operator_height,
+            },
             "machine_category_count": len(row_plan["machines"]),
             "operator_category_count": len(row_plan["processes"]),
-            "machine_chart_end_row": layout["machine_chart_anchor_row"] + (
-                2 * len(row_plan["machines"])
-            ),
             "status": "PASS",
         }
 
@@ -588,16 +577,14 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"JUMLAH GRAFIK       : {result['chart_count']}",
         f"MODE GRAFIK         : {result['chart_mode']}",
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
-        f"TINGGI GRAFIK       : {result['chart_height_mode']}",
-        f"TINGGI MESIN        : {result['machine_chart_height']:.1f} pt",
-        f"TINGGI OPERATOR     : {result['operator_chart_height']:.1f} pt",
-        f"TINGGI BLOK TABEL OPT: {result['operator_table_height']:.1f} pt",
         f"KATEGORI MESIN      : {result['machine_category_count']}",
         f"KATEGORI OPERATOR   : {result['operator_category_count']}",
-        f"ANCHOR SUMMARY      : BARIS {result['chart_anchor_rows']['summary']}",
-        f"ANCHOR MESIN        : BARIS {result['chart_anchor_rows']['machines']}",
-        f"AKHIR AREA MESIN    : SEKITAR BARIS {result['machine_chart_end_row']}",
-        f"ANCHOR OPERATOR     : BARIS {result['chart_anchor_rows']['operators']}",
+        f"SUMMARY             : BARIS {result['chart_anchor_rows']['summary']}-"
+        f"{result['chart_end_rows']['summary']} / {result['chart_heights']['summary']:.1f} pt",
+        f"MESIN               : BARIS {result['chart_anchor_rows']['machines']}-"
+        f"{result['chart_end_rows']['machines']} / {result['chart_heights']['machines']:.1f} pt",
+        f"OPERATOR            : BARIS {result['chart_anchor_rows']['operators']}-"
+        f"{result['chart_end_rows']['operators']} / {result['chart_heights']['operators']:.1f} pt",
         f"STATUS              : {result['status']}",
         "=" * 72,
     ])
