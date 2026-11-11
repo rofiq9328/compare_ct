@@ -1,7 +1,8 @@
 """Shared dynamic row/column geometry for the COMPARE LINE Excel report.
 
 The report uses two-row data blocks. Each original chart remains inside the
-template's two-column graph area and follows the vertical extent of its section.
+template's two-column graph area, anchors to the first variable row, and keeps
+its original template height.
 """
 
 from __future__ import annotations
