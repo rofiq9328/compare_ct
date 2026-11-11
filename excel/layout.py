@@ -11,9 +11,12 @@ from typing import Dict
 
 MACHINE_FIRST_ROW = 17
 CHART_COLUMN_SPAN = 2
-SUMMARY_CHART_START_ROW = 3
+# Chart objects align with the first data row, not the section title/header.
+SUMMARY_CHART_ANCHOR_ROW = 4
+SUMMARY_CHART_START_ROW = 4
 SUMMARY_CHART_END_ROW = 13
-MACHINE_CHART_START_ROW = 15
+MACHINE_CHART_ANCHOR_ROW = MACHINE_FIRST_ROW
+MACHINE_CHART_START_ROW = MACHINE_FIRST_ROW
 
 
 def _non_negative_int(name: str, value: int) -> int:
@@ -62,8 +65,10 @@ def calculate_excel_layout(
     return {
         "machine_first_row": MACHINE_FIRST_ROW,
         "machine_total_row": machine_total_row,
+        "summary_chart_anchor_row": SUMMARY_CHART_ANCHOR_ROW,
         "summary_chart_start_row": SUMMARY_CHART_START_ROW,
         "summary_chart_end_row": SUMMARY_CHART_END_ROW,
+        "machine_chart_anchor_row": MACHINE_CHART_ANCHOR_ROW,
         "machine_chart_start_row": MACHINE_CHART_START_ROW,
         # The total-machine block is two rows high; stop at its last row.
         "machine_chart_end_row": machine_total_row + 1,
@@ -71,7 +76,8 @@ def calculate_excel_layout(
         "section3_header_row": section3_header_row,
         "process_start_row": process_start_row,
         "process_end_row": process_end_row,
-        "process_chart_start_row": section3_row,
+        "process_chart_anchor_row": process_start_row,
+        "process_chart_start_row": process_start_row,
         "process_chart_end_row": process_chart_end_row,
         "allocated_process_count": allocated_process_count,
         "chart_process_count": chart_process_count,
