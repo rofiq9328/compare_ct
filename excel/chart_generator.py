@@ -369,11 +369,26 @@ def _position_chart(
 
     # xlMove keeps the chart attached to cells without automatic resize.
     # This run then explicitly sets all edges to the actual table range.
+    expected = {
+        "Left": float(target_range.Left),
+        "Top": float(target_range.Top),
+        "Width": float(target_range.Width),
+        "Height": float(target_range.Height),
+    }
+
     chart_object.Placement = 2
-    chart_object.Left = float(target_range.Left)
-    chart_object.Top = float(target_range.Top)
-    chart_object.Width = float(target_range.Width)
-    chart_object.Height = float(target_range.Height)
+    for attribute, value in expected.items():
+        setattr(chart_object, attribute, value)
+
+    # Read back the COM values. Fail the stage rather than silently exporting
+    # a chart whose physical bounds do not match its associated table rows.
+    for attribute, value in expected.items():
+        actual = float(getattr(chart_object, attribute))
+        if abs(actual - value) > 1.0:
+            raise ChartGeneratorError(
+                f"Ukuran/posisi grafik {attribute} tidak sesuai tabel: "
+                f"aktual {actual:.2f}, target {value:.2f}."
+            )
     return float(chart_object.Height)
 
 
@@ -450,7 +465,8 @@ def generate_charts(
         note_col = layout["note_col"]
 
         # Each SERIES formula references exactly one visible table cell per
-        # variable, skipping the blank second row of each merged two-row block.
+        # variable. Chart bounds below use the full two-row blocks for those
+        # same variables, so each plotted category aligns to its table row.
         row_plan = _build_table_row_plan(
             layout, machine_count, process_count
         )
