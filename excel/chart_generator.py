@@ -66,36 +66,6 @@ def _safe_number(value: Any) -> float:
     return float(value)
 
 
-def _col_letter(number: int) -> str:
-    result = ""
-    while number:
-        number, rem = divmod(number - 1, 26)
-        result = chr(65 + rem) + result
-    return result
-
-
-def _write_matrix(
-    ws: Any,
-    start_row: int,
-    start_col: int,
-    matrix: Sequence[Sequence[Any]],
-) -> tuple[int, int]:
-    rows = len(matrix)
-    cols = max((len(row) for row in matrix), default=0)
-    if not rows or not cols:
-        raise ChartGeneratorError("Data sumber grafik kosong.")
-
-    normalized = [
-        list(row) + [None] * (cols - len(row))
-        for row in matrix
-    ]
-    ws.Range(
-        ws.Cells(start_row, start_col),
-        ws.Cells(start_row + rows - 1, start_col + cols - 1),
-    ).Value = tuple(tuple(row) for row in normalized)
-    return start_row + 1, start_row + rows - 1
-
-
 def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
     line_columns = data.get("line_columns") or []
     labels = [
@@ -210,17 +180,68 @@ def _get_chart_objects(ws: Any) -> List[Any]:
     return sorted(objects, key=lambda item: float(item.Top))
 
 
-def _update_chart_series(
+def _union_cell_range(
+    excel: Any,
+    ws: Any,
+    column: int,
+    rows: Sequence[int],
+) -> Any:
+    """Build a live, non-contiguous Excel range from the visible report table."""
+    ordered_rows = list(rows)
+    if not ordered_rows:
+        raise ChartGeneratorError("Baris sumber grafik dari tabel kosong.")
+
+    source_range = ws.Cells(ordered_rows[0], column)
+    for row_number in ordered_rows[1:]:
+        source_range = excel.Union(
+            source_range,
+            ws.Cells(row_number, column),
+        )
+    return source_range
+
+
+def _build_table_row_plan(
+    layout: Mapping[str, int],
+    machine_count: int,
+    process_count: int,
+) -> Dict[str, tuple[int, ...]]:
+    """Return the actual visible report rows used by each chart."""
+    summary_rows = (4, 6, 8, 10, 12)
+
+    machine_rows = tuple(
+        layout["machine_first_row"] + (2 * index)
+        for index in range(machine_count)
+    ) + (layout["machine_total_row"],)
+
+    # The report reserves one placeholder block when there are no processes.
+    process_rows = tuple(
+        layout["process_start_row"] + (2 * index)
+        for index in range(max(1, process_count))
+    )
+
+    return {
+        "summary": summary_rows,
+        "machines": machine_rows,
+        "processes": process_rows,
+    }
+
+
+def _update_chart_series_from_table(
+    excel: Any,
     chart_object: Any,
     ws: Any,
     labels: Sequence[str],
-    helper_col: int,
     header_row: int,
-    first_data_row: int,
-    last_data_row: int,
+    line_start_col: int,
+    category_col: int,
+    data_rows: Sequence[int],
 ) -> None:
+    """Bind every chart series directly to the visible table cells."""
+    if not data_rows:
+        raise ChartGeneratorError("Tidak ada baris tabel untuk sumber grafik.")
+
     chart = chart_object.Chart
-    chart.PlotVisibleOnly = False  # source table is stored in hidden helper columns
+    chart.PlotVisibleOnly = True
 
     series_collection = chart.SeriesCollection()
 
@@ -250,24 +271,26 @@ def _update_chart_series(
     def extra_color(index: int) -> int:
         if index < len(extra_colors):
             return extra_colors[index]
-        # Keep generating distinct colors for comparisons with many lines.
         import colorsys
         hue = ((index - len(extra_colors)) * 0.61803398875 + 0.13) % 1.0
         red, green, blue = colorsys.hsv_to_rgb(hue, 0.68, 0.82)
         return int(red * 255) | (int(green * 255) << 8) | (int(blue * 255) << 16)
 
+    category_range = _union_cell_range(excel, ws, category_col, data_rows)
+
     for index, label in enumerate(labels):
+        value_col = line_start_col + index
+        header_value = ws.Cells(header_row, value_col).Value
+        if header_value is None or not str(header_value).strip():
+            raise ChartGeneratorError(
+                f"Header LINE pada tabel kosong: baris {header_row}, kolom {value_col}."
+            )
+
         series = series_collection.Item(index + 1)
-        value_col = helper_col + index + 1
-        category_range = ws.Range(
-            ws.Cells(first_data_row, helper_col),
-            ws.Cells(last_data_row, helper_col),
-        )
-        value_range = ws.Range(
-            ws.Cells(first_data_row, value_col),
-            ws.Cells(last_data_row, value_col),
-        )
-        series.Name = label
+        value_range = _union_cell_range(excel, ws, value_col, data_rows)
+
+        # Names and points are read from the visible table, not JSON helper data.
+        series.Name = str(header_value)
         series.XValues = category_range
         series.Values = value_range
 
@@ -289,22 +312,23 @@ def _position_chart(
     first_row: int,
     last_row: int,
 ) -> None:
-    left_cell = ws.Cells(first_row, chart_col)
-    top = left_cell.Top
-    left = left_cell.Left
-    width = ws.Range(
-        ws.Cells(first_row, chart_col),
-        ws.Cells(first_row, chart_col + 1),
-    ).Width
-    height = ws.Range(
+    """Fit the chart exactly inside its two template columns and row block."""
+    if last_row < first_row:
+        raise ChartGeneratorError(
+            f"Rentang baris grafik tidak valid: {first_row}:{last_row}."
+        )
+
+    # Template graph area is always two columns wide.
+    anchor_range = ws.Range(
         ws.Cells(first_row, chart_col),
         ws.Cells(last_row, chart_col + 1),
-    ).Height
-
-    chart_object.Left = left
-    chart_object.Top = top
-    chart_object.Width = width
-    chart_object.Height = height
+    )
+    chart_object.Left = float(anchor_range.Left)
+    chart_object.Top = float(anchor_range.Top)
+    chart_object.Width = float(anchor_range.Width)
+    chart_object.Height = float(anchor_range.Height)
+    # Keep the object aligned to the cells if rows/columns are resized.
+    chart_object.Placement = 1  # xlMoveAndSize
 
 
 def generate_charts(
@@ -379,69 +403,55 @@ def generate_charts(
         chart_col = layout["chart_col"]
         note_col = layout["note_col"]
 
-        # Compact helper tables are placed out of sight to the right of the
-        # report. They feed the existing template charts without rebuilding them.
-        helper_col = layout["helper_col"]
-        summary_header, summary_end = _write_matrix(
-            ws, 1, helper_col, chart_data["summary_matrix"]
+        # All chart series link to the report's visible cells. No hidden helper
+        # table is written; the category/value ranges are non-contiguous because
+        # each template data item occupies a two-row merged block.
+        row_plan = _build_table_row_plan(
+            layout, machine_count, process_count
         )
-        machine_start_row = 10
-        machine_header, machine_end = _write_matrix(
-            ws, machine_start_row, helper_col,
-            chart_data["machine_matrix"],
-        )
-        process_start_helper = machine_start_row + len(
-            chart_data["machine_matrix"]
-        ) + 3
-        process_header, process_end = _write_matrix(
-            ws, process_start_helper, helper_col,
-            chart_data["process_matrix"],
-        )
-
-        helper_last_col = helper_col + line_count
-        ws.Columns(
-            f"{_col_letter(helper_col)}:{_col_letter(helper_last_col)}"
-        ).Hidden = True
 
         stage = "Membaca tiga grafik bawaan template"
         summary_chart, machine_chart, process_chart = _get_chart_objects(ws)
 
-        stage = "Memperbarui grafik Summary"
-        _update_chart_series(
-            summary_chart, ws, labels, helper_col,
-            header_row=1,
-            first_data_row=2,
-            last_data_row=summary_end,
+        stage = "Memperbarui grafik Summary dari tabel"
+        _update_chart_series_from_table(
+            excel, summary_chart, ws, labels,
+            header_row=3,
+            line_start_col=3,
+            category_col=2,
+            data_rows=row_plan["summary"],
         )
         _position_chart(
             summary_chart, ws, chart_col,
-            first_row=3,
-            last_row=14,
+            first_row=layout["summary_chart_start_row"],
+            last_row=layout["summary_chart_end_row"],
         )
 
-        stage = "Memperbarui grafik Penggunaan Mesin"
-        _update_chart_series(
-            machine_chart, ws, labels, helper_col,
-            header_row=machine_start_row,
-            first_data_row=machine_header,
-            last_data_row=machine_end,
+        stage = "Memperbarui grafik Penggunaan Mesin dari tabel"
+        _update_chart_series_from_table(
+            excel, machine_chart, ws, labels,
+            header_row=16,
+            line_start_col=3,
+            category_col=2,
+            data_rows=row_plan["machines"],
         )
         _position_chart(
             machine_chart, ws, chart_col,
-            first_row=15,
+            first_row=layout["machine_chart_start_row"],
             last_row=layout["machine_chart_end_row"],
         )
 
-        stage = "Memperbarui grafik Penggunaan Operator"
-        _update_chart_series(
-            process_chart, ws, labels, helper_col,
-            header_row=process_start_helper,
-            first_data_row=process_header,
-            last_data_row=process_end,
+        stage = "Memperbarui grafik Penggunaan Operator dari tabel"
+        _update_chart_series_from_table(
+            excel, process_chart, ws, labels,
+            header_row=section3_header_row,
+            line_start_col=3,
+            category_col=2,
+            data_rows=row_plan["processes"],
         )
         _position_chart(
             process_chart, ws, chart_col,
-            first_row=section3_row,
+            first_row=layout["process_chart_start_row"],
             last_row=layout["process_chart_end_row"],
         )
 
@@ -462,7 +472,8 @@ def generate_charts(
             "process_count": process_count,
             "process_chart_count": chart_process_count,
             "chart_count": 3,
-            "chart_mode": "TEMPLATE_ASLI_DIPERTAHANKAN",
+            "chart_mode": "TABEL_LAPORAN_LANGSUNG",
+            "chart_column_span": 2,
             "status": "PASS",
         }
 
@@ -496,9 +507,10 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"JUMLAH LINE         : {result['line_count']}",
         f"JENIS MESIN         : {result['machine_count']}",
         f"BARIS PROSES        : {result['process_count']}",
-        f"PROSES DI GRAFIK    : {result['process_chart_count']} (TOP 15)",
+        f"PROSES DI GRAFIK    : {result['process_chart_count']} (SELURUH PROSES)",
         f"JUMLAH GRAFIK       : {result['chart_count']}",
         f"MODE GRAFIK         : {result['chart_mode']}",
+        f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
         f"STATUS              : {result['status']}",
         "=" * 72,
     ])
