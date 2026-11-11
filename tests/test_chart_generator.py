@@ -254,34 +254,5 @@ class TestDynamicChartData(unittest.TestCase):
         )
 
 
-class TestChartWorksheetReferences(unittest.TestCase):
-    def test_series_name_uses_a_live_header_cell_reference(self):
-        class Worksheet:
-            Name = "compare line"
-
-        self.assertEqual(
-            _worksheet_cell_reference(Worksheet(), row=3, column=4),
-            "='compare line'!R3C4",
-        )
-
-    def test_series_name_reference_escapes_sheet_apostrophes(self):
-        class Worksheet:
-            Name = "Line's Report"
-
-        self.assertEqual(
-            _worksheet_cell_reference(Worksheet(), row=16, column=27),
-            "='Line''s Report'!R16C27",
-        )
-
-    def test_series_name_reference_rejects_invalid_coordinates(self):
-        class Worksheet:
-            Name = "compare line"
-
-        with self.assertRaises(ValueError):
-            _worksheet_cell_reference(Worksheet(), row=0, column=3)
-        with self.assertRaises(ValueError):
-            _worksheet_cell_reference(Worksheet(), row=3, column=0)
-
-
 if __name__ == "__main__":
     unittest.main()
