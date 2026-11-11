@@ -374,7 +374,7 @@ def _operator_chart_height(process_count: int) -> int:
     """Give operator chart enough height to read categories without table-scale stretch."""
     if isinstance(process_count, bool) or not isinstance(process_count, int) or process_count < 0:
         raise ValueError("process_count harus bilangan bulat >= 0.")
-    # About 16 px per process plus title/legend/plot-area allowance.
+    # About 16 pt per process plus title/legend/plot-area allowance.
     # Cap the chart so a large process catalog does not create an enormous object.
     return max(240, min(480, 120 + (16 * max(1, process_count))))
 
@@ -567,7 +567,7 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"MODE GRAFIK         : {result['chart_mode']}",
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
         f"TINGGI GRAFIK       : {result['chart_height_mode']} "
-        f"({result['operator_chart_height']} px untuk operator)",
+        f"({result['operator_chart_height']} pt untuk operator)",
         f"KATEGORI MESIN      : {result['machine_category_count']}",
         f"KATEGORI OPERATOR   : {result['operator_category_count']}",
         f"ANCHOR SUMMARY      : BARIS {result['chart_anchor_rows']['summary']}",
