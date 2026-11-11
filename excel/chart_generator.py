@@ -19,7 +19,7 @@ import traceback
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Sequence
 
-from excel.layout import calculate_excel_layout
+from excel.layout import CHART_COLUMN_SPAN, calculate_excel_layout
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORKBOOK = PROJECT_ROOT / "output" / "COMPARE_LINE.xlsx"
@@ -321,7 +321,7 @@ def _position_chart(
     # Template graph area is always two columns wide.
     anchor_range = ws.Range(
         ws.Cells(first_row, chart_col),
-        ws.Cells(last_row, chart_col + 1),
+        ws.Cells(last_row, chart_col + CHART_COLUMN_SPAN - 1),
     )
     chart_object.Left = float(anchor_range.Left)
     chart_object.Top = float(anchor_range.Top)
@@ -473,7 +473,7 @@ def generate_charts(
             "process_chart_count": chart_process_count,
             "chart_count": 3,
             "chart_mode": "TABEL_LAPORAN_LANGSUNG",
-            "chart_column_span": 2,
+            "chart_column_span": CHART_COLUMN_SPAN,
             "status": "PASS",
         }
 
