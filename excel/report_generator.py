@@ -54,6 +54,8 @@ XL_TOP = -4160
 XL_CONTINUOUS = 1
 XL_THIN = 2
 XL_EDGE_BOTTOM = 9
+XL_MOVE = 2  # xlMove: chart objects move with inserted cells without resizing
+EXPECTED_TEMPLATE_CHART_COUNT = 3
 
 # Explicit display units prevent the template's unit suffixes from being lost
 # when the report is regenerated with dynamic line columns.
@@ -468,7 +470,20 @@ def _prepare_template_structure(
     process_count: int,
     line_count: int,
 ) -> Dict[str, int]:
-    """Resize the template while preserving its original charts and two-row blocks."""
+    """Resize the template while preserving chart geometry and two-row blocks."""
+    # Lock the original template chart dimensions before inserting/deleting
+    # worksheet rows or columns. Excel's xlMove setting preserves each chart's
+    # original width and height while still moving it with its anchor cells.
+    chart_objects = ws.ChartObjects()
+    chart_count = int(chart_objects.Count)
+    if chart_count != EXPECTED_TEMPLATE_CHART_COUNT:
+        raise ReportGeneratorError(
+            "Template harus memiliki tepat tiga grafik bawaan; "
+            f"ditemukan {chart_count}."
+        )
+    for chart_index in range(1, chart_count + 1):
+        chart_objects.Item(chart_index).Placement = XL_MOVE
+
     # Extra line columns are inserted before the original chart area.
     extra_columns = line_count - 2
     if extra_columns > 0:
