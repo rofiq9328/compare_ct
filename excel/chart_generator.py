@@ -226,25 +226,15 @@ def _build_table_row_plan(
     }
 
 
-def _excel_column_letter(column: int) -> str:
-    """Convert a 1-based Excel column number to its A1 column label."""
+def _worksheet_cell_reference(ws: Any, row: int, column: int) -> str:
+    """Return a live R1C1 reference to a cell on the report worksheet."""
+    if isinstance(row, bool) or not isinstance(row, int) or row < 1:
+        raise ValueError(f"Nomor baris Excel tidak valid: {row!r}.")
     if isinstance(column, bool) or not isinstance(column, int) or column < 1:
         raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
 
-    result = ""
-    while column:
-        column, remainder = divmod(column - 1, 26)
-        result = chr(65 + remainder) + result
-    return result
-
-
-def _worksheet_cell_reference(ws: Any, row: int, column: int) -> str:
-    """Return a live A1 reference to a cell on the report worksheet."""
     sheet_name = str(ws.Name).replace("'", "''")
-    cell_address = f"${_excel_column_letter(column)}${row}"
-    return f"='{sheet_name}'!{cell_address}"
-
-
+    return f"='{sheet_name}'!R{row}C{column}"
 def _update_chart_series_from_table(
     excel: Any,
     chart_object: Any,
