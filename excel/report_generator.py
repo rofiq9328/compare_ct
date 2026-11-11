@@ -870,7 +870,7 @@ def generate_report(
             "process_count": report_info["process_count"],
             "review_required": data["review_count"],
             "pending_candidates": data["candidate_count"],
-            "chart_status": "CHART_BELUM_DIBUAT_TAHAP_7",
+            "chart_status": "CHART_TEMPLATE_DIPERTAHANKAN_MENUNGGU_UPDATE_TAHAP_7",
             "status": "PASS",
         }
     finally:
