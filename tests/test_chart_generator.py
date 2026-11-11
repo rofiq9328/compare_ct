@@ -63,26 +63,24 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(len(result["machine_matrix"][0]), 5)
         self.assertEqual(len(result["process_matrix"][0]), 5)
 
-    def test_summary_chart_only_contains_same_unit_output_rates(self):
+    def test_summary_chart_keeps_original_template_categories(self):
         result = _build_chart_data(self.data)
         self.assertEqual(
             [row[0] for row in result["summary_matrix"]],
-            ["OUTPUT PER JAM (PCS/JAM)", "Target Output / Jam", "Potensial Output / Jam", "Aktual Output / Jam"],
+            ["VARIABEL", "Jumlah Operator", "Takt Time", "Target Output / Jam",
+             "Potensial Output / Jam", "Aktual Output / Jam"],
         )
-        self.assertNotIn("Jumlah Operator", [row[0] for row in result["summary_matrix"]])
-        self.assertNotIn("Takt Time", [row[0] for row in result["summary_matrix"]])
 
-    def test_total_machine_is_not_a_machine_type_in_chart(self):
+    def test_machine_chart_keeps_total_row_from_original_template(self):
         result = _build_chart_data(self.data)
         categories = [row[0] for row in result["machine_matrix"][1:]]
-        self.assertEqual(categories, ["DNL-150", "DSC-246"])
-        self.assertNotIn("TOTAL MESIN", categories)
+        self.assertEqual(categories, ["DNL-150", "DSC-246", "TOTAL MESIN"])
 
-    def test_process_chart_is_top_fifteen_while_full_table_count_is_retained(self):
+    def test_process_chart_includes_every_process_row(self):
         result = _build_chart_data(self.data)
         self.assertEqual(result["process_count"], 19)
-        self.assertEqual(result["process_chart_count"], 15)
-        self.assertEqual(len(result["process_matrix"]), 16)
+        self.assertEqual(result["process_chart_count"], 19)
+        self.assertEqual(len(result["process_matrix"]), 20)
 
 
 if __name__ == "__main__":
