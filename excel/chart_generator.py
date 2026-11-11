@@ -19,6 +19,8 @@ import traceback
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Sequence
 
+from excel.layout import calculate_excel_layout
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORKBOOK = PROJECT_ROOT / "output" / "COMPARE_LINE.xlsx"
 DEFAULT_COMPARISON = PROJECT_ROOT / "logs" / "comparison_data.json"
@@ -147,13 +149,8 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
             "Tidak ada data jenis mesin untuk grafik."
         )
 
-    total_row = data.get("machine_total_row") or {}
-    total_values = total_row.get("values_by_line") or {}
-    machine_matrix.append(
-        ["TOTAL MESIN"] + [
-            _safe_number(total_values.get(line)) for line in labels
-        ]
-    )
+    # TOTAL MESIN remains a table KPI, not a machine category. Excluding it
+    # keeps the chart scale comparable between individual machine types.
 
     process_ranked = []
     for row in data.get("process_rows") or []:
@@ -235,7 +232,20 @@ def _update_chart_series(
         0x4472C4,  # blue
         0x00B0F0,  # cyan
         0xC55A11,  # brown-orange
+        0x548235,  # dark green
+        0xBF9000,  # gold
+        0x8064A2,  # violet
+        0x31869B,  # teal
     ]
+
+    def extra_color(index: int) -> int:
+        if index < len(extra_colors):
+            return extra_colors[index]
+        # Keep generating distinct colors for comparisons with many lines.
+        import colorsys
+        hue = ((index - len(extra_colors)) * 0.61803398875 + 0.13) % 1.0
+        red, green, blue = colorsys.hsv_to_rgb(hue, 0.68, 0.82)
+        return int(red * 255) | (int(green * 255) << 8) | (int(blue * 255) << 16)
 
     for index, label in enumerate(labels):
         series = series_collection.Item(index + 1)
@@ -255,7 +265,7 @@ def _update_chart_series(
         # Keep the first two series' exact template colors. Additional lines
         # receive distinct colors while retaining the chart's native style.
         if index >= 2:
-            color = extra_colors[(index - 2) % len(extra_colors)]
+            color = extra_color(index - 2)
             try:
                 series.Format.Fill.ForeColor.RGB = color
                 series.Format.Line.ForeColor.RGB = color
@@ -361,23 +371,23 @@ def generate_charts(
         machine_count = chart_data["machine_count"]
         process_count = chart_data["process_count"]
 
-        # The visible report keeps two rows for each item, matching the template.
-        machine_first_row = 17
-        machine_total_row = machine_first_row + 2 * machine_count
-        section3_row = machine_total_row + 3
-        section3_header_row = section3_row + 1
-        process_start_row = section3_header_row + 1
-        allocated_process_count = max(1, process_count)
-        process_end_row = (
-            process_start_row + 2 * allocated_process_count - 1
-        )
+        # Use the same dynamic geometry as Stage 6.
         chart_process_count = chart_data["process_chart_count"]
-        chart_col = 3 + line_count
-        note_col = chart_col + 2
+        layout = calculate_excel_layout(
+            machine_count, process_count, line_count,
+            chart_process_count=chart_process_count,
+        )
+        machine_total_row = layout["machine_total_row"]
+        section3_row = layout["section3_row"]
+        section3_header_row = layout["section3_header_row"]
+        process_start_row = layout["process_start_row"]
+        process_end_row = layout["process_end_row"]
+        chart_col = layout["chart_col"]
+        note_col = layout["note_col"]
 
         # Compact helper tables are placed out of sight to the right of the
         # report. They feed the existing template charts without rebuilding them.
-        helper_col = note_col + 3
+        helper_col = layout["helper_col"]
         summary_header, summary_end = _write_matrix(
             ws, 1, helper_col, chart_data["summary_matrix"]
         )
