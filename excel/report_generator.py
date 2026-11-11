@@ -1,8 +1,8 @@
 """Generate a single-sheet COMPARE LINE workbook from comparison and analysis JSON.
 
 Excel automation uses Microsoft Excel through pywin32 so the supplied template's
-formatting is retained. This stage prepares report data and removes stale sample
-charts; the chart objects are added by the next chart-generator stage.
+formatting is retained. This stage populates the template while preserving its three original chart objects.
+The next stage only updates chart data and positions, not chart design.
 
 Run from the project root:
     py -m excel.report_generator
@@ -52,6 +52,18 @@ XL_TOP = -4160
 XL_CONTINUOUS = 1
 XL_THIN = 2
 XL_EDGE_BOTTOM = 9
+
+# Explicit display units prevent the template's unit suffixes from being lost
+# when the report is regenerated with dynamic line columns.
+SUMMARY_NUMBER_FORMATS = {
+    "operator_allocations": '0 "OPT"',
+    "takt_time": '0 "detik"',
+    "target_per_hour": '0 "pcs/jam"',
+    "potential_per_hour": '0.00 "pcs/jam"',
+    "actual_per_hour": '0 "pcs/jam"',
+}
+MACHINE_NUMBER_FORMAT = '0 "unit"'
+OPERATOR_NUMBER_FORMAT = '0 "OPT"'
 
 
 class ReportGeneratorError(ValueError):
@@ -405,70 +417,183 @@ def _set_range_value(ws: Any, row: int, column: int, value: Any) -> None:
     ws.Cells(row, column).Value = value
 
 
-def _copy_row_formats(excel: Any, ws: Any, source_row: int, start_row: int, end_row: int) -> None:
-    if end_row <= start_row:
-        return
-    ws.Rows(source_row).Copy()
-    ws.Rows(f"{start_row}:{end_row}").PasteSpecial(Paste=XL_PASTE_FORMATS)
+def _copy_row_formats(excel: Any, ws: Any, source_start: int, source_end: int,
+                      target_start: int, target_end: int, last_col: int) -> None:
+    """Copy a complete two-row template block to an inserted block."""
+    source = ws.Range(
+        ws.Cells(source_start, 2),
+        ws.Cells(source_end, last_col),
+    )
+    target = ws.Range(
+        ws.Cells(target_start, 2),
+        ws.Cells(target_end, last_col),
+    )
+    source.Copy()
+    target.PasteSpecial(Paste=XL_PASTE_FORMATS)
     excel.CutCopyMode = False
+    # Keep each half of every data block the same height.
+    source_height = float(ws.Rows(source_start).RowHeight)
+    ws.Rows(f"{target_start}:{target_end}").RowHeight = source_height
 
 
-def _prepare_template_structure(excel: Any, ws: Any, machine_count: int, line_count: int) -> Dict[str, int]:
-    """Resize template's machine rows and value/chart/note columns."""
-    # Machine rows in the original template have capacity for six machine types.
+def _merge_vertical_block(ws: Any, row_number: int, line_count: int,
+                          chart_col: int, note_col: int) -> None:
+    """Apply the template's consistent two-row vertical merge pattern."""
+    end_row = row_number + 1
+
+    # Label column and every line value column are merged vertically.
+    for column in range(2, 3 + line_count):
+        ws.Range(
+            ws.Cells(row_number, column),
+            ws.Cells(end_row, column),
+        ).Merge()
+
+    # The template has one two-column chart area and one note column.
+    ws.Range(
+        ws.Cells(row_number, chart_col),
+        ws.Cells(end_row, chart_col + 1),
+    ).Merge()
+    ws.Range(
+        ws.Cells(row_number, note_col),
+        ws.Cells(end_row, note_col),
+    ).Merge()
+
+
+def _prepare_template_structure(
+    excel: Any,
+    ws: Any,
+    machine_count: int,
+    process_count: int,
+    line_count: int,
+) -> Dict[str, int]:
+    """Resize the template while preserving its original charts and two-row blocks."""
+    # Extra line columns are inserted before the original chart area.
+    extra_columns = line_count - 2
+    if extra_columns > 0:
+        value_column_width = ws.Columns("D:D").ColumnWidth
+        ws.Columns(f"E:{_column_letter(4 + extra_columns)}").Insert()
+        ws.Columns("D:D").Copy()
+        ws.Columns(f"E:{_column_letter(4 + extra_columns)}").PasteSpecial(
+            Paste=XL_PASTE_FORMATS
+        )
+        excel.CutCopyMode = False
+        for column in range(5, 5 + extra_columns):
+            letter = _column_letter(column)
+            ws.Columns(f"{letter}:{letter}").ColumnWidth = value_column_width
+
+    chart_col = 3 + line_count
+    note_col = chart_col + 2
+    last_col = note_col
+
+    # Machine section: each machine and TOTAL MESIN uses a two-row block.
     if machine_count > MACHINE_TEMPLATE_CAPACITY:
         extra_rows = 2 * (machine_count - MACHINE_TEMPLATE_CAPACITY)
-        ws.Rows(f"{MACHINE_TOTAL_TEMPLATE_ROW}:{MACHINE_TOTAL_TEMPLATE_ROW + extra_rows - 1}").Insert()
-        # Match inserted machine data rows to the existing machine data style.
+        insert_at = MACHINE_TOTAL_TEMPLATE_ROW
+        ws.Rows(f"{insert_at}:{insert_at + extra_rows - 1}").Insert()
         for index in range(MACHINE_TEMPLATE_CAPACITY, machine_count):
-            target_row = MACHINE_FIRST_ROW + 2 * index
-            ws.Rows(MACHINE_FIRST_ROW + 2 * (MACHINE_TEMPLATE_CAPACITY - 1)).Copy()
-            ws.Rows(target_row).PasteSpecial(Paste=XL_PASTE_FORMATS)
-            excel.CutCopyMode = False
+            target_start = MACHINE_FIRST_ROW + 2 * index
+            _copy_row_formats(
+                excel, ws,
+                MACHINE_FIRST_ROW + 2 * (MACHINE_TEMPLATE_CAPACITY - 1),
+                MACHINE_FIRST_ROW + 2 * (MACHINE_TEMPLATE_CAPACITY - 1) + 1,
+                target_start, target_start + 1, last_col,
+            )
+
     elif machine_count < MACHINE_TEMPLATE_CAPACITY:
-        # Retain one blank spacer before TOTAL MESIN, but remove unused machine slots.
-        desired_total_row = MACHINE_FIRST_ROW + (2 * machine_count)
-        if desired_total_row < MACHINE_TOTAL_TEMPLATE_ROW:
-            delete_start = desired_total_row
-            delete_end = MACHINE_TOTAL_TEMPLATE_ROW - 1
+        delete_start = MACHINE_FIRST_ROW + 2 * machine_count
+        delete_end = MACHINE_TOTAL_TEMPLATE_ROW - 1
+        if delete_start <= delete_end:
             ws.Rows(f"{delete_start}:{delete_end}").Delete()
 
-    total_row = MACHINE_FIRST_ROW + (2 * machine_count)
+    total_row = MACHINE_FIRST_ROW + 2 * machine_count
     section3_row = total_row + 3
     section3_header_row = section3_row + 1
     process_start_row = section3_header_row + 1
 
-    # There are two line-value columns in the base template. Insert more before chart area E.
-    extra_columns = line_count - 2
-    if extra_columns > 0:
-        ws.Columns(f"E:{_column_letter(4 + extra_columns)}").Insert()
-        # Copy value-column formatting to newly inserted line columns.
-        ws.Columns("D:D").Copy()
-        ws.Columns(f"E:{_column_letter(4 + extra_columns)}").PasteSpecial(Paste=XL_PASTE_FORMATS)
-        excel.CutCopyMode = False
+    # Process section starts with ten two-row template blocks.
+    template_process_capacity = 10
+    allocated_process_count = max(1, process_count)
+    if allocated_process_count > template_process_capacity:
+        extra_process_rows = 2 * (
+            allocated_process_count - template_process_capacity
+        )
+        insert_at = process_start_row + 2 * template_process_capacity
+        ws.Rows(
+            f"{insert_at}:{insert_at + extra_process_rows - 1}"
+        ).Insert()
+        source_start = process_start_row + 2 * (template_process_capacity - 1)
+        for index in range(template_process_capacity, allocated_process_count):
+            target_start = process_start_row + 2 * index
+            _copy_row_formats(
+                excel, ws,
+                source_start, source_start + 1,
+                target_start, target_start + 1, last_col,
+            )
 
-    chart_col = 3 + line_count
-    note_col = chart_col + 2
+    elif allocated_process_count < template_process_capacity:
+        delete_start = process_start_row + 2 * allocated_process_count
+        delete_end = process_start_row + 2 * template_process_capacity - 1
+        if delete_start <= delete_end:
+            ws.Rows(f"{delete_start}:{delete_end}").Delete()
 
-    # Delete old template charts: they contain example data and will be rebuilt next stage.
-    try:
-        ws.ChartObjects().Delete()
-    except Exception:
-        # Some Excel versions return an empty collection that cannot be deleted.
-        pass
+    process_end_row = (
+        process_start_row + 2 * allocated_process_count - 1
+    )
 
-    # Clear template values only; all existing cell formatting is kept.
-    last_used_row = max(process_start_row + 100, int(ws.UsedRange.Rows.Count) + 10)
-    ws.Range(ws.Cells(1, 2), ws.Cells(last_used_row, note_col)).ClearContents()
+    # Clear values only. The template's fills, borders, number formats and charts remain.
+    last_used_row = max(
+        process_end_row,
+        int(ws.UsedRange.Rows.Count) + int(ws.UsedRange.Row) + 5,
+    )
+    ws.Range(
+        ws.Cells(1, 2),
+        ws.Cells(last_used_row, last_col),
+    ).ClearContents()
+
+    # Rebuild all dynamic two-row merges from scratch to avoid leftover
+    # half-merged or unmerged rows after row insertion/deletion.
+    machine_region = ws.Range(
+        ws.Cells(MACHINE_FIRST_ROW, 2),
+        ws.Cells(total_row + 1, note_col),
+    )
+    machine_region.UnMerge()
+
+    for index in range(machine_count + 1):  # includes TOTAL MESIN
+        row_number = MACHINE_FIRST_ROW + 2 * index
+        _merge_vertical_block(
+            ws, row_number, line_count, chart_col, note_col
+        )
+
+    process_region = ws.Range(
+        ws.Cells(process_start_row, 2),
+        ws.Cells(process_end_row, note_col),
+    )
+    process_region.UnMerge()
+
+    for index in range(allocated_process_count):
+        row_number = process_start_row + 2 * index
+        _merge_vertical_block(
+            ws, row_number, line_count, chart_col, note_col
+        )
+
+    # Keep all data blocks uniform: two template-height rows per item.
+    ws.Rows(
+        f"{MACHINE_FIRST_ROW}:{total_row + 1}"
+    ).RowHeight = 24.95
+    ws.Rows(
+        f"{process_start_row}:{process_end_row}"
+    ).RowHeight = 24.95
 
     return {
         "total_row": total_row,
         "section3_row": section3_row,
         "section3_header_row": section3_header_row,
         "process_start_row": process_start_row,
+        "process_end_row": process_end_row,
+        "allocated_process_count": allocated_process_count,
         "chart_col": chart_col,
         "note_col": note_col,
-        "last_column": note_col,
+        "last_column": last_col,
     }
 
 
@@ -478,190 +603,200 @@ def _populate_workbook(excel: Any, ws: Any, data: Mapping[str, Any]) -> Dict[str
     machine_rows: Sequence[Mapping[str, Any]] = data["machine_rows"]
     process_rows: Sequence[Mapping[str, Any]] = data["process_rows"]
     line_columns_start = 3  # C
-    layout = _prepare_template_structure(excel, ws, len(machine_rows), len(labels))
+
+    layout = _prepare_template_structure(
+        excel, ws, len(machine_rows), len(process_rows), len(labels)
+    )
     chart_col = layout["chart_col"]
     note_col = layout["note_col"]
-    last_col = layout["last_column"]
     section3_row = layout["section3_row"]
     section3_header_row = layout["section3_header_row"]
     process_start = layout["process_start_row"]
     total_row = layout["total_row"]
+    process_end = layout["process_end_row"]
 
     # Workbook and section headings.
     ws.Cells(1, 2).Value = "COMPARE LINE"
     ws.Cells(2, 2).Value = "I. SUMMARY"
-    ws.Cells(15, 2).Value = "II. PENGGUNAAN MESIN"
-    ws.Cells(section3_row, 2).Value = "III. PENGGUNAAN OPERATOR"
+    ws.Cells(15, 2).Value = "II. PENGGUNAAN MESIN (UNIT)"
+    ws.Cells(section3_row, 2).Value = "III. PENGGUNAAN OPERATOR (OPT)"
 
-    # Header rows for each of the three sections.
+    # Header rows for all three sections.
     for header_row, variable_label in (
         (3, "VARIABEL"),
         (16, "VARIABEL / PARAMETER"),
-        (section3_header_row, "PROSES"),
+        (section3_header_row, "VARIABEL / PARAMETER"),
     ):
         ws.Cells(header_row, 2).Value = variable_label
         for index, label in enumerate(labels):
             ws.Cells(header_row, line_columns_start + index).Value = label
         ws.Cells(header_row, chart_col).Value = "GRAFIK"
         ws.Cells(header_row, note_col).Value = "KETERANGAN"
+        ws.Range(
+            ws.Cells(header_row, 2),
+            ws.Cells(header_row, note_col),
+        ).HorizontalAlignment = XL_CENTER
+        ws.Range(
+            ws.Cells(header_row, 2),
+            ws.Cells(header_row, note_col),
+        ).WrapText = True
+        ws.Rows(header_row).RowHeight = 33.95
 
-    # I. SUMMARY.
-    summary_key_to_label = {
+    # I. SUMMARY. Existing template number formats carry opt/dtk/pcs units.
+    summary_row_labels = {
         "operator_allocations": "Jumlah Operator",
         "takt_time": "Takt Time",
         "target_per_hour": "Target Output / Jam",
         "potential_per_hour": "Potensial Output / Jam",
         "actual_per_hour": "Aktual Output / Jam",
     }
-    summary_units = {
-        "operator_allocations": "OPT",
-        "takt_time": "detik",
-        "target_per_hour": "pcs",
-        "potential_per_hour": "pcs",
-        "actual_per_hour": "pcs",
-    }
     for key, row_number in zip(SUMMARY_ROW_KEYS, SUMMARY_TEMPLATE_ROWS):
         item = summary_by_key[key]
-        ws.Cells(row_number, 2).Value = item.get("label") or summary_key_to_label[key]
+        ws.Cells(row_number, 2).Value = (
+            item.get("label") or summary_row_labels[key]
+        )
         values = item.get("values_by_line") or {}
         for index, label in enumerate(labels):
-            value = values.get(label)
-            _set_range_value(ws, row_number, line_columns_start + index, value)
+            _set_range_value(
+                ws, row_number, line_columns_start + index,
+                values.get(label),
+            )
         ws.Cells(row_number, note_col).Value = _summary_note(
             key,
-            str(item.get("unit") or summary_units[key]),
+            str(item.get("unit") or ""),
             labels,
             data["summary_differences"],
             data["line_kpis"],
         )
+        ws.Cells(row_number, note_col).WrapText = True
+        unit_format = SUMMARY_NUMBER_FORMATS.get(key)
+        if unit_format:
+            ws.Range(
+                ws.Cells(row_number, line_columns_start),
+                ws.Cells(row_number, line_columns_start + len(labels) - 1),
+            ).NumberFormat = unit_format
+        ws.Rows(f"{row_number}:{row_number + 1}").RowHeight = 24.95
 
-    # II. PENGGUNAAN MESIN.
-    machine_data_rows = [MACHINE_FIRST_ROW + 2 * index for index in range(len(machine_rows))]
-    for index, (item, row_number) in enumerate(zip(machine_rows, machine_data_rows)):
+    # II. PENGGUNAAN MESIN. Two rows per machine, plus a two-row total block.
+    machine_data_rows = [
+        MACHINE_FIRST_ROW + 2 * index
+        for index in range(len(machine_rows))
+    ]
+    for item, row_number in zip(machine_rows, machine_data_rows):
         ws.Cells(row_number, 2).Value = item.get("machine")
         values = item.get("values_by_line") or {}
         for line_index, label in enumerate(labels):
-            value = values.get(label, 0)
-            ws.Cells(row_number, line_columns_start + line_index).Value = value
-        ws.Cells(row_number, note_col).Value = _machine_note(item, labels)
+            ws.Cells(
+                row_number, line_columns_start + line_index
+            ).Value = values.get(label, 0)
+        ws.Cells(row_number, note_col).Value = _machine_note(
+            item, labels
+        )
+        ws.Cells(row_number, note_col).WrapText = True
+        for line_index in range(len(labels)):
+            ws.Cells(row_number, line_columns_start + line_index).NumberFormat = MACHINE_NUMBER_FORMAT
         if item.get("alias_applied"):
             ws.Cells(row_number, note_col).Font.Color = 0x006600
 
     ws.Cells(total_row, 2).Value = "TOTAL MESIN"
     total_values = data["machine_total_row"].get("values_by_line") or {}
     for index, label in enumerate(labels):
-        ws.Cells(total_row, line_columns_start + index).Value = total_values.get(label, 0)
-    ws.Cells(total_row, note_col).Value = "Total alokasi mesin; direkonsiliasi dengan katalog mesin dan detail proses."
+        ws.Cells(
+            total_row, line_columns_start + index
+        ).Value = total_values.get(label, 0)
+    ws.Cells(total_row, note_col).Value = (
+        "Total alokasi mesin; direkonsiliasi dengan katalog mesin "
+        "dan detail proses."
+    )
+    ws.Cells(total_row, note_col).WrapText = True
+    for line_index in range(len(labels)):
+        ws.Cells(total_row, line_columns_start + line_index).NumberFormat = MACHINE_NUMBER_FORMAT
+    ws.Range(
+        ws.Cells(total_row, 2),
+        ws.Cells(total_row + 1, note_col),
+    ).Font.Bold = True
 
-    # III. PENGGUNAAN OPERATOR. Make the detailed process list compact (one process per row).
+    # III. PENGGUNAAN OPERATOR. Each process occupies a complete two-row block.
     if process_rows:
-        process_end = process_start + len(process_rows) - 1
-        _copy_row_formats(excel, ws, process_start, process_start + 1, process_end)
         for index, item in enumerate(process_rows):
-            row_number = process_start + index
+            row_number = process_start + 2 * index
             ws.Cells(row_number, 2).Value = item.get("process")
             op_values = item.get("operator_allocations_by_line") or {}
             for line_index, label in enumerate(labels):
-                ws.Cells(row_number, line_columns_start + line_index).Value = op_values.get(label, 0)
+                ws.Cells(
+                    row_number, line_columns_start + line_index
+                ).Value = op_values.get(label, 0)
             note = _process_note(item, labels)
             ws.Cells(row_number, note_col).Value = note
+            ws.Cells(row_number, note_col).WrapText = True
+            for line_index in range(len(labels)):
+                ws.Cells(row_number, line_columns_start + line_index).NumberFormat = OPERATOR_NUMBER_FORMAT
             status = str(item.get("matching_status") or "").upper()
             if status == "REVIEW_REQUIRED":
-                ws.Cells(row_number, note_col).Interior.Color = 0xD9EAF7  # pale blue review marker
+                ws.Cells(row_number, note_col).Interior.Color = 0xD9EAF7
                 ws.Cells(row_number, note_col).Font.Color = 0x7F6000
             elif status == "APPROVED_ALIAS":
                 ws.Cells(row_number, note_col).Font.Color = 0x006100
             elif status == "ONLY_IN_LISTED_LINES":
                 ws.Cells(row_number, note_col).Font.Color = 0x666666
-            ws.Rows(row_number).RowHeight = 30 if len(str(item.get("process") or "")) > 42 or len(note) > 85 else 22
     else:
-        process_end = process_start
         ws.Cells(process_start, 2).Value = "Tidak ada detail proses."
 
-    # Readability and alignment.
-    ws.Columns("A:A").ColumnWidth = 3
-    ws.Columns("B:B").ColumnWidth = 42
-    for index in range(len(labels)):
-        col = _column_letter(line_columns_start + index)
-        ws.Columns(f"{col}:{col}").ColumnWidth = 17
-    ws.Columns(f"{_column_letter(chart_col)}:{_column_letter(chart_col + 1)}").ColumnWidth = 12
-    ws.Columns(f"{_column_letter(note_col)}:{_column_letter(note_col)}").ColumnWidth = 48
+    # Match the template's column widths. Do not squeeze the chart area.
+    # B, existing line columns, chart columns and note column retain template widths.
+    # Any added line columns were assigned the original D-column width above.
 
-    # Apply consistent wrap/alignment to labels, values, and notes.
-    ws.Range(ws.Cells(3, 2), ws.Cells(process_end, note_col)).VerticalAlignment = XL_TOP
-    ws.Range(ws.Cells(3, 2), ws.Cells(3, note_col)).WrapText = True
-    ws.Range(ws.Cells(4, 2), ws.Cells(12, 2)).WrapText = True
-    ws.Range(ws.Cells(16, 2), ws.Cells(16, note_col)).WrapText = True
-    ws.Range(ws.Cells(section3_header_row, 2), ws.Cells(section3_header_row, note_col)).WrapText = True
-    for header_row in (3, 16, section3_header_row):
-        ws.Range(ws.Cells(header_row, 2), ws.Cells(header_row, note_col)).HorizontalAlignment = XL_CENTER
-        ws.Rows(header_row).RowHeight = 32
-    ws.Range(ws.Cells(4, line_columns_start), ws.Cells(12, line_columns_start + len(labels) - 1)).HorizontalAlignment = XL_CENTER
+    # Consistent alignment and wrapping.
+    ws.Range(
+        ws.Cells(4, 2),
+        ws.Cells(12, 2),
+    ).WrapText = True
+    ws.Range(
+        ws.Cells(16, 2),
+        ws.Cells(16, note_col),
+    ).WrapText = True
+    ws.Range(
+        ws.Cells(section3_header_row, 2),
+        ws.Cells(section3_header_row, note_col),
+    ).WrapText = True
+
+    ws.Range(
+        ws.Cells(4, line_columns_start),
+        ws.Cells(12, line_columns_start + len(labels) - 1),
+    ).HorizontalAlignment = XL_CENTER
+
     if machine_data_rows:
         ws.Range(
             ws.Cells(MACHINE_FIRST_ROW, line_columns_start),
-            ws.Cells(machine_data_rows[-1], line_columns_start + len(labels) - 1),
+            ws.Cells(machine_data_rows[-1] + 1, line_columns_start + len(labels) - 1),
         ).HorizontalAlignment = XL_CENTER
-    if process_rows:
-        ws.Range(
-            ws.Cells(process_start, 2),
-            ws.Cells(process_end, 2),
-        ).WrapText = True
-        ws.Range(
-            ws.Cells(process_start, line_columns_start),
-            ws.Cells(process_end, line_columns_start + len(labels) - 1),
-        ).HorizontalAlignment = XL_CENTER
-
-    # Number formats: only potential output needs decimals; other counts are integers.
-    for key, row_number in zip(SUMMARY_ROW_KEYS, SUMMARY_TEMPLATE_ROWS):
-        fmt = "0.00" if key == "potential_per_hour" else "0"
-        ws.Range(
-            ws.Cells(row_number, line_columns_start),
-            ws.Cells(row_number, line_columns_start + len(labels) - 1),
-        ).NumberFormat = fmt
-    if machine_data_rows:
-        ws.Range(
-            ws.Cells(MACHINE_FIRST_ROW, line_columns_start),
-            ws.Cells(machine_data_rows[-1], line_columns_start + len(labels) - 1),
-        ).NumberFormat = "0"
     ws.Range(
         ws.Cells(total_row, line_columns_start),
-        ws.Cells(total_row, line_columns_start + len(labels) - 1),
-    ).NumberFormat = "0"
-    if process_rows:
-        ws.Range(
-            ws.Cells(process_start, line_columns_start),
-            ws.Cells(process_end, line_columns_start + len(labels) - 1),
-        ).NumberFormat = "0"
+        ws.Cells(total_row + 1, line_columns_start + len(labels) - 1),
+    ).HorizontalAlignment = XL_CENTER
 
-    # Make note cells legible and keep data visible without autofitting excessively.
-    for row_number in list(SUMMARY_TEMPLATE_ROWS) + machine_data_rows + [total_row]:
-        ws.Cells(row_number, 2).WrapText = True
-        ws.Cells(row_number, note_col).WrapText = True
-        ws.Cells(row_number, note_col).VerticalAlignment = XL_TOP
-        if row_number in SUMMARY_TEMPLATE_ROWS:
-            ws.Rows(row_number).RowHeight = 28
-        elif row_number in machine_data_rows:
-            ws.Rows(row_number).RowHeight = 26
-    if process_rows:
-        notes_range = ws.Range(ws.Cells(process_start, note_col), ws.Cells(process_end, note_col))
-        notes_range.WrapText = True
-        notes_range.VerticalAlignment = XL_TOP
-        # Thin separators make the long process list easy to scan.
-        try:
-            border = notes_range.Borders(XL_EDGE_BOTTOM)
-            border.LineStyle = XL_CONTINUOUS
-            border.Weight = XL_THIN
-        except Exception:
-            pass
+    ws.Range(
+        ws.Cells(process_start, 2),
+        ws.Cells(process_end, 2),
+    ).WrapText = True
+    ws.Range(
+        ws.Cells(process_start, line_columns_start),
+        ws.Cells(process_end, line_columns_start + len(labels) - 1),
+    ).HorizontalAlignment = XL_CENTER
 
-    # Preserve the total row's emphasis even if the template's row was shifted.
-    ws.Range(ws.Cells(total_row, 2), ws.Cells(total_row, note_col)).Font.Bold = True
+    # Keep total row emphasized and data rows vertically centered like the template.
+    ws.Range(
+        ws.Cells(MACHINE_FIRST_ROW, 2),
+        ws.Cells(process_end, note_col),
+    ).VerticalAlignment = XL_CENTER
+    ws.Range(
+        ws.Cells(total_row, 2),
+        ws.Cells(total_row + 1, note_col),
+    ).Font.Bold = True
 
     return {
         **layout,
         "machine_data_rows": machine_data_rows,
-        "process_end_row": process_end,
         "process_count": len(process_rows),
         "machine_count": len(machine_rows),
         "line_count": len(labels),
