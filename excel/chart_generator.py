@@ -226,6 +226,25 @@ def _build_table_row_plan(
     }
 
 
+def _excel_column_letter(column: int) -> str:
+    """Convert a 1-based Excel column number to its A1 column label."""
+    if isinstance(column, bool) or not isinstance(column, int) or column < 1:
+        raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
+
+    result = ""
+    while column:
+        column, remainder = divmod(column - 1, 26)
+        result = chr(65 + remainder) + result
+    return result
+
+
+def _worksheet_cell_reference(ws: Any, row: int, column: int) -> str:
+    """Return a live A1 reference to a cell on the report worksheet."""
+    sheet_name = str(ws.Name).replace("'", "''")
+    cell_address = f"${_excel_column_letter(column)}${row}"
+    return f"='{sheet_name}'!{cell_address}"
+
+
 def _update_chart_series_from_table(
     excel: Any,
     chart_object: Any,
@@ -289,8 +308,9 @@ def _update_chart_series_from_table(
         series = series_collection.Item(index + 1)
         value_range = _union_cell_range(excel, ws, value_col, data_rows)
 
-        # Names and points are read from the visible table, not JSON helper data.
-        series.Name = str(header_value)
+        # The legend name, category labels, and values all stay linked to the
+        # visible report cells. Editing a LINE header also updates the legend.
+        series.Name = _worksheet_cell_reference(ws, header_row, value_col)
         series.XValues = category_range
         series.Values = value_range
 
