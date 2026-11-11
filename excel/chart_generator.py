@@ -113,15 +113,17 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         str(row.get("key") or ""): row
         for row in data.get("summary_rows") or []
     }
-    # Only compare output-rate KPIs in one chart. Operator count and takt
-    # time use different units and must not share the same value axis.
+    # Keep the original five summary categories from the workbook template.
+    # Units are displayed beside values in each LINE column, not on chart axes.
     summary_order = (
-        ("target_per_hour", "Target"),
-        ("potential_per_hour", "Potensial"),
-        ("actual_per_hour", "Aktual"),
+        ("operator_allocations", "Jumlah Operator"),
+        ("takt_time", "Takt Time"),
+        ("target_per_hour", "Target Output / Jam"),
+        ("potential_per_hour", "Potensial Output / Jam"),
+        ("actual_per_hour", "Aktual Output / Jam"),
     )
 
-    summary_matrix: List[List[Any]] = [["OUTPUT PER JAM (PCS/JAM)"] + labels]
+    summary_matrix: List[List[Any]] = [["VARIABEL"] + labels]
     for key, fallback_label in summary_order:
         if key not in summary_rows:
             raise ChartGeneratorError(
@@ -135,7 +137,7 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         )
 
     machine_rows = data.get("machine_rows") or []
-    machine_matrix: List[List[Any]] = [["JENIS MESIN (UNIT)"] + labels]
+    machine_matrix: List[List[Any]] = [["JENIS MESIN"] + labels]
     for row in machine_rows:
         machine = str(row.get("machine") or "").strip()
         if not machine:
@@ -149,8 +151,13 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
             "Tidak ada data jenis mesin untuk grafik."
         )
 
-    # TOTAL MESIN remains a table KPI, not a machine category. Excluding it
-    # keeps the chart scale comparable between individual machine types.
+    total_row = data.get("machine_total_row") or {}
+    total_values = total_row.get("values_by_line") or {}
+    machine_matrix.append(
+        ["TOTAL MESIN"] + [
+            _safe_number(total_values.get(line)) for line in labels
+        ]
+    )
 
     process_ranked = []
     for row in data.get("process_rows") or []:
@@ -166,9 +173,10 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
     process_ranked.sort(
         key=lambda item: (-item[0], item[1].casefold())
     )
-    top_processes = process_ranked[:15]
-    process_matrix: List[List[Any]] = [["PROSES (TOP 15) - OPERATOR (OPT)"] + labels]
-    for _, process, per_line in top_processes:
+    # Include every process row, not just the first 15. The chart height grows
+    # when the detail process data gets longer.
+    process_matrix: List[List[Any]] = [["PROSES"] + labels]
+    for _, process, per_line in process_ranked:
         process_matrix.append([process] + per_line)
     if len(process_matrix) == 1:
         process_matrix.append(
@@ -180,8 +188,8 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         "summary_matrix": summary_matrix,
         "machine_matrix": machine_matrix,
         "process_matrix": process_matrix,
-        "machine_count": len(machine_rows),
-        "process_count": len(data.get("process_rows") or []),
+        "machine_count": len(machine_matrix) - 1,
+        "process_count": len(process_ranked),
         "process_chart_count": len(process_matrix) - 1,
     }
 
@@ -298,21 +306,6 @@ def _position_chart(
     chart_object.Height = height
 
 
-def _set_chart_titles(chart_object: Any, title: str, value_axis_title: str) -> None:
-    """Set meaningful chart and value-axis titles without replacing template styling."""
-    chart = chart_object.Chart
-    chart.HasTitle = True
-    chart.ChartTitle.Text = title
-    try:
-        value_axis = chart.Axes(XL_VALUE, XL_PRIMARY)
-        value_axis.HasTitle = True
-        value_axis.AxisTitle.Text = value_axis_title
-        value_axis.TickLabels.NumberFormat = "0.##"
-    except Exception:
-        # Some template chart types may not expose a primary value axis.
-        pass
-
-
 def generate_charts(
     workbook_path: str | Path = DEFAULT_WORKBOOK,
     comparison_path: str | Path = DEFAULT_COMPARISON,
@@ -424,11 +417,6 @@ def generate_charts(
             first_row=3,
             last_row=14,
         )
-        _set_chart_titles(
-            summary_chart,
-            "PERBANDINGAN OUTPUT PER JAM",
-            "Output (pcs/jam)",
-        )
 
         stage = "Memperbarui grafik Penggunaan Mesin"
         _update_chart_series(
@@ -442,11 +430,6 @@ def generate_charts(
             first_row=15,
             last_row=layout["machine_chart_end_row"],
         )
-        _set_chart_titles(
-            machine_chart,
-            "PENGGUNAAN JENIS MESIN PER LINE",
-            "Jumlah mesin (unit)",
-        )
 
         stage = "Memperbarui grafik Penggunaan Operator"
         _update_chart_series(
@@ -459,11 +442,6 @@ def generate_charts(
             process_chart, ws, chart_col,
             first_row=section3_row,
             last_row=layout["process_chart_end_row"],
-        )
-        _set_chart_titles(
-            process_chart,
-            "TOP 15 PENGGUNAAN OPERATOR PER PROSES",
-            "Jumlah operator (OPT)",
         )
 
         stage = "Menyimpan workbook"
