@@ -3,6 +3,7 @@ import unittest
 from excel.chart_generator import (
     _build_chart_data,
     _build_table_row_plan,
+    _table_column_range,
     _worksheet_cell_reference,
 )
 from excel.layout import calculate_excel_layout
@@ -86,6 +87,58 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(result["process_count"], 19)
         self.assertEqual(result["process_chart_count"], 19)
         self.assertEqual(len(result["process_matrix"]), 20)
+
+    def test_process_chart_keeps_the_same_order_as_the_report_table(self):
+        rows = self.data["process_rows"]
+        rows[0]["process"] = "Proses PERTAMA"
+        rows[-1]["process"] = "Proses TERAKHIR"
+
+        result = _build_chart_data(self.data)
+
+        self.assertEqual(result["process_matrix"][1][0], "Proses PERTAMA")
+        self.assertEqual(result["process_matrix"][-1][0], "Proses TERAKHIR")
+        self.assertEqual(result["process_count"], len(rows))
+
+    def test_each_variable_uses_all_compared_line_series(self):
+        result = _build_chart_data(self.data)
+
+        self.assertEqual(len(result["labels"]), 4)
+        for matrix_name in ("summary_matrix", "machine_matrix", "process_matrix"):
+            matrix = result[matrix_name]
+            for variable_row in matrix[1:]:
+                self.assertEqual(
+                    len(variable_row) - 1,
+                    len(result["labels"]),
+                    msg=f"{matrix_name}: {variable_row[0]}",
+                )
+
+    def test_chart_source_is_one_contiguous_table_range(self):
+        class Worksheet:
+            def Cells(self, row, column):
+                return (row, column)
+
+            def Range(self, start, end):
+                return (start, end)
+
+        ws = Worksheet()
+        rows = (4, 6, 8, 10, 12)
+        self.assertEqual(
+            _table_column_range(ws, column=2, data_rows=rows),
+            ((4, 2), (13, 2)),
+        )
+
+    def test_chart_source_rejects_inconsistent_two_row_blocks(self):
+        class Worksheet:
+            def Cells(self, row, column):
+                return (row, column)
+
+            def Range(self, start, end):
+                return (start, end)
+
+        with self.assertRaises(ValueError):
+            _table_column_range(
+                Worksheet(), column=3, data_rows=(17, 19, 22)
+            )
 
     def test_chart_sources_use_visible_table_row_positions(self):
         layout = calculate_excel_layout(
