@@ -32,9 +32,9 @@ DEFAULT_COMPARISON_OUTPUT = PROJECT_ROOT / "logs" / "comparison_data.json"
 SUMMARY_FIELDS: Tuple[Tuple[str, str, str], ...] = (
     ("operator_allocations", "Jumlah Operator", "OPT"),
     ("takt_time", "Takt Time", "detik"),
-    ("target_per_hour", "Target Output / Jam", "pcs"),
-    ("potential_per_hour", "Potensial Output / Jam", "pcs"),
-    ("actual_per_hour", "Aktual Output / Jam", "pcs"),
+    ("target_per_hour", "Target Output / Jam", "pcs/jam"),
+    ("potential_per_hour", "Potensial Output / Jam", "pcs/jam"),
+    ("actual_per_hour", "Aktual Output / Jam", "pcs/jam"),
 )
 
 
