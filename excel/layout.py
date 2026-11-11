@@ -1,8 +1,7 @@
 """Shared dynamic row/column geometry for the COMPARE LINE Excel report.
 
-The template stores machine and process items as two-row blocks. Both the
-report generator and chart generator use this module so their anchors cannot
-drift apart when the number of lines or rows changes.
+The report uses two-row data blocks. Each original chart remains inside the
+template's two-column graph area and follows the vertical extent of its section.
 """
 
 from __future__ import annotations
@@ -11,7 +10,10 @@ from typing import Dict
 
 
 MACHINE_FIRST_ROW = 17
-# Every process row in the report is also plotted; chart height grows with it.
+CHART_COLUMN_SPAN = 2
+SUMMARY_CHART_START_ROW = 3
+SUMMARY_CHART_END_ROW = 13
+MACHINE_CHART_START_ROW = 15
 
 
 def _non_negative_int(name: str, value: int) -> int:
@@ -26,7 +28,7 @@ def calculate_excel_layout(
     line_count: int,
     chart_process_count: int | None = None,
 ) -> Dict[str, int]:
-    """Return all dynamic report and chart anchors for a given comparison size."""
+    """Return the dynamic table and chart anchors for one comparison workbook."""
     machine_count = _non_negative_int("machine_count", machine_count)
     process_count = _non_negative_int("process_count", process_count)
     line_count = _non_negative_int("line_count", line_count)
@@ -51,25 +53,31 @@ def calculate_excel_layout(
     process_end_row = process_start_row + (2 * allocated_process_count) - 1
     process_chart_end_row = process_start_row + (2 * chart_process_count) - 1
 
-    # C onward are the dynamic line-value columns. The two-column chart area
-    # and one note column are always kept to their right.
+    # C onward are the dynamic line-value columns. Exactly two columns are
+    # reserved for the template chart, followed by the notes column.
     chart_col = 3 + line_count
-    note_col = chart_col + 2
-    helper_col = note_col + 3
+    chart_last_col = chart_col + CHART_COLUMN_SPAN - 1
+    note_col = chart_last_col + 1
 
     return {
         "machine_first_row": MACHINE_FIRST_ROW,
         "machine_total_row": machine_total_row,
-        "machine_chart_end_row": machine_total_row + 2,
+        "summary_chart_start_row": SUMMARY_CHART_START_ROW,
+        "summary_chart_end_row": SUMMARY_CHART_END_ROW,
+        "machine_chart_start_row": MACHINE_CHART_START_ROW,
+        # The total-machine block is two rows high; stop at its last row.
+        "machine_chart_end_row": machine_total_row + 1,
         "section3_row": section3_row,
         "section3_header_row": section3_header_row,
         "process_start_row": process_start_row,
         "process_end_row": process_end_row,
+        "process_chart_start_row": section3_row,
         "process_chart_end_row": process_chart_end_row,
         "allocated_process_count": allocated_process_count,
         "chart_process_count": chart_process_count,
         "chart_col": chart_col,
+        "chart_last_col": chart_last_col,
+        "chart_column_span": CHART_COLUMN_SPAN,
         "note_col": note_col,
-        "helper_col": helper_col,
         "last_column": note_col,
     }
