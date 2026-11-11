@@ -383,13 +383,16 @@ def _machine_chart_height(machine_category_count: int) -> float:
     return max(260.0, 49.9 * max(1, machine_category_count))
 
 
-def _operator_chart_height(process_count: int) -> int:
-    """Scale operator chart for readable process labels without table-height stretch."""
+def _operator_chart_height(process_count: int) -> float:
+    """Match operator chart height to every two-row process block in the table."""
     if isinstance(process_count, bool) or not isinstance(process_count, int) or process_count < 0:
         raise ValueError("process_count harus bilangan bulat >= 0.")
-    # Budget roughly 18 pt per process plus title/legend allowance.
-    # The 1,800 pt cap avoids making the chart as tall as a very long process table.
-    return max(320, min(1800, 120 + (18 * max(1, process_count))))
+
+    # The report assigns 24.95 pt to each row and each process uses two rows.
+    # Match that full height so every process category gets the same vertical
+    # space as its corresponding visible table block, with chart chrome allowance
+    # for the empty/one-process case.
+    return max(160.0, 49.9 * max(1, process_count))
 
 
 def generate_charts(
@@ -542,6 +545,7 @@ def generate_charts(
             "chart_height_mode": "MACHINE_AND_OPERATOR_DYNAMIC",
             "machine_chart_height": _machine_chart_height(len(row_plan["machines"])),
             "operator_chart_height": _operator_chart_height(process_count),
+            "operator_table_height": 49.9 * max(1, process_count),
             "machine_category_count": len(row_plan["machines"]),
             "operator_category_count": len(row_plan["processes"]),
             "machine_chart_end_row": layout["machine_chart_anchor_row"] + (
@@ -586,7 +590,8 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
         f"TINGGI GRAFIK       : {result['chart_height_mode']}",
         f"TINGGI MESIN        : {result['machine_chart_height']:.1f} pt",
-        f"TINGGI OPERATOR     : {result['operator_chart_height']} pt",
+        f"TINGGI OPERATOR     : {result['operator_chart_height']:.1f} pt",
+        f"TINGGI BLOK TABEL OPT: {result['operator_table_height']:.1f} pt",
         f"KATEGORI MESIN      : {result['machine_category_count']}",
         f"KATEGORI OPERATOR   : {result['operator_category_count']}",
         f"ANCHOR SUMMARY      : BARIS {result['chart_anchor_rows']['summary']}",
