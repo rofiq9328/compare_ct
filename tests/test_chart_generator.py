@@ -203,6 +203,20 @@ class TestDynamicChartData(unittest.TestCase):
         )
         plan = _build_table_row_plan(layout, machine_count=2, process_count=19)
 
+    def test_chart_ranges_match_machine_and_operator_table_extents(self):
+        layout = calculate_excel_layout(
+            machine_count=9,
+            process_count=91,
+            line_count=2,
+        )
+        plan = _build_table_row_plan(layout, machine_count=9, process_count=91)
+
+        self.assertEqual(_chart_row_bounds(plan["summary"]), (4, 13))
+        self.assertEqual(_chart_row_bounds(plan["machines"]), (17, 36))
+        self.assertEqual(_chart_row_bounds(plan["processes"]), (40, 221))
+        self.assertEqual(len(plan["machines"]), 10)  # 9 machine types + total
+        self.assertEqual(len(plan["processes"]), 91)
+
         self.assertEqual(plan["summary"], (4, 6, 8, 10, 12))
         self.assertEqual(plan["machines"], (17, 19, layout["machine_total_row"]))
         self.assertEqual(plan["processes"][0], layout["process_start_row"])
