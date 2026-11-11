@@ -174,44 +174,58 @@ def _get_chart_objects(ws: Any) -> List[Any]:
     return sorted(objects, key=lambda item: float(item.Top))
 
 
-def _table_column_range(
-    ws: Any,
-    column: int,
-    data_rows: Sequence[int],
-    block_height: int = 2,
-) -> Any:
-    """Return one continuous table-column range covering every data block.
+def _excel_column_letter(column: int) -> str:
+    """Convert a 1-based Excel column number to its A1 column label."""
+    if isinstance(column, bool) or not isinstance(column, int) or column < 1:
+        raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
+    result = ""
+    while column:
+        column, remainder = divmod(column - 1, 26)
+        result = chr(65 + remainder) + result
+    return result
 
-    Each visible table item occupies a two-row merged block. The range therefore
-    spans from the first data row through the final row of the last block.
-    Empty second rows are left blank and are configured as not plotted.
-    """
+
+def _qualified_cell_reference(ws: Any, row: int, column: int) -> str:
+    """Return an absolute A1 reference to a visible report cell."""
+    if isinstance(row, bool) or not isinstance(row, int) or row < 1:
+        raise ValueError(f"Nomor baris Excel tidak valid: {row!r}.")
+    if isinstance(column, bool) or not isinstance(column, int) or column < 1:
+        raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
+    sheet_name = str(ws.Name).replace("'", "''")
+    return "'" + sheet_name + "'!$" + _excel_column_letter(column) + "$" + str(row)
+
+
+def _build_series_formula(
+    ws: Any,
+    header_row: int,
+    value_column: int,
+    category_column: int,
+    data_rows: Sequence[int],
+    series_order: int,
+) -> str:
+    """Build a live SERIES formula using one visible table cell per variable."""
     ordered_rows = list(data_rows)
     if not ordered_rows:
         raise ChartGeneratorError("Baris sumber grafik dari tabel kosong.")
-    if block_height < 1:
-        raise ValueError("block_height minimal 1.")
-    if any(
-        current <= previous
-        for previous, current in zip(ordered_rows, ordered_rows[1:])
-    ):
-        raise ChartGeneratorError("Baris sumber grafik harus berurutan naik.")
-    if any(
-        current - previous != block_height
-        for previous, current in zip(ordered_rows, ordered_rows[1:])
-    ):
-        raise ChartGeneratorError(
-            "Jarak antarbaris variabel tidak sesuai tinggi blok tabel."
-        )
+    if series_order < 1:
+        raise ValueError("series_order minimal 1.")
 
-    first_row = ordered_rows[0]
-    last_row = ordered_rows[-1] + block_height - 1
-    return ws.Range(
-        ws.Cells(first_row, column),
-        ws.Cells(last_row, column),
+    name_ref = _qualified_cell_reference(ws, header_row, value_column)
+    category_refs = ",".join(
+        _qualified_cell_reference(ws, row, category_column)
+        for row in ordered_rows
+    )
+    value_refs = ",".join(
+        _qualified_cell_reference(ws, row, value_column)
+        for row in ordered_rows
     )
 
-
+    return (
+        f"=SERIES({name_ref},"
+        f"({category_refs}),"
+        f"({value_refs}),"
+        f"{series_order})"
+    )
 def _build_table_row_plan(
     layout: Mapping[str, int],
     machine_count: int,
@@ -238,17 +252,6 @@ def _build_table_row_plan(
     }
 
 
-def _worksheet_cell_reference(ws: Any, row: int, column: int) -> str:
-    """Return a live R1C1 reference to a cell on the report worksheet."""
-    if isinstance(row, bool) or not isinstance(row, int) or row < 1:
-        raise ValueError(f"Nomor baris Excel tidak valid: {row!r}.")
-    if isinstance(column, bool) or not isinstance(column, int) or column < 1:
-        raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
-
-    sheet_name = str(ws.Name).replace("'", "''")
-    return f"='{sheet_name}'!R{row}C{column}"
-
-
 def _update_chart_series_from_table(
     chart_object: Any,
     ws: Any,
@@ -265,7 +268,6 @@ def _update_chart_series_from_table(
     chart = chart_object.Chart
     chart.PlotVisibleOnly = True
     chart.PlotBy = 2  # xlColumns: one series for each compared LINE
-    chart.DisplayBlanksAs = 1  # xlNotPlotted: spacer rows in merged blocks
 
     series_collection = chart.SeriesCollection()
 
@@ -300,8 +302,6 @@ def _update_chart_series_from_table(
         red, green, blue = colorsys.hsv_to_rgb(hue, 0.68, 0.82)
         return int(red * 255) | (int(green * 255) << 8) | (int(blue * 255) << 16)
 
-    category_range = _table_column_range(ws, category_col, data_rows)
-
     for index, label in enumerate(labels):
         value_col = line_start_col + index
         header_value = ws.Cells(header_row, value_col).Value
@@ -311,13 +311,18 @@ def _update_chart_series_from_table(
             )
 
         series = series_collection.Item(index + 1)
-        value_range = _table_column_range(ws, value_col, data_rows)
 
-        # The legend name, category labels, and values all stay linked to the
-        # visible report cells. Editing a LINE header also updates the legend.
-        series.Name = _worksheet_cell_reference(ws, header_row, value_col)
-        series.XValues = category_range
-        series.Values = value_range
+        # Reference exactly one top-left cell from each merged two-row item.
+        # This keeps category count equal to variable count and keeps every
+        # point live-linked to the visible report table.
+        series.Formula = _build_series_formula(
+            ws,
+            header_row=header_row,
+            value_column=value_col,
+            category_column=category_col,
+            data_rows=data_rows,
+            series_order=index + 1,
+        )
 
         # Keep the first two series' exact template colors. Additional lines
         # receive distinct colors while retaining the chart's native style.
@@ -335,12 +340,14 @@ def _position_chart(
     ws: Any,
     chart_col: int,
     anchor_row: int,
+    *,
+    height: float | None = None,
 ) -> None:
-    """Align the chart to the first variable row without stretching its height.
+    """Align chart to the agreed row and two-column area.
 
-    The original chart height is deliberately retained from the template.
-    Only its left edge, top edge, and width are aligned to the template's
-    two-column chart area.
+    Width always follows the template's two-column chart slot. Height is
+    retained from the template unless an explicit process-chart height is
+    supplied for readability with many operator categories.
     """
     if anchor_row < 1:
         raise ChartGeneratorError(
@@ -351,10 +358,23 @@ def _position_chart(
         ws.Cells(anchor_row, chart_col),
         ws.Cells(anchor_row, chart_col + CHART_COLUMN_SPAN - 1),
     )
-    chart_object.Placement = 2  # xlMove: move with cells, keep template size
+    chart_object.Placement = 2  # xlMove
     chart_object.Left = float(anchor_range.Left)
     chart_object.Top = float(anchor_range.Top)
     chart_object.Width = float(anchor_range.Width)
+    if height is not None:
+        if height <= 0:
+            raise ChartGeneratorError("Tinggi grafik harus lebih besar dari nol.")
+        chart_object.Height = float(height)
+
+
+def _operator_chart_height(process_count: int) -> int:
+    """Give operator chart enough height to read categories without table-scale stretch."""
+    if isinstance(process_count, bool) or not isinstance(process_count, int) or process_count < 0:
+        raise ValueError("process_count harus bilangan bulat >= 0.")
+    # About 16 px per process plus title/legend/plot-area allowance.
+    # Cap the chart so a large process catalog does not create an enormous object.
+    return max(240, min(480, 120 + (16 * max(1, process_count))))
 
 
 def generate_charts(
@@ -476,6 +496,7 @@ def generate_charts(
         _position_chart(
             process_chart, ws, chart_col,
             anchor_row=layout["process_chart_anchor_row"],
+            height=_operator_chart_height(process_count),
         )
 
         stage = "Menyimpan workbook"
@@ -498,7 +519,8 @@ def generate_charts(
             "chart_mode": "TABEL_LAPORAN_LANGSUNG",
             "chart_column_span": CHART_COLUMN_SPAN,
             "chart_data_layout": "ONE_VARIABLE_ROW_PER_CATEGORY",
-            "chart_height_mode": "TEMPLATE_ORIGINAL",
+            "chart_height_mode": "OPERATOR_DYNAMIC",
+            "operator_chart_height": _operator_chart_height(process_count),
             "status": "PASS",
         }
 
@@ -536,7 +558,8 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"JUMLAH GRAFIK       : {result['chart_count']}",
         f"MODE GRAFIK         : {result['chart_mode']}",
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
-        f"TINGGI GRAFIK       : {result['chart_height_mode']}",
+        f"TINGGI GRAFIK       : {result['chart_height_mode']} "
+        f"({result['operator_chart_height']} px untuk operator)",
         f"STATUS              : {result['status']}",
         "=" * 72,
     ])
