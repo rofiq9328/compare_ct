@@ -370,13 +370,26 @@ def _position_chart(
         chart_object.Height = float(height)
 
 
+def _machine_chart_height(machine_category_count: int) -> float:
+    """Fit one machine category into each two-row table block."""
+    if (
+        isinstance(machine_category_count, bool)
+        or not isinstance(machine_category_count, int)
+        or machine_category_count < 0
+    ):
+        raise ValueError("machine_category_count harus bilangan bulat >= 0.")
+
+    # Each machine variable, including TOTAL MESIN, occupies two 24.95 pt rows.
+    return max(260.0, 49.9 * max(1, machine_category_count))
+
+
 def _operator_chart_height(process_count: int) -> int:
-    """Give operator chart enough height to read categories without table-scale stretch."""
+    """Scale operator chart for readable process labels without table-height stretch."""
     if isinstance(process_count, bool) or not isinstance(process_count, int) or process_count < 0:
         raise ValueError("process_count harus bilangan bulat >= 0.")
-    # About 16 pt per process plus title/legend/plot-area allowance.
-    # Cap the chart so a large process catalog does not create an enormous object.
-    return max(240, min(480, 120 + (16 * max(1, process_count))))
+    # Budget roughly 18 pt per process plus title/legend allowance.
+    # The 1,800 pt cap avoids making the chart as tall as a very long process table.
+    return max(320, min(1800, 120 + (18 * max(1, process_count))))
 
 
 def generate_charts(
@@ -484,6 +497,7 @@ def generate_charts(
         _position_chart(
             machine_chart, ws, chart_col,
             anchor_row=layout["machine_chart_anchor_row"],
+            height=_machine_chart_height(len(row_plan["machines"])),
         )
 
         stage = "Memperbarui grafik Penggunaan Operator dari tabel"
@@ -525,10 +539,14 @@ def generate_charts(
                 "machines": layout["machine_chart_anchor_row"],
                 "operators": layout["process_chart_anchor_row"],
             },
-            "chart_height_mode": "OPERATOR_DYNAMIC",
+            "chart_height_mode": "MACHINE_AND_OPERATOR_DYNAMIC",
+            "machine_chart_height": _machine_chart_height(len(row_plan["machines"])),
             "operator_chart_height": _operator_chart_height(process_count),
             "machine_category_count": len(row_plan["machines"]),
             "operator_category_count": len(row_plan["processes"]),
+            "machine_chart_end_row": layout["machine_chart_anchor_row"] + (
+                2 * len(row_plan["machines"])
+            ),
             "status": "PASS",
         }
 
@@ -566,12 +584,14 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"JUMLAH GRAFIK       : {result['chart_count']}",
         f"MODE GRAFIK         : {result['chart_mode']}",
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
-        f"TINGGI GRAFIK       : {result['chart_height_mode']} "
-        f"({result['operator_chart_height']} pt untuk operator)",
+        f"TINGGI GRAFIK       : {result['chart_height_mode']}",
+        f"TINGGI MESIN        : {result['machine_chart_height']:.1f} pt",
+        f"TINGGI OPERATOR     : {result['operator_chart_height']} pt",
         f"KATEGORI MESIN      : {result['machine_category_count']}",
         f"KATEGORI OPERATOR   : {result['operator_category_count']}",
         f"ANCHOR SUMMARY      : BARIS {result['chart_anchor_rows']['summary']}",
         f"ANCHOR MESIN        : BARIS {result['chart_anchor_rows']['machines']}",
+        f"AKHIR AREA MESIN    : SEKITAR BARIS {result['machine_chart_end_row']}",
         f"ANCHOR OPERATOR     : BARIS {result['chart_anchor_rows']['operators']}",
         f"STATUS              : {result['status']}",
         "=" * 72,
