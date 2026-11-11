@@ -235,6 +235,8 @@ def _worksheet_cell_reference(ws: Any, row: int, column: int) -> str:
 
     sheet_name = str(ws.Name).replace("'", "''")
     return f"='{sheet_name}'!R{row}C{column}"
+
+
 def _update_chart_series_from_table(
     excel: Any,
     chart_object: Any,
