@@ -150,11 +150,12 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(_machine_chart_height(1), 260.0)
         self.assertEqual(_machine_chart_height(10), 499.0)
 
-    def test_operator_chart_height_scales_and_has_a_readability_cap(self):
-        self.assertEqual(_operator_chart_height(0), 320)
-        self.assertEqual(_operator_chart_height(19), 462)
-        self.assertEqual(_operator_chart_height(91), 1758)
-        self.assertEqual(_operator_chart_height(120), 1800)
+    def test_operator_chart_height_matches_every_two_row_process_block(self):
+        self.assertEqual(_operator_chart_height(0), 160.0)
+        self.assertEqual(_operator_chart_height(1), 160.0)
+        self.assertAlmostEqual(_operator_chart_height(19), 948.1)
+        self.assertAlmostEqual(_operator_chart_height(91), 4540.9)
+        self.assertAlmostEqual(_operator_chart_height(120), 5988.0)
 
     def test_chart_uses_agreed_row_anchor_and_explicit_height_when_given(self):
         class Cell:
