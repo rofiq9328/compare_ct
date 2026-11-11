@@ -520,8 +520,15 @@ def generate_charts(
             "chart_mode": "TABEL_LAPORAN_LANGSUNG",
             "chart_column_span": CHART_COLUMN_SPAN,
             "chart_data_layout": "ONE_VARIABLE_ROW_PER_CATEGORY",
+            "chart_anchor_rows": {
+                "summary": layout["summary_chart_anchor_row"],
+                "machines": layout["machine_chart_anchor_row"],
+                "operators": layout["process_chart_anchor_row"],
+            },
             "chart_height_mode": "OPERATOR_DYNAMIC",
             "operator_chart_height": _operator_chart_height(process_count),
+            "machine_category_count": len(row_plan["machines"]),
+            "operator_category_count": len(row_plan["processes"]),
             "status": "PASS",
         }
 
@@ -561,6 +568,11 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
         f"TINGGI GRAFIK       : {result['chart_height_mode']} "
         f"({result['operator_chart_height']} px untuk operator)",
+        f"KATEGORI MESIN      : {result['machine_category_count']}",
+        f"KATEGORI OPERATOR   : {result['operator_category_count']}",
+        f"ANCHOR SUMMARY      : BARIS {result['chart_anchor_rows']['summary']}",
+        f"ANCHOR MESIN        : BARIS {result['chart_anchor_rows']['machines']}",
+        f"ANCHOR OPERATOR     : BARIS {result['chart_anchor_rows']['operators']}",
         f"STATUS              : {result['status']}",
         "=" * 72,
     ])
