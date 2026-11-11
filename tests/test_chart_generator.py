@@ -4,8 +4,7 @@ from excel.chart_generator import (
     _build_chart_data,
     _build_series_formula,
     _build_table_row_plan,
-    _machine_chart_height,
-    _operator_chart_height,
+    _chart_row_bounds,
     _position_chart,
 )
 from excel.layout import calculate_excel_layout
@@ -145,29 +144,30 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertIn("'Line''s Report'!$B$4", formula)
         self.assertIn("'Line''s Report'!$AA$6", formula)
 
-    def test_machine_chart_height_matches_two_row_variable_blocks(self):
-        self.assertEqual(_machine_chart_height(0), 260.0)
-        self.assertEqual(_machine_chart_height(1), 260.0)
-        self.assertEqual(_machine_chart_height(10), 499.0)
+    def test_chart_bounds_cover_full_two_row_blocks(self):
+        self.assertEqual(_chart_row_bounds((4, 6, 8, 10, 12)), (4, 13))
+        self.assertEqual(_chart_row_bounds((17, 19, 21)), (17, 22))
+        self.assertEqual(_chart_row_bounds((40, 42, 44)), (40, 45))
 
-    def test_operator_chart_height_matches_every_two_row_process_block(self):
-        self.assertEqual(_operator_chart_height(0), 160.0)
-        self.assertEqual(_operator_chart_height(1), 160.0)
-        self.assertAlmostEqual(_operator_chart_height(19), 948.1)
-        self.assertAlmostEqual(_operator_chart_height(91), 4540.9)
-        self.assertAlmostEqual(_operator_chart_height(120), 5988.0)
+    def test_chart_bounds_reject_gaps_and_empty_rows(self):
+        with self.assertRaises(Exception):
+            _chart_row_bounds(())
+        with self.assertRaises(Exception):
+            _chart_row_bounds((17, 19, 22))
 
-    def test_chart_uses_agreed_row_anchor_and_explicit_height_when_given(self):
+    def test_chart_is_sized_to_exact_table_range_and_two_chart_columns(self):
         class Cell:
             def __init__(self, row, column):
                 self.Left = column * 50.0
                 self.Top = row * 20.0
+                self.Bottom = (row + 1) * 20.0
 
         class Range:
             def __init__(self, start, end):
                 self.Left = start.Left
                 self.Top = start.Top
                 self.Width = (end.Left + 50.0) - start.Left
+                self.Height = end.Bottom - start.Top
 
         class Worksheet:
             def Cells(self, row, column):
@@ -177,55 +177,22 @@ class TestDynamicChartData(unittest.TestCase):
                 return Range(start, end)
 
         class ChartObject:
-            Left = 0.0
-            Top = 0.0
-            Width = 500.0
-            Height = 275.0
-            Placement = 1
+            def __init__(self):
+                self.Left = 0.0
+                self.Top = 0.0
+                self.Width = 500.0
+                self.Height = 275.0
+                self.Placement = 1
 
         chart = ChartObject()
-        _position_chart(
-            chart, Worksheet(), chart_col=7, anchor_row=28, height=424
+        height = _position_chart(
+            chart, Worksheet(), chart_col=7, first_row=40, last_row=221
         )
         self.assertEqual(chart.Left, 350.0)
-        self.assertEqual(chart.Top, 560.0)
+        self.assertEqual(chart.Top, 800.0)
         self.assertEqual(chart.Width, 100.0)
-        self.assertEqual(chart.Height, 424.0)
-        self.assertEqual(chart.Placement, 2)
-
-    def test_chart_keeps_original_height_and_uses_two_column_width(self):
-        class Cell:
-            def __init__(self, row, column):
-                self.Left = column * 50.0
-                self.Top = row * 20.0
-
-        class Range:
-            def __init__(self, start, end):
-                self.Left = start.Left
-                self.Top = start.Top
-                self.Width = (end.Left + 50.0) - start.Left
-
-        class Worksheet:
-            def Cells(self, row, column):
-                return Cell(row, column)
-
-            def Range(self, start, end):
-                return Range(start, end)
-
-        class ChartObject:
-            Left = 0.0
-            Top = 0.0
-            Width = 500.0
-            Height = 275.0
-            Placement = 1
-
-        chart = ChartObject()
-        _position_chart(chart, Worksheet(), chart_col=7, anchor_row=17)
-
-        self.assertEqual(chart.Left, 350.0)
-        self.assertEqual(chart.Top, 340.0)
-        self.assertEqual(chart.Width, 100.0)
-        self.assertEqual(chart.Height, 275.0)
+        self.assertEqual(chart.Height, 3640.0)
+        self.assertEqual(height, 3640.0)
         self.assertEqual(chart.Placement, 2)
 
     def test_chart_sources_use_visible_table_row_positions(self):
