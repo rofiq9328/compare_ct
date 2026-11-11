@@ -1,6 +1,7 @@
 import unittest
 
-from excel.chart_generator import _build_chart_data
+from excel.chart_generator import _build_chart_data, _build_table_row_plan
+from excel.layout import calculate_excel_layout
 
 
 class TestDynamicChartData(unittest.TestCase):
@@ -81,6 +82,20 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(result["process_count"], 19)
         self.assertEqual(result["process_chart_count"], 19)
         self.assertEqual(len(result["process_matrix"]), 20)
+
+    def test_chart_sources_use_visible_table_row_positions(self):
+        layout = calculate_excel_layout(
+            machine_count=2,
+            process_count=19,
+            line_count=4,
+        )
+        plan = _build_table_row_plan(layout, machine_count=2, process_count=19)
+
+        self.assertEqual(plan["summary"], (4, 6, 8, 10, 12))
+        self.assertEqual(plan["machines"], (17, 19, layout["machine_total_row"]))
+        self.assertEqual(plan["processes"][0], layout["process_start_row"])
+        self.assertEqual(plan["processes"][-1], layout["process_end_row"])
+        self.assertEqual(len(plan["processes"]), 19)
 
 
 if __name__ == "__main__":
