@@ -98,8 +98,20 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(plan["summary"], (4, 6, 8, 10, 12))
         self.assertEqual(plan["machines"], (17, 19, layout["machine_total_row"]))
         self.assertEqual(plan["processes"][0], layout["process_start_row"])
-        self.assertEqual(plan["processes"][-1], layout["process_end_row"])
+        # Every process occupies a two-row merged block. The chart reads
+        # the first row of each block, while process_end_row is the second
+        # row of the final block.
+        self.assertEqual(
+            plan["processes"][-1],
+            layout["process_end_row"] - 1,
+        )
         self.assertEqual(len(plan["processes"]), 19)
+        self.assertTrue(
+            all(
+                row == layout["process_start_row"] + 2 * index
+                for index, row in enumerate(plan["processes"])
+            )
+        )
 
 
 class TestChartWorksheetReferences(unittest.TestCase):
