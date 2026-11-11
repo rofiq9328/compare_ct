@@ -114,21 +114,32 @@ class TestAnalysisEngine(unittest.TestCase):
         with self.assertRaises(AnalysisError):
             build_analysis(broken)
 
-    def test_supports_three_or_more_lines(self):
+    def test_supports_four_or_more_lines(self):
         expanded = copy.deepcopy(self.data)
-        l15 = "LINE 15 (STYLE C)"
-        expanded["line_count"] = 3
-        expanded["line_columns"].append({"line_label": l15, "line_number": 15, "style": "STYLE C", "source_file": "l15.xlsx"})
-        for row in expanded["summary_rows"]:
-            row["values_by_line"][l15] = row["values_by_line"]["LINE 37 (A8MVW)"]
-        for row in expanded["machine_rows"]:
-            row["values_by_line"][l15] = 0
-        for row in expanded["process_rows"]:
-            row["operator_allocations_by_line"][l15] = 0
-            row["machine_allocations_by_line"][l15] = 0
+        additional_lines = [
+            ("LINE 15 (STYLE C)", 15, "STYLE C", "l15.xlsx"),
+            ("LINE 22 (STYLE D)", 22, "STYLE D", "l22.xlsx"),
+        ]
+        for label, number, style, source_file in additional_lines:
+            expanded["line_columns"].append({
+                "line_label": label,
+                "line_number": number,
+                "style": style,
+                "source_file": source_file,
+            })
+            for row in expanded["summary_rows"]:
+                row["values_by_line"][label] = row["values_by_line"]["LINE 37 (A8MVW)"]
+            for row in expanded["machine_rows"]:
+                row["values_by_line"][label] = 0
+            for row in expanded["process_rows"]:
+                row["operator_allocations_by_line"][label] = 0
+                row["machine_allocations_by_line"][label] = 0
+                row["groups_by_line"][label] = []
+        expanded["line_count"] = 4
         result = build_analysis(expanded)
-        self.assertEqual(result["line_count"], 3)
-        self.assertIn(l15, result["line_kpis"])
+        self.assertEqual(result["line_count"], 4)
+        self.assertIn("LINE 15 (STYLE C)", result["line_kpis"])
+        self.assertIn("LINE 22 (STYLE D)", result["line_kpis"])
 
     def test_group_variation_is_flagged_for_review(self):
         expanded = copy.deepcopy(self.data)

@@ -1,16 +1,14 @@
+"""Update the three original charts in the COMPARE LINE template.
 
-"""Add dynamic charts to the single-sheet COMPARE LINE workbook.
-
-Run from the COMPARE_CT project root:
+Run from the COMPARE_CT project root after Stage 6:
     py -m excel.chart_generator
 
 Optional:
-    py -m excel.chart_generator "output\\COMPARE_LINE.xlsx" \
+    py -m excel.chart_generator "output\\COMPARE_LINE.xlsx" \\
         --comparison "logs\\comparison_data.json"
 
 Requires Windows, Microsoft Excel desktop, and pywin32.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -21,20 +19,16 @@ import traceback
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Sequence
 
+from excel.layout import CHART_COLUMN_SPAN, calculate_excel_layout
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORKBOOK = PROJECT_ROOT / "output" / "COMPARE_LINE.xlsx"
 DEFAULT_COMPARISON = PROJECT_ROOT / "logs" / "comparison_data.json"
 
-# Excel constants
-XL_COLUMN_CLUSTERED = 51
+XL_COLUMN_CLUSTERED = 51  # retained for compatibility with earlier Stage 7 files
 XL_BAR_CLUSTERED = 57
-XL_LEGEND_POSITION_BOTTOM = -4107
-XL_LABEL_POSITION_OUTSIDE_END = 2
-XL_CATEGORY = 1
 XL_VALUE = 2
 XL_PRIMARY = 1
-XL_ROW_FIELD = 1
-XL_COLUMN_FIELD = 2
 
 
 class ChartGeneratorError(ValueError):
@@ -43,22 +37,17 @@ class ChartGeneratorError(ValueError):
 
 def _read_json(path: Path) -> Dict[str, Any]:
     if not path.is_file():
-        raise FileNotFoundError(
-            f"comparison_data.json tidak ditemukan: {path}"
-        )
-
+        raise FileNotFoundError(f"comparison_data.json tidak ditemukan: {path}")
     try:
         value = json.loads(path.read_text(encoding="utf-8-sig"))
     except json.JSONDecodeError as exc:
         raise ChartGeneratorError(
             f"comparison_data.json bukan JSON valid: {exc}"
         ) from exc
-
     if not isinstance(value, dict):
         raise ChartGeneratorError(
             "comparison_data.json harus berupa object JSON."
         )
-
     if (
         value.get("schema_version") != 1
         or value.get("comparison_type") != "dynamic_multi_line"
@@ -66,253 +55,94 @@ def _read_json(path: Path) -> Dict[str, Any]:
         raise ChartGeneratorError(
             "Format comparison_data.json tidak didukung."
         )
-
     return value
 
 
 def _safe_number(value: Any) -> float:
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         return 0.0
-
     if not math.isfinite(float(value)):
         return 0.0
-
     return float(value)
 
 
-def _col_letter(number: int) -> str:
-    result = ""
-
-    while number:
-        number, rem = divmod(number - 1, 26)
-        result = chr(65 + rem) + result
-
-    return result
-
-
-def _write_matrix(
-    ws: Any,
-    start_row: int,
-    start_col: int,
-    matrix: Sequence[Sequence[Any]],
-) -> Any:
-
-    rows = len(matrix)
-    cols = max((len(row) for row in matrix), default=0)
-
-    if not rows or not cols:
-        raise ChartGeneratorError("Data sumber grafik kosong.")
-
-    normalized = [
-        list(row) + [None] * (cols - len(row))
-        for row in matrix
-    ]
-
-    target = ws.Range(
-        ws.Cells(start_row, start_col),
-        ws.Cells(
-            start_row + rows - 1,
-            start_col + cols - 1
-        ),
-    )
-
-    target.Value = tuple(
-        tuple(row) for row in normalized
-    )
-
-    return target
-
-
-def _add_chart(
-    excel: Any,
-    ws: Any,
-    source_range: Any,
-    anchor_row: int,
-    anchor_col: int,
-    width: float,
-    height: float,
-    chart_type: int,
-    title: str,
-    *,
-    top_n_note: str = "",
-) -> Any:
-
-    left = ws.Cells(anchor_row, anchor_col).Left
-    top = ws.Cells(anchor_row, anchor_col).Top
-
-    chart_object = ws.ChartObjects().Add(
-        left,
-        top,
-        width,
-        height
-    )
-
-    chart = chart_object.Chart
-
-    chart.ChartType = chart_type
-
-    chart.SetSourceData(
-        Source=source_range,
-        PlotBy=XL_COLUMN_FIELD
-    )
-
-    chart.HasTitle = True
-    chart.ChartTitle.Text = title
-
-    chart.HasLegend = True
-    chart.Legend.Position = XL_LEGEND_POSITION_BOTTOM
-
-    chart.DisplayBlanksAs = 0
-
-    try:
-        chart.Axes(XL_CATEGORY).TickLabels.Font.Size = 8
-        chart.Axes(XL_VALUE).TickLabels.Font.Size = 8
-        chart.Axes(XL_VALUE).HasMajorGridlines = True
-
-        chart.ChartTitle.Format.TextFrame2.TextRange.Font.Size = 11
-        chart.ChartTitle.Format.TextFrame2.TextRange.Font.Bold = True
-
-    except Exception:
-        pass
-
-    try:
-        chart.ChartArea.Format.Line.Visible = False
-        chart.PlotArea.Format.Line.Visible = False
-
-    except Exception:
-        pass
-
-    if top_n_note:
-        try:
-            chart.HasTitle = True
-            chart.ChartTitle.Text = title + "\n" + top_n_note
-            chart.ChartTitle.Format.TextFrame2.TextRange.Font.Size = 10
-
-        except Exception:
-            pass
-
-    return chart_object
-
-
-def _build_chart_data(
-    data: Mapping[str, Any]
-) -> Dict[str, Any]:
-
-    columns = data.get("line_columns") or []
-
+def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
+    line_columns = data.get("line_columns") or []
     labels = [
         str(item.get("line_label") or "").strip()
-        for item in columns
+        for item in line_columns
     ]
-
     if len(labels) < 2 or any(not label for label in labels):
         raise ChartGeneratorError(
             "line_columns harus berisi minimal dua line dengan label valid."
         )
+    if len(set(labels)) != len(labels):
+        raise ChartGeneratorError("line_label tidak boleh duplikat.")
 
-    summary = {
-        str(row.get("key")): row
+    summary_rows = {
+        str(row.get("key") or ""): row
         for row in data.get("summary_rows") or []
     }
-
-    required = (
-        "target_per_hour",
-        "potential_per_hour",
-        "actual_per_hour",
+    # Keep the original five summary categories from the workbook template.
+    # Units are displayed beside values in each LINE column, not on chart axes.
+    summary_order = (
+        ("operator_allocations", "Jumlah Operator"),
+        ("takt_time", "Takt Time"),
+        ("target_per_hour", "Target Output / Jam"),
+        ("potential_per_hour", "Potensial Output / Jam"),
+        ("actual_per_hour", "Aktual Output / Jam"),
     )
 
-    for key in required:
-        if key not in summary:
+    summary_matrix: List[List[Any]] = [["VARIABEL"] + labels]
+    for key, fallback_label in summary_order:
+        if key not in summary_rows:
             raise ChartGeneratorError(
                 f"Summary tidak memiliki key {key}."
             )
-
-    summary_matrix: List[List[Any]] = [
-        ["OUTPUT / JAM (PCS)"] + labels
-    ]
-
-    summary_labels = {
-        "target_per_hour": "Target",
-        "potential_per_hour": "Potensial",
-        "actual_per_hour": "Aktual",
-    }
-
-    for key in required:
-        values = summary[key].get("values_by_line") or {}
-
+        row = summary_rows[key]
+        values = row.get("values_by_line") or {}
+        label = str(row.get("label") or fallback_label)
         summary_matrix.append(
-            [
-                summary_labels[key]
-            ] + [
-                _safe_number(values.get(label))
-                for label in labels
-            ]
+            [label] + [_safe_number(values.get(line)) for line in labels]
         )
 
-    machine_matrix: List[List[Any]] = [
-        ["JENIS MESIN"] + labels
-    ]
-
-    for row in data.get("machine_rows") or []:
+    machine_rows = data.get("machine_rows") or []
+    machine_matrix: List[List[Any]] = [["JENIS MESIN"] + labels]
+    for row in machine_rows:
         machine = str(row.get("machine") or "").strip()
-
         if not machine:
             continue
-
         values = row.get("values_by_line") or {}
-
         machine_matrix.append(
-            [machine] + [
-                _safe_number(values.get(label))
-                for label in labels
-            ]
+            [machine] + [_safe_number(values.get(line)) for line in labels]
         )
-
     if len(machine_matrix) == 1:
         raise ChartGeneratorError(
             "Tidak ada data jenis mesin untuk grafik."
         )
 
-    process_rows = []
-
-    for row in data.get("process_rows") or []:
-        process = str(row.get("process") or "").strip()
-
-        if not process:
-            continue
-
-        values = row.get("operator_allocations_by_line") or {}
-
-        per_line = [
-            _safe_number(values.get(label))
-            for label in labels
+    total_row = data.get("machine_total_row") or {}
+    total_values = total_row.get("values_by_line") or {}
+    machine_matrix.append(
+        ["TOTAL MESIN"] + [
+            _safe_number(total_values.get(line)) for line in labels
         ]
-
-        total = sum(per_line)
-
-        if total > 0:
-            process_rows.append(
-                (total, process, per_line)
-            )
-
-    process_rows.sort(
-        key=lambda item: (
-            -item[0],
-            item[1].casefold()
-        )
     )
 
-    top_processes = process_rows[:15]
+    process_rows = []
+    for row in data.get("process_rows") or []:
+        process = str(row.get("process") or "").strip()
+        if not process:
+            continue
+        values = row.get("operator_allocations_by_line") or {}
+        per_line = [_safe_number(values.get(line)) for line in labels]
+        # Preserve the report table's order and keep zero-allocation rows so
+        # every visible process variable is represented in the chart.
+        process_rows.append((process, per_line))
 
-    process_matrix: List[List[Any]] = [
-        ["PROSES (TOP 15)"] + labels
-    ]
-
-    for _, process, per_line in top_processes:
-        process_matrix.append(
-            [process] + per_line
-        )
-
+    process_matrix: List[List[Any]] = [["PROSES"] + labels]
+    for process, per_line in process_rows:
+        process_matrix.append([process] + per_line)
     if len(process_matrix) == 1:
         process_matrix.append(
             ["Tidak ada alokasi"] + [0 for _ in labels]
@@ -323,18 +153,263 @@ def _build_chart_data(
         "summary_matrix": summary_matrix,
         "machine_matrix": machine_matrix,
         "process_matrix": process_matrix,
-        "machine_count": len(machine_matrix) - 1,
+        "machine_count": len(machine_rows),
+        "process_count": len(process_rows),
         "process_chart_count": len(process_matrix) - 1,
     }
+
+
+def _get_chart_objects(ws: Any) -> List[Any]:
+    collection = ws.ChartObjects()
+    count = int(collection.Count)
+    if count != 3:
+        raise ChartGeneratorError(
+            "Template harus memiliki tepat 3 grafik bawaan "
+            f"(Summary, Mesin, Operator); ditemukan {count}. "
+            "Jalankan ulang Tahap 6 menggunakan report_generator.py "
+            "versi revisi agar grafik template tidak terhapus."
+        )
+    objects = [collection.Item(index) for index in range(1, count + 1)]
+    # Template order by vertical position: Summary, Mesin, Operator.
+    return sorted(objects, key=lambda item: float(item.Top))
+
+
+def _excel_column_letter(column: int) -> str:
+    """Convert a 1-based Excel column number to its A1 column label."""
+    if isinstance(column, bool) or not isinstance(column, int) or column < 1:
+        raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
+    result = ""
+    while column:
+        column, remainder = divmod(column - 1, 26)
+        result = chr(65 + remainder) + result
+    return result
+
+
+def _qualified_cell_reference(ws: Any, row: int, column: int) -> str:
+    """Return an absolute A1 reference to a visible report cell."""
+    if isinstance(row, bool) or not isinstance(row, int) or row < 1:
+        raise ValueError(f"Nomor baris Excel tidak valid: {row!r}.")
+    if isinstance(column, bool) or not isinstance(column, int) or column < 1:
+        raise ValueError(f"Nomor kolom Excel tidak valid: {column!r}.")
+    sheet_name = str(ws.Name).replace("'", "''")
+    return "'" + sheet_name + "'!$" + _excel_column_letter(column) + "$" + str(row)
+
+
+def _build_series_formula(
+    ws: Any,
+    header_row: int,
+    value_column: int,
+    category_column: int,
+    data_rows: Sequence[int],
+    series_order: int,
+) -> str:
+    """Build a live SERIES formula using one visible table cell per variable."""
+    ordered_rows = list(data_rows)
+    if not ordered_rows:
+        raise ChartGeneratorError("Baris sumber grafik dari tabel kosong.")
+    if series_order < 1:
+        raise ValueError("series_order minimal 1.")
+
+    name_ref = _qualified_cell_reference(ws, header_row, value_column)
+    category_refs = ",".join(
+        _qualified_cell_reference(ws, row, category_column)
+        for row in ordered_rows
+    )
+    value_refs = ",".join(
+        _qualified_cell_reference(ws, row, value_column)
+        for row in ordered_rows
+    )
+
+    return (
+        f"=SERIES({name_ref},"
+        f"({category_refs}),"
+        f"({value_refs}),"
+        f"{series_order})"
+    )
+
+
+def _build_table_row_plan(
+    layout: Mapping[str, int],
+    machine_count: int,
+    process_count: int,
+) -> Dict[str, tuple[int, ...]]:
+    """Return the actual visible report rows used by each chart."""
+    summary_rows = (4, 6, 8, 10, 12)
+
+    machine_rows = tuple(
+        layout["machine_first_row"] + (2 * index)
+        for index in range(machine_count)
+    ) + (layout["machine_total_row"],)
+
+    # The report reserves one placeholder block when there are no processes.
+    process_rows = tuple(
+        layout["process_start_row"] + (2 * index)
+        for index in range(max(1, process_count))
+    )
+
+    return {
+        "summary": summary_rows,
+        "machines": machine_rows,
+        "processes": process_rows,
+    }
+
+
+def _update_chart_series_from_table(
+    chart_object: Any,
+    ws: Any,
+    labels: Sequence[str],
+    header_row: int,
+    line_start_col: int,
+    category_col: int,
+    data_rows: Sequence[int],
+) -> None:
+    """Bind every chart series directly to the visible table cells."""
+    if not data_rows:
+        raise ChartGeneratorError("Tidak ada baris tabel untuk sumber grafik.")
+
+    chart = chart_object.Chart
+    chart.PlotVisibleOnly = True
+    chart.PlotBy = 2  # xlColumns: one series for each compared LINE
+
+    series_collection = chart.SeriesCollection()
+
+    # Retain existing template series (and their formatting), add/remove only
+    # the number needed for the current line count.
+    while int(series_collection.Count) > len(labels):
+        series_collection.Item(int(series_collection.Count)).Delete()
+
+    while int(series_collection.Count) < len(labels):
+        series_collection.NewSeries()
+
+    extra_colors = [
+        0x70AD47,  # green
+        0xED7D31,  # orange
+        0xA5A5A5,  # gray
+        0x7030A0,  # purple
+        0xC00000,  # dark red
+        0x4472C4,  # blue
+        0x00B0F0,  # cyan
+        0xC55A11,  # brown-orange
+        0x548235,  # dark green
+        0xBF9000,  # gold
+        0x8064A2,  # violet
+        0x31869B,  # teal
+    ]
+
+    def extra_color(index: int) -> int:
+        if index < len(extra_colors):
+            return extra_colors[index]
+        import colorsys
+        hue = ((index - len(extra_colors)) * 0.61803398875 + 0.13) % 1.0
+        red, green, blue = colorsys.hsv_to_rgb(hue, 0.68, 0.82)
+        return int(red * 255) | (int(green * 255) << 8) | (int(blue * 255) << 16)
+
+    for index, label in enumerate(labels):
+        value_col = line_start_col + index
+        header_value = ws.Cells(header_row, value_col).Value
+        if header_value is None or not str(header_value).strip():
+            raise ChartGeneratorError(
+                f"Header LINE pada tabel kosong: baris {header_row}, kolom {value_col}."
+            )
+
+        series = series_collection.Item(index + 1)
+
+        # Reference exactly one top-left cell from each merged two-row item.
+        # This keeps category count equal to variable count and keeps every
+        # point live-linked to the visible report table.
+        series.Formula = _build_series_formula(
+            ws,
+            header_row=header_row,
+            value_column=value_col,
+            category_column=category_col,
+            data_rows=data_rows,
+            series_order=index + 1,
+        )
+
+        point_count = int(series.Points().Count)
+        if point_count != len(data_rows):
+            raise ChartGeneratorError(
+                f"Jumlah kategori seri {label} tidak sesuai tabel: "
+                f"grafik {point_count}, tabel {len(data_rows)}."
+            )
+
+        # Keep the first two series' exact template colors. Additional lines
+        # receive distinct colors while retaining the chart's native style.
+        if index >= 2:
+            color = extra_color(index - 2)
+            try:
+                series.Format.Fill.ForeColor.RGB = color
+                series.Format.Line.ForeColor.RGB = color
+            except Exception:
+                pass
+
+    actual_series_count = int(series_collection.Count)
+    if actual_series_count != len(labels):
+        raise ChartGeneratorError(
+            f"Jumlah seri grafik tidak sesuai jumlah LINE: "
+            f"grafik {actual_series_count}, LINE {len(labels)}."
+        )
+
+
+def _chart_row_bounds(data_rows: Sequence[int], block_height: int = 2) -> tuple[int, int]:
+    """Return exact worksheet rows occupied by the chart's table variables."""
+    rows = list(data_rows)
+    if not rows:
+        raise ChartGeneratorError("Tidak ada baris tabel untuk menentukan ukuran grafik.")
+    if block_height < 1:
+        raise ValueError("block_height minimal 1.")
+    if any(current - previous != block_height for previous, current in zip(rows, rows[1:])):
+        raise ChartGeneratorError("Baris chart tidak mengikuti blok tabel dua baris.")
+    return rows[0], rows[-1] + block_height - 1
+
+
+def _position_chart(
+    chart_object: Any,
+    ws: Any,
+    chart_col: int,
+    first_row: int,
+    last_row: int,
+) -> float:
+    """Fit chart exactly over the two chart columns and its variable table rows."""
+    if first_row < 1 or last_row < first_row:
+        raise ChartGeneratorError(
+            f"Rentang baris grafik tidak valid: {first_row}:{last_row}."
+        )
+
+    target_range = ws.Range(
+        ws.Cells(first_row, chart_col),
+        ws.Cells(last_row, chart_col + CHART_COLUMN_SPAN - 1),
+    )
+
+    # xlMove keeps the chart attached to cells without automatic resize.
+    # This run then explicitly sets all edges to the actual table range.
+    expected = {
+        "Left": float(target_range.Left),
+        "Top": float(target_range.Top),
+        "Width": float(target_range.Width),
+        "Height": float(target_range.Height),
+    }
+
+    chart_object.Placement = 2
+    for attribute, value in expected.items():
+        setattr(chart_object, attribute, value)
+
+    # Read back the COM values. Fail the stage rather than silently exporting
+    # a chart whose physical bounds do not match its associated table rows.
+    for attribute, value in expected.items():
+        actual = float(getattr(chart_object, attribute))
+        if abs(actual - value) > 1.0:
+            raise ChartGeneratorError(
+                f"Ukuran/posisi grafik {attribute} tidak sesuai tabel: "
+                f"aktual {actual:.2f}, target {value:.2f}."
+            )
+    return float(chart_object.Height)
 
 
 def generate_charts(
     workbook_path: str | Path = DEFAULT_WORKBOOK,
     comparison_path: str | Path = DEFAULT_COMPARISON,
 ) -> Dict[str, Any]:
-
-    current_stage = "Persiapan file"
-
     workbook_file = Path(workbook_path).expanduser().resolve()
     comparison_file = Path(comparison_path).expanduser().resolve()
 
@@ -343,266 +418,127 @@ def generate_charts(
             f"Workbook Tahap 6 tidak ditemukan: {workbook_file}"
         )
 
-    current_stage = "Membaca comparison_data.json"
-
     data = _read_json(comparison_file)
     chart_data = _build_chart_data(data)
 
     try:
-        import pythoncom
-        import win32com.client
-
+        import pythoncom  # type: ignore
+        import win32com.client  # type: ignore
     except ImportError as exc:
         raise RuntimeError(
-            "pywin32 belum terpasang. Jalankan: "
-            "py -m pip install pywin32"
+            "pywin32 belum terpasang. Jalankan: py -m pip install pywin32"
         ) from exc
 
     pythoncom.CoInitialize()
-
     excel = None
     workbook = None
+    stage = "Inisialisasi Excel"
 
     try:
-        current_stage = "Membuka Excel COM"
-
-        excel = win32com.client.DispatchEx(
-            "Excel.Application"
-        )
-
-        # Tidak mengatur Visible=False karena pada beberapa
-        # instalasi Excel pengaturan ini memicu OLE error.
+        stage = "Membuka Excel COM"
+        excel = win32com.client.DispatchEx("Excel.Application")
         excel.DisplayAlerts = False
         excel.ScreenUpdating = False
         excel.EnableEvents = False
 
-        current_stage = "Membuka workbook"
-
+        stage = "Membuka workbook Tahap 6"
         workbook = excel.Workbooks.Open(
-            str(workbook_file),
-            UpdateLinks=0,
-            ReadOnly=False
+            str(workbook_file), UpdateLinks=0, ReadOnly=False
         )
 
-        current_stage = "Memeriksa jumlah worksheet"
-
+        stage = "Memeriksa worksheet"
         if workbook.Worksheets.Count != 1:
             raise ChartGeneratorError(
                 "Workbook harus hanya memiliki satu sheet; "
                 f"ditemukan {workbook.Worksheets.Count}."
             )
-
-        current_stage = "Memeriksa nama worksheet"
-
         ws = workbook.Worksheets(1)
-
         sheet_name = str(ws.Name)
-
         if sheet_name.strip().lower() != "compare line":
             raise ChartGeneratorError(
-                "Nama sheet harus 'compare line'; "
-                f"ditemukan {sheet_name!r}."
+                f"Nama sheet harus 'compare line'; ditemukan {sheet_name!r}."
             )
 
         labels = chart_data["labels"]
-
         line_count = len(labels)
         machine_count = chart_data["machine_count"]
+        process_count = chart_data["process_count"]
 
-        process_count = len(
-            data.get("process_rows") or []
+        # Use the same dynamic geometry as Stage 6.
+        chart_process_count = chart_data["process_chart_count"]
+        layout = calculate_excel_layout(
+            machine_count, process_count, line_count,
+            chart_process_count=chart_process_count,
+        )
+        machine_total_row = layout["machine_total_row"]
+        section3_row = layout["section3_row"]
+        section3_header_row = layout["section3_header_row"]
+        process_start_row = layout["process_start_row"]
+        process_end_row = layout["process_end_row"]
+        chart_col = layout["chart_col"]
+        note_col = layout["note_col"]
+
+        # Each SERIES formula references exactly one visible table cell per
+        # variable. Chart bounds below use the full two-row blocks for those
+        # same variables, so each plotted category aligns to its table row.
+        row_plan = _build_table_row_plan(
+            layout, machine_count, process_count
         )
 
-        # Posisi dinamis sesuai struktur Tahap 6.
-        machine_first_row = 17
+        stage = "Membaca tiga grafik bawaan template"
+        summary_chart, machine_chart, process_chart = _get_chart_objects(ws)
 
-        machine_total_row = (
-            machine_first_row + 2 * machine_count
+        stage = "Memperbarui grafik Summary dari tabel"
+        _update_chart_series_from_table(
+            summary_chart, ws, labels,
+            header_row=3,
+            line_start_col=3,
+            category_col=2,
+            data_rows=row_plan["summary"],
+        )
+        summary_chart_rows = _chart_row_bounds(row_plan["summary"])
+        summary_height = _position_chart(
+            summary_chart, ws, chart_col,
+            first_row=summary_chart_rows[0],
+            last_row=summary_chart_rows[1],
         )
 
-        section3_row = machine_total_row + 3
-
-        section3_header_row = section3_row + 1
-
-        chart_col = 3 + line_count
-
-        note_col = chart_col + 2
-
-        # Mengatur lebar area grafik.
-        current_stage = "Mengatur lebar kolom grafik"
-
-        ws.Columns(
-            f"{_col_letter(chart_col)}:"
-            f"{_col_letter(chart_col + 1)}"
-        ).ColumnWidth = 24
-
-        # Data bantuan grafik disimpan pada sheet yang sama.
-        current_stage = "Menentukan posisi helper data"
-
-        helper_col = note_col + 3
-
-        helper_start_rows = {
-            "summary": 1,
-            "machine": 8,
-            "process": (
-                8 + len(chart_data["machine_matrix"]) + 3
-            ),
-        }
-
-        # Menulis data summary.
-        current_stage = "Menulis helper data summary"
-
-        summary_range = _write_matrix(
-            ws,
-            helper_start_rows["summary"],
-            helper_col,
-            chart_data["summary_matrix"],
+        stage = "Memperbarui grafik Penggunaan Mesin dari tabel"
+        _update_chart_series_from_table(
+            machine_chart, ws, labels,
+            header_row=16,
+            line_start_col=3,
+            category_col=2,
+            data_rows=row_plan["machines"],
+        )
+        machine_chart_rows = _chart_row_bounds(row_plan["machines"])
+        machine_height = _position_chart(
+            machine_chart, ws, chart_col,
+            first_row=machine_chart_rows[0],
+            last_row=machine_chart_rows[1],
         )
 
-        # Menulis data mesin.
-        current_stage = "Menulis helper data machine"
-
-        machine_range = _write_matrix(
-            ws,
-            helper_start_rows["machine"],
-            helper_col,
-            chart_data["machine_matrix"],
+        stage = "Memperbarui grafik Penggunaan Operator dari tabel"
+        _update_chart_series_from_table(
+            process_chart, ws, labels,
+            header_row=section3_header_row,
+            line_start_col=3,
+            category_col=2,
+            data_rows=row_plan["processes"],
+        )
+        operator_chart_rows = _chart_row_bounds(row_plan["processes"])
+        operator_height = _position_chart(
+            process_chart, ws, chart_col,
+            first_row=operator_chart_rows[0],
+            last_row=operator_chart_rows[1],
         )
 
-        # Menulis data proses.
-        current_stage = "Menulis helper data process"
-
-        process_range = _write_matrix(
-            ws,
-            helper_start_rows["process"],
-            helper_col,
-            chart_data["process_matrix"],
-        )
-
-        # Menyembunyikan kolom helper.
-        current_stage = "Menyembunyikan kolom helper"
-
-        ws.Columns(
-            f"{_col_letter(helper_col)}:"
-            f"{_col_letter(helper_col + line_count)}"
-        ).Hidden = True
-
-        # Menghapus grafik sebelumnya.
-        current_stage = "Menghapus grafik lama"
-
-        try:
-            chart_objects = ws.ChartObjects()
-
-            if chart_objects.Count > 0:
-                chart_objects.Delete()
-
-        except Exception:
-            pass
-
-        chart_width = 315
-
-        # Grafik 1: Output per jam.
-        current_stage = "Membuat grafik output per jam"
-
-        summary_chart = _add_chart(
-            excel,
-            ws,
-            summary_range,
-            3,
-            chart_col,
-            chart_width,
-            205,
-            XL_COLUMN_CLUSTERED,
-            "PERBANDINGAN OUTPUT PER JAM",
-        )
-
-        # Grafik 2: Penggunaan jenis mesin.
-        current_stage = "Membuat grafik penggunaan mesin"
-
-        machine_chart = _add_chart(
-            excel,
-            ws,
-            machine_range,
-            16,
-            chart_col,
-            chart_width,
-            245,
-            XL_BAR_CLUSTERED,
-            "PENGGUNAAN JENIS MESIN PER LINE",
-        )
-
-        # Grafik 3: Penggunaan operator per proses.
-        current_stage = "Membuat grafik penggunaan operator"
-
-        process_chart = _add_chart(
-            excel,
-            ws,
-            process_range,
-            section3_header_row,
-            chart_col,
-            chart_width,
-            360,
-            XL_BAR_CLUSTERED,
-            "PENGGUNAAN OPERATOR PER PROSES",
-            top_n_note=(
-                "Top 15 proses; tabel di kiri tetap "
-                "menampilkan seluruh proses."
-            ),
-        )
-
-        # Data labels untuk grafik pertama dan kedua.
-        current_stage = "Mengatur data labels grafik"
-
-        for chart_object in (
-            summary_chart,
-            machine_chart,
-        ):
-            try:
-                chart = chart_object.Chart
-
-                for series_index in range(
-                    1,
-                    chart.SeriesCollection().Count + 1
-                ):
-                    chart.SeriesCollection(
-                        series_index
-                    ).ApplyDataLabels()
-
-                    chart.SeriesCollection(
-                        series_index
-                    ).DataLabels().Font.Size = 8
-
-            except Exception:
-                pass
-
-        # Data labels grafik proses.
-        try:
-            for series_index in range(
-                1,
-                process_chart.Chart.SeriesCollection().Count + 1
-            ):
-                process_chart.Chart.SeriesCollection(
-                    series_index
-                ).ApplyDataLabels()
-
-                process_chart.Chart.SeriesCollection(
-                    series_index
-                ).DataLabels().Font.Size = 8
-
-        except Exception:
-            pass
-
-        # Simpan workbook.
-        current_stage = "Menyimpan workbook"
-
+        stage = "Menyimpan workbook"
         ws.Activate()
         ws.Range("B1").Select()
-
         workbook.Save()
 
-        # Tutup workbook.
-        current_stage = "Menutup workbook"
-
+        stage = "Menutup workbook"
         workbook.Close(SaveChanges=False)
         workbook = None
 
@@ -612,17 +548,34 @@ def generate_charts(
             "line_count": line_count,
             "machine_count": machine_count,
             "process_count": process_count,
-            "process_chart_count": chart_data[
-                "process_chart_count"
-            ],
+            "process_chart_count": chart_process_count,
             "chart_count": 3,
+            "chart_mode": "TABEL_LAPORAN_LANGSUNG",
+            "chart_column_span": CHART_COLUMN_SPAN,
+            "chart_data_layout": "ONE_VARIABLE_ROW_PER_CATEGORY",
+            "chart_anchor_rows": {
+                "summary": summary_chart_rows[0],
+                "machines": machine_chart_rows[0],
+                "operators": operator_chart_rows[0],
+            },
+            "chart_end_rows": {
+                "summary": summary_chart_rows[1],
+                "machines": machine_chart_rows[1],
+                "operators": operator_chart_rows[1],
+            },
+            "chart_heights": {
+                "summary": summary_height,
+                "machines": machine_height,
+                "operators": operator_height,
+            },
+            "machine_category_count": len(row_plan["machines"]),
+            "operator_category_count": len(row_plan["processes"]),
             "status": "PASS",
         }
 
     except Exception as exc:
         raise RuntimeError(
-            f"Gagal pada tahap: {current_stage}\n"
-            f"Penyebab: {exc}"
+            f"Gagal pada tahap: {stage}\nPenyebab: {exc}"
         ) from exc
 
     finally:
@@ -631,84 +584,71 @@ def generate_charts(
                 workbook.Close(SaveChanges=False)
             except Exception:
                 pass
-
         if excel is not None:
             try:
                 excel.DisplayAlerts = False
                 excel.Quit()
             except Exception:
                 pass
-
         pythoncom.CoUninitialize()
 
 
-def format_console_report(
-    result: Mapping[str, Any]
-) -> str:
-
+def format_console_report(result: Mapping[str, Any]) -> str:
     return "\n".join([
         "=" * 72,
-        "COMPARE_CT — TAHAP 7: CHART GENERATOR",
+        "COMPARE_CT — TAHAP 7: UPDATE GRAFIK TEMPLATE",
         "=" * 72,
         f"OUTPUT              : {result['output']}",
         f"SHEET               : {result['sheet']}",
         f"JUMLAH LINE         : {result['line_count']}",
         f"JENIS MESIN         : {result['machine_count']}",
         f"BARIS PROSES        : {result['process_count']}",
-        (
-            "PROSES DI GRAFIK    : "
-            f"{result['process_chart_count']} (TOP 15)"
-        ),
+        f"PROSES DI GRAFIK    : {result['process_chart_count']} (SELURUH PROSES)",
         f"JUMLAH GRAFIK       : {result['chart_count']}",
+        f"MODE GRAFIK         : {result['chart_mode']}",
+        f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
+        f"KATEGORI MESIN      : {result['machine_category_count']}",
+        f"KATEGORI OPERATOR   : {result['operator_category_count']}",
+        f"SUMMARY             : BARIS {result['chart_anchor_rows']['summary']}-"
+        f"{result['chart_end_rows']['summary']} / {result['chart_heights']['summary']:.1f} pt",
+        f"MESIN               : BARIS {result['chart_anchor_rows']['machines']}-"
+        f"{result['chart_end_rows']['machines']} / {result['chart_heights']['machines']:.1f} pt",
+        f"OPERATOR            : BARIS {result['chart_anchor_rows']['operators']}-"
+        f"{result['chart_end_rows']['operators']} / {result['chart_heights']['operators']:.1f} pt",
         f"STATUS              : {result['status']}",
         "=" * 72,
     ])
 
 
-def main(
-    argv: Sequence[str] | None = None
-) -> int:
-
+def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=(
-            "Tambahkan tiga grafik dinamis "
-            "ke workbook COMPARE LINE."
+            "Perbarui data tiga grafik bawaan template COMPARE LINE "
+            "tanpa mengganti desainnya."
         )
     )
-
     parser.add_argument(
-        "workbook",
-        nargs="?",
-        default=str(DEFAULT_WORKBOOK),
+        "workbook", nargs="?", default=str(DEFAULT_WORKBOOK)
     )
-
     parser.add_argument(
-        "--comparison",
-        default=str(DEFAULT_COMPARISON),
+        "--comparison", default=str(DEFAULT_COMPARISON)
     )
-
     args = parser.parse_args(argv)
 
     try:
-        result = generate_charts(
-            args.workbook,
-            args.comparison,
-        )
-
+        result = generate_charts(args.workbook, args.comparison)
     except Exception as exc:
         print("\n" + "=" * 72)
-        print("COMPARE_CT — TAHAP 7: CHART GENERATOR")
+        print("COMPARE_CT — TAHAP 7: UPDATE GRAFIK TEMPLATE")
         print("=" * 72)
         print("STATUS              : ERROR")
         print(f"PENYEBAB            : {exc}")
         print("\nDETAIL TRACEBACK:")
         traceback.print_exc()
         print("=" * 72)
-
         return 1
 
     print(format_console_report(result))
-
     return 0
 
 
