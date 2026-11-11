@@ -1,6 +1,7 @@
 import unittest
 
 from excel.chart_generator import (
+    ChartGeneratorError,
     _build_chart_data,
     _build_series_formula,
     _build_table_row_plan,
@@ -150,9 +151,9 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(_chart_row_bounds((40, 42, 44)), (40, 45))
 
     def test_chart_bounds_reject_gaps_and_empty_rows(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(ChartGeneratorError):
             _chart_row_bounds(())
-        with self.assertRaises(Exception):
+        with self.assertRaises(ChartGeneratorError):
             _chart_row_bounds((17, 19, 22))
 
     def test_chart_is_sized_to_exact_table_range_and_two_chart_columns(self):
