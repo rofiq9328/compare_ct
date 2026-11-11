@@ -60,6 +60,7 @@ def calculate_excel_layout(
     return {
         "machine_first_row": MACHINE_FIRST_ROW,
         "machine_total_row": machine_total_row,
+        "machine_chart_end_row": machine_total_row + 2,
         "section3_row": section3_row,
         "section3_header_row": section3_header_row,
         "process_start_row": process_start_row,
