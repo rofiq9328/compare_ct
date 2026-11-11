@@ -226,6 +226,8 @@ def _build_series_formula(
         f"({value_refs}),"
         f"{series_order})"
     )
+
+
 def _build_table_row_plan(
     layout: Mapping[str, int],
     machine_count: int,
@@ -449,9 +451,8 @@ def generate_charts(
         chart_col = layout["chart_col"]
         note_col = layout["note_col"]
 
-        # All chart series link to continuous ranges in the visible report table.
-        # Each item occupies a two-row merged block; blank separator rows are
-        # ignored by the chart's xlNotPlotted setting.
+        # Each SERIES formula references exactly one visible table cell per
+        # variable, skipping the blank second row of each merged two-row block.
         row_plan = _build_table_row_plan(
             layout, machine_count, process_count
         )
