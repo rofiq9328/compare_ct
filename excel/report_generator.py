@@ -24,6 +24,8 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
+from excel.layout import calculate_excel_layout
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_COMPARISON_PATH = PROJECT_ROOT / "logs" / "comparison_data.json"
@@ -505,14 +507,16 @@ def _prepare_template_structure(
         if delete_start <= delete_end:
             ws.Rows(f"{delete_start}:{delete_end}").Delete()
 
-    total_row = MACHINE_FIRST_ROW + 2 * machine_count
-    section3_row = total_row + 3
-    section3_header_row = section3_row + 1
-    process_start_row = section3_header_row + 1
+    # Centralized geometry keeps Stage 6 row anchors identical to Stage 7.
+    layout = calculate_excel_layout(machine_count, process_count, line_count)
+    total_row = layout["machine_total_row"]
+    section3_row = layout["section3_row"]
+    section3_header_row = layout["section3_header_row"]
+    process_start_row = layout["process_start_row"]
 
     # Process section starts with ten two-row template blocks.
     template_process_capacity = 10
-    allocated_process_count = max(1, process_count)
+    allocated_process_count = layout["allocated_process_count"]
     if allocated_process_count > template_process_capacity:
         extra_process_rows = 2 * (
             allocated_process_count - template_process_capacity
@@ -536,9 +540,7 @@ def _prepare_template_structure(
         if delete_start <= delete_end:
             ws.Rows(f"{delete_start}:{delete_end}").Delete()
 
-    process_end_row = (
-        process_start_row + 2 * allocated_process_count - 1
-    )
+    process_end_row = layout["process_end_row"]
 
     # Clear values only. The template's fills, borders, number formats and charts remain.
     last_used_row = max(
