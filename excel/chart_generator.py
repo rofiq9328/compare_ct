@@ -326,6 +326,13 @@ def _update_chart_series_from_table(
             series_order=index + 1,
         )
 
+        point_count = int(series.Points().Count)
+        if point_count != len(data_rows):
+            raise ChartGeneratorError(
+                f"Jumlah kategori seri {label} tidak sesuai tabel: "
+                f"grafik {point_count}, tabel {len(data_rows)}."
+            )
+
         # Keep the first two series' exact template colors. Additional lines
         # receive distinct colors while retaining the chart's native style.
         if index >= 2:
@@ -335,6 +342,13 @@ def _update_chart_series_from_table(
                 series.Format.Line.ForeColor.RGB = color
             except Exception:
                 pass
+
+    actual_series_count = int(series_collection.Count)
+    if actual_series_count != len(labels):
+        raise ChartGeneratorError(
+            f"Jumlah seri grafik tidak sesuai jumlah LINE: "
+            f"grafik {actual_series_count}, LINE {len(labels)}."
+        )
 
 
 def _chart_row_bounds(data_rows: Sequence[int], block_height: int = 2) -> tuple[int, int]:
