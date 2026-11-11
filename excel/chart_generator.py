@@ -167,8 +167,9 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         values = row.get("operator_allocations_by_line") or {}
         per_line = [_safe_number(values.get(line)) for line in labels]
         total = sum(per_line)
-        if total > 0:
-            process_ranked.append((total, process, per_line))
+        # Keep zero-allocation rows as well so the chart has one category for
+        # every process shown in the report table.
+        process_ranked.append((total, process, per_line))
 
     process_ranked.sort(
         key=lambda item: (-item[0], item[1].casefold())
@@ -188,7 +189,7 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         "summary_matrix": summary_matrix,
         "machine_matrix": machine_matrix,
         "process_matrix": process_matrix,
-        "machine_count": len(machine_matrix) - 1,
+        "machine_count": len(machine_rows),
         "process_count": len(process_ranked),
         "process_chart_count": len(process_matrix) - 1,
     }
