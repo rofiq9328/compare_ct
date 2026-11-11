@@ -129,25 +129,19 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         ]
     )
 
-    process_ranked = []
+    process_rows = []
     for row in data.get("process_rows") or []:
         process = str(row.get("process") or "").strip()
         if not process:
             continue
         values = row.get("operator_allocations_by_line") or {}
         per_line = [_safe_number(values.get(line)) for line in labels]
-        total = sum(per_line)
-        # Keep zero-allocation rows as well so the chart has one category for
-        # every process shown in the report table.
-        process_ranked.append((total, process, per_line))
+        # Preserve the report table's order and keep zero-allocation rows so
+        # every visible process variable is represented in the chart.
+        process_rows.append((process, per_line))
 
-    process_ranked.sort(
-        key=lambda item: (-item[0], item[1].casefold())
-    )
-    # Include every process row, not just the first 15. The chart height grows
-    # when the detail process data gets longer.
     process_matrix: List[List[Any]] = [["PROSES"] + labels]
-    for _, process, per_line in process_ranked:
+    for process, per_line in process_rows:
         process_matrix.append([process] + per_line)
     if len(process_matrix) == 1:
         process_matrix.append(
@@ -160,7 +154,7 @@ def _build_chart_data(data: Mapping[str, Any]) -> Dict[str, Any]:
         "machine_matrix": machine_matrix,
         "process_matrix": process_matrix,
         "machine_count": len(machine_rows),
-        "process_count": len(process_ranked),
+        "process_count": len(process_rows),
         "process_chart_count": len(process_matrix) - 1,
     }
 
@@ -180,26 +174,42 @@ def _get_chart_objects(ws: Any) -> List[Any]:
     return sorted(objects, key=lambda item: float(item.Top))
 
 
-def _union_cell_range(
-    excel: Any,
+def _table_column_range(
     ws: Any,
     column: int,
-    rows: Sequence[int],
+    data_rows: Sequence[int],
+    block_height: int = 2,
 ) -> Any:
-    """Build a live, non-contiguous Excel range from the visible report table."""
-    ordered_rows = list(rows)
+    """Return one continuous table-column range covering every data block.
+
+    Each visible table item occupies a two-row merged block. The range therefore
+    spans from the first data row through the final row of the last block.
+    Empty second rows are left blank and are configured as not plotted.
+    """
+    ordered_rows = list(data_rows)
     if not ordered_rows:
         raise ChartGeneratorError("Baris sumber grafik dari tabel kosong.")
-
-    source_range = ws.Cells(ordered_rows[0], column)
-    for row_number in ordered_rows[1:]:
-        source_range = excel.Union(
-            source_range,
-            ws.Cells(row_number, column),
+    if block_height < 1:
+        raise ValueError("block_height minimal 1.")
+    if any(
+        current <= previous
+        for previous, current in zip(ordered_rows, ordered_rows[1:])
+    ):
+        raise ChartGeneratorError("Baris sumber grafik harus berurutan naik.")
+    if any(
+        current - previous != block_height
+        for previous, current in zip(ordered_rows, ordered_rows[1:])
+    ):
+        raise ChartGeneratorError(
+            "Jarak antarbaris variabel tidak sesuai tinggi blok tabel."
         )
-    return source_range
 
-
+    first_row = ordered_rows[0]
+    last_row = ordered_rows[-1] + block_height - 1
+    return ws.Range(
+        ws.Cells(first_row, column),
+        ws.Cells(last_row, column),
+    )
 def _build_table_row_plan(
     layout: Mapping[str, int],
     machine_count: int,
@@ -253,6 +263,8 @@ def _update_chart_series_from_table(
 
     chart = chart_object.Chart
     chart.PlotVisibleOnly = True
+    chart.PlotBy = 2  # xlColumns: one series for each compared LINE
+    chart.DisplayBlanksAs = 1  # xlNotPlotted: spacer rows in merged blocks
 
     series_collection = chart.SeriesCollection()
 
@@ -287,7 +299,7 @@ def _update_chart_series_from_table(
         red, green, blue = colorsys.hsv_to_rgb(hue, 0.68, 0.82)
         return int(red * 255) | (int(green * 255) << 8) | (int(blue * 255) << 16)
 
-    category_range = _union_cell_range(excel, ws, category_col, data_rows)
+    category_range = _table_column_range(ws, category_col, data_rows)
 
     for index, label in enumerate(labels):
         value_col = line_start_col + index
@@ -298,7 +310,7 @@ def _update_chart_series_from_table(
             )
 
         series = series_collection.Item(index + 1)
-        value_range = _union_cell_range(excel, ws, value_col, data_rows)
+        value_range = _table_column_range(ws, value_col, data_rows)
 
         # The legend name, category labels, and values all stay linked to the
         # visible report cells. Editing a LINE header also updates the legend.
@@ -321,26 +333,27 @@ def _position_chart(
     chart_object: Any,
     ws: Any,
     chart_col: int,
-    first_row: int,
-    last_row: int,
+    anchor_row: int,
 ) -> None:
-    """Fit the chart exactly inside its two template columns and row block."""
-    if last_row < first_row:
+    """Align the chart to the first variable row without stretching its height.
+
+    The original chart height is deliberately retained from the template.
+    Only its left edge, top edge, and width are aligned to the template's
+    two-column chart area.
+    """
+    if anchor_row < 1:
         raise ChartGeneratorError(
-            f"Rentang baris grafik tidak valid: {first_row}:{last_row}."
+            f"Baris awal grafik tidak valid: {anchor_row}."
         )
 
-    # Template graph area is always two columns wide.
     anchor_range = ws.Range(
-        ws.Cells(first_row, chart_col),
-        ws.Cells(last_row, chart_col + CHART_COLUMN_SPAN - 1),
+        ws.Cells(anchor_row, chart_col),
+        ws.Cells(anchor_row, chart_col + CHART_COLUMN_SPAN - 1),
     )
+    chart_object.Placement = 2  # xlMove: move with cells, keep template size
     chart_object.Left = float(anchor_range.Left)
     chart_object.Top = float(anchor_range.Top)
     chart_object.Width = float(anchor_range.Width)
-    chart_object.Height = float(anchor_range.Height)
-    # Keep the object aligned to the cells if rows/columns are resized.
-    chart_object.Placement = 1  # xlMoveAndSize
 
 
 def generate_charts(
@@ -415,9 +428,9 @@ def generate_charts(
         chart_col = layout["chart_col"]
         note_col = layout["note_col"]
 
-        # All chart series link to the report's visible cells. No hidden helper
-        # table is written; the category/value ranges are non-contiguous because
-        # each template data item occupies a two-row merged block.
+        # All chart series link to continuous ranges in the visible report table.
+        # Each item occupies a two-row merged block; blank separator rows are
+        # ignored by the chart's xlNotPlotted setting.
         row_plan = _build_table_row_plan(
             layout, machine_count, process_count
         )
@@ -435,8 +448,7 @@ def generate_charts(
         )
         _position_chart(
             summary_chart, ws, chart_col,
-            first_row=layout["summary_chart_start_row"],
-            last_row=layout["summary_chart_end_row"],
+            anchor_row=layout["summary_chart_anchor_row"],
         )
 
         stage = "Memperbarui grafik Penggunaan Mesin dari tabel"
@@ -449,8 +461,7 @@ def generate_charts(
         )
         _position_chart(
             machine_chart, ws, chart_col,
-            first_row=layout["machine_chart_start_row"],
-            last_row=layout["machine_chart_end_row"],
+            anchor_row=layout["machine_chart_anchor_row"],
         )
 
         stage = "Memperbarui grafik Penggunaan Operator dari tabel"
@@ -463,8 +474,7 @@ def generate_charts(
         )
         _position_chart(
             process_chart, ws, chart_col,
-            first_row=layout["process_chart_start_row"],
-            last_row=layout["process_chart_end_row"],
+            anchor_row=layout["process_chart_anchor_row"],
         )
 
         stage = "Menyimpan workbook"
@@ -486,6 +496,8 @@ def generate_charts(
             "chart_count": 3,
             "chart_mode": "TABEL_LAPORAN_LANGSUNG",
             "chart_column_span": CHART_COLUMN_SPAN,
+            "chart_data_layout": "ONE_VARIABLE_ROW_PER_CATEGORY",
+            "chart_height_mode": "TEMPLATE_ORIGINAL",
             "status": "PASS",
         }
 
@@ -523,6 +535,7 @@ def format_console_report(result: Mapping[str, Any]) -> str:
         f"JUMLAH GRAFIK       : {result['chart_count']}",
         f"MODE GRAFIK         : {result['chart_mode']}",
         f"LEBAR GRAFIK        : {result['chart_column_span']} kolom",
+        f"TINGGI GRAFIK       : {result['chart_height_mode']}",
         f"STATUS              : {result['status']}",
         "=" * 72,
     ])
