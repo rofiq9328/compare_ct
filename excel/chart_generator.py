@@ -448,7 +448,9 @@ def generate_charts(
         _position_chart(
             process_chart, ws, chart_col,
             first_row=section3_row,
-            last_row=process_start_row + 2 * chart_process_count,
+            # The process table has two rows per item; the final occupied
+            # row is start + (2 * count) - 1, not start + (2 * count).
+            last_row=process_start_row + (2 * chart_process_count) - 1,
         )
         _set_chart_titles(
             process_chart,
