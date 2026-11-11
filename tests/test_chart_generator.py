@@ -2,10 +2,10 @@ import unittest
 
 from excel.chart_generator import (
     _build_chart_data,
+    _build_series_formula,
     _build_table_row_plan,
+    _operator_chart_height,
     _position_chart,
-    _table_column_range,
-    _worksheet_cell_reference,
 )
 from excel.layout import calculate_excel_layout
 
@@ -113,33 +113,77 @@ class TestDynamicChartData(unittest.TestCase):
                     msg=f"{matrix_name}: {variable_row[0]}",
                 )
 
-    def test_chart_source_is_one_contiguous_table_range(self):
+    def test_series_formula_uses_one_category_cell_per_variable(self):
         class Worksheet:
-            def Cells(self, row, column):
-                return (row, column)
+            Name = "compare line"
 
-            def Range(self, start, end):
-                return (start, end)
-
-        ws = Worksheet()
-        rows = (4, 6, 8, 10, 12)
-        self.assertEqual(
-            _table_column_range(ws, column=2, data_rows=rows),
-            ((4, 2), (13, 2)),
+        formula = _build_series_formula(
+            Worksheet(),
+            header_row=16,
+            value_column=4,
+            category_column=2,
+            data_rows=(17, 19, 21),
+            series_order=2,
         )
 
-    def test_chart_source_rejects_inconsistent_two_row_blocks(self):
+        self.assertEqual(
+            formula,
+            "=SERIES('compare line'!$D$16,"
+            "('compare line'!$B$17,'compare line'!$B$19,'compare line'!$B$21),"
+            "('compare line'!$D$17,'compare line'!$D$19,'compare line'!$D$21),2)",
+        )
+
+    def test_series_formula_escapes_sheet_apostrophes(self):
+        class Worksheet:
+            Name = "Line's Report"
+
+        formula = _build_series_formula(
+            Worksheet(), 3, 27, 2, (4, 6), 1
+        )
+        self.assertIn("'Line''s Report'!$AA$3", formula)
+        self.assertIn("'Line''s Report'!$B$4", formula)
+        self.assertIn("'Line''s Report'!$AA$6", formula)
+
+    def test_operator_chart_height_scales_and_has_a_maximum(self):
+        self.assertEqual(_operator_chart_height(0), 240)
+        self.assertEqual(_operator_chart_height(19), 424)
+        self.assertEqual(_operator_chart_height(100), 480)
+
+    def test_chart_uses_agreed_row_anchor_and_explicit_height_when_given(self):
+        class Cell:
+            def __init__(self, row, column):
+                self.Left = column * 50.0
+                self.Top = row * 20.0
+
+        class Range:
+            def __init__(self, start, end):
+                self.Left = start.Left
+                self.Top = start.Top
+                self.Width = (end.Left + 50.0) - start.Left
+
         class Worksheet:
             def Cells(self, row, column):
-                return (row, column)
+                return Cell(row, column)
 
             def Range(self, start, end):
-                return (start, end)
+                return Range(start, end)
 
-        with self.assertRaises(ValueError):
-            _table_column_range(
-                Worksheet(), column=3, data_rows=(17, 19, 22)
-            )
+        class ChartObject:
+            Left = 0.0
+            Top = 0.0
+            Width = 500.0
+            Height = 275.0
+            Placement = 1
+
+        chart = ChartObject()
+        _position_chart(
+            chart, Worksheet(), chart_col=7, anchor_row=28, height=424
+        )
+        self.assertEqual(chart.Left, 350.0)
+        self.assertEqual(chart.Top, 560.0)
+        self.assertEqual(chart.Width, 100.0)
+        self.assertEqual(chart.Height, 424.0)
+        self.assertEqual(chart.Placement, 2)
 
     def test_chart_keeps_original_height_and_uses_two_column_width(self):
         class Cell:
