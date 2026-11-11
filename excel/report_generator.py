@@ -620,8 +620,8 @@ def _populate_workbook(excel: Any, ws: Any, data: Mapping[str, Any]) -> Dict[str
     # Workbook and section headings.
     ws.Cells(1, 2).Value = "COMPARE LINE"
     ws.Cells(2, 2).Value = "I. SUMMARY"
-    ws.Cells(15, 2).Value = "II. PENGGUNAAN MESIN (UNIT)"
-    ws.Cells(section3_row, 2).Value = "III. PENGGUNAAN OPERATOR (OPT)"
+    ws.Cells(15, 2).Value = "II. PENGGUNAAN MESIN"
+    ws.Cells(section3_row, 2).Value = "III. PENGGUNAAN OPERATOR"
 
     # Header rows for all three sections.
     for header_row, variable_label in (
