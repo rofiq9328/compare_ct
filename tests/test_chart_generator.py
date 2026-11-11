@@ -4,6 +4,7 @@ from excel.chart_generator import (
     _build_chart_data,
     _build_series_formula,
     _build_table_row_plan,
+    _machine_chart_height,
     _operator_chart_height,
     _position_chart,
 )
@@ -144,10 +145,16 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertIn("'Line''s Report'!$B$4", formula)
         self.assertIn("'Line''s Report'!$AA$6", formula)
 
-    def test_operator_chart_height_scales_and_has_a_maximum(self):
-        self.assertEqual(_operator_chart_height(0), 240)
-        self.assertEqual(_operator_chart_height(19), 424)
-        self.assertEqual(_operator_chart_height(100), 480)
+    def test_machine_chart_height_matches_two_row_variable_blocks(self):
+        self.assertEqual(_machine_chart_height(0), 260.0)
+        self.assertEqual(_machine_chart_height(1), 260.0)
+        self.assertEqual(_machine_chart_height(10), 499.0)
+
+    def test_operator_chart_height_scales_and_has_a_readability_cap(self):
+        self.assertEqual(_operator_chart_height(0), 320)
+        self.assertEqual(_operator_chart_height(19), 462)
+        self.assertEqual(_operator_chart_height(91), 1758)
+        self.assertEqual(_operator_chart_height(120), 1800)
 
     def test_chart_uses_agreed_row_anchor_and_explicit_height_when_given(self):
         class Cell:
