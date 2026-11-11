@@ -11,7 +11,7 @@ from typing import Dict
 
 
 MACHINE_FIRST_ROW = 17
-PROCESS_CHART_TOP_N = 15
+# Every process row in the report is also plotted; chart height grows with it.
 
 
 def _non_negative_int(name: str, value: int) -> int:
@@ -35,7 +35,7 @@ def calculate_excel_layout(
 
     allocated_process_count = max(1, process_count)
     if chart_process_count is None:
-        chart_process_count = max(1, min(process_count, PROCESS_CHART_TOP_N))
+        chart_process_count = max(1, process_count)
     else:
         chart_process_count = _non_negative_int("chart_process_count", chart_process_count)
         chart_process_count = max(1, chart_process_count)
