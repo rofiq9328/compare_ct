@@ -1,6 +1,10 @@
 import unittest
 
-from excel.chart_generator import _build_chart_data, _build_table_row_plan
+from excel.chart_generator import (
+    _build_chart_data,
+    _build_table_row_plan,
+    _worksheet_cell_reference,
+)
 from excel.layout import calculate_excel_layout
 
 
@@ -96,6 +100,35 @@ class TestDynamicChartData(unittest.TestCase):
         self.assertEqual(plan["processes"][0], layout["process_start_row"])
         self.assertEqual(plan["processes"][-1], layout["process_end_row"])
         self.assertEqual(len(plan["processes"]), 19)
+
+
+class TestChartWorksheetReferences(unittest.TestCase):
+    def test_series_name_uses_a_live_header_cell_reference(self):
+        class Worksheet:
+            Name = "compare line"
+
+        self.assertEqual(
+            _worksheet_cell_reference(Worksheet(), row=3, column=4),
+            "='compare line'!R3C4",
+        )
+
+    def test_series_name_reference_escapes_sheet_apostrophes(self):
+        class Worksheet:
+            Name = "Line's Report"
+
+        self.assertEqual(
+            _worksheet_cell_reference(Worksheet(), row=16, column=27),
+            "='Line''s Report'!R16C27",
+        )
+
+    def test_series_name_reference_rejects_invalid_coordinates(self):
+        class Worksheet:
+            Name = "compare line"
+
+        with self.assertRaises(ValueError):
+            _worksheet_cell_reference(Worksheet(), row=0, column=3)
+        with self.assertRaises(ValueError):
+            _worksheet_cell_reference(Worksheet(), row=3, column=0)
 
 
 if __name__ == "__main__":
