@@ -1,0 +1,4342 @@
+{
+  "schema_version": 1,
+  "line_count": 2,
+  "lines": [
+    {
+      "line_number": 37,
+      "line_label": "LINE 37 (A8MVW)",
+      "style": "A8MVW",
+      "source_file": "D:\\4. PYTHON\\COMPARE_CT\\input\\Grafik Cycle Time Line 37 TNF A8MVW - 3 November 2026 . Ke-2.xlsx",
+      "summary": {
+        "target_per_hour": 55,
+        "potential_per_hour": 39.58594943152894,
+        "actual_per_hour": 30,
+        "takt_time": 39,
+        "operator_allocations": 54,
+        "machine_allocations": 56,
+        "process_count": 71
+      },
+      "processes": [
+        {
+          "canonical_key": "BARTACK VARIASI AB SHOULDER 4X WEBBING DALAM",
+          "canonical_name": "Bartack variasi AB shoulder 4x (webbing dalam)",
+          "source_names": [
+            "Bartack variasi AB shoulder 4x (webbing dalam)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            1.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BACKTACK KUNCI AB SHOULDER",
+          "canonical_name": "Backtack kunci AB shoulder",
+          "source_names": [
+            "Backtack kunci AB shoulder"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            2.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 25MM AB SHOULDER",
+          "canonical_name": "Binding 25mm AB shoulder",
+          "source_names": [
+            "Binding 25mm AB shoulder"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            3.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK AB SHOULDER JA 2X",
+          "canonical_name": "Bartack AB shoulder JA (2x)",
+          "source_names": [
+            "Bartack AB shoulder JA (2x)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            4.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KOMPUTER STICK AB SHOULDER UPPER",
+          "canonical_name": "Komputer stick AB shoulder (upper)",
+          "source_names": [
+            "Komputer stick AB shoulder (upper)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            5.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR AB TENSION TAB",
+          "canonical_name": "Jahit dasar AB tension tab",
+          "source_names": [
+            "Jahit dasar AB tension tab"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            6.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BOXSTICK AB TENSION TAB",
+          "canonical_name": "Boxstick AB tension tab",
+          "source_names": [
+            "Boxstick AB tension tab"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            7.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS DASAR HARDBOARD KE BACK PANEL",
+          "canonical_name": "Lapis dasar hardboard ke back panel",
+          "source_names": [
+            "Lapis dasar hardboard ke back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            8.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN LOWER KE BACK PANEL",
+          "canonical_name": "Join lower ke back panel",
+          "source_names": [
+            "Join lower ke back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            9.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "STICK DAN LAPIS LOWER BACK PANEL",
+          "canonical_name": "Stick & lapis lower back panel",
+          "source_names": [
+            "Stick & lapis lower back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            10.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR AB SIDE BACK PANEL",
+          "canonical_name": "Jahit dasar AB side back panel",
+          "source_names": [
+            "Jahit dasar AB side back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            11.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS DASAR AB SIDE BACK PANEL",
+          "canonical_name": "Lapis dasar AB side back panel",
+          "source_names": [
+            "Lapis dasar AB side back panel"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            12.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN AB SIDE KE BACK PANEL",
+          "canonical_name": "Join AB side ke back panel",
+          "source_names": [
+            "Join AB side ke back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            13.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "STICK AB SIDE BACK PANEL",
+          "canonical_name": "Stick AB side back panel",
+          "source_names": [
+            "Stick AB side back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            14.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS COMP SLEEVE KE BACK PANEL",
+          "canonical_name": "Lapis comp sleeve ke back panel",
+          "source_names": [
+            "Lapis comp sleeve ke back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            15.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN SHOULDER KE BACK PANEL",
+          "canonical_name": "Join shoulder ke back panel",
+          "source_names": [
+            "Join shoulder ke back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            16.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN AB TENSION KE BACK PANEL",
+          "canonical_name": "Join AB tension ke back panel",
+          "source_names": [
+            "Join AB tension ke back panel"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            17.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BACKTACK LIPAT UJUNG WEBBING AB TENSION TAB",
+          "canonical_name": "Backtack lipat ujung webbing AB tension tab",
+          "source_names": [
+            "Backtack lipat ujung webbing AB tension tab"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            18.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR AB SIDE FRONT POCKET B",
+          "canonical_name": "Jahit dasar AB side front pocket B",
+          "source_names": [
+            "Jahit dasar AB side front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            19.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM AB SIDE FRONT POCKET B",
+          "canonical_name": "Binding 20mm AB side front pocket B",
+          "source_names": [
+            "Binding 20mm AB side front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            20.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK AB SIDE FRONT POCKET B JA",
+          "canonical_name": "Bartack AB side front pocket B JA",
+          "source_names": [
+            "Bartack AB side front pocket B JA"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            21.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BACKTACK DASAR JA KE AB SIDE FRONT POCKET B",
+          "canonical_name": "Backtack dasar JA ke AB side front pocket B",
+          "source_names": [
+            "Backtack dasar JA ke AB side front pocket B"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            22.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN LINING DAN MA KE ZIPPER FRONT POCKET B",
+          "canonical_name": "Join lining & MA ke zipper front pocket B",
+          "source_names": [
+            "Join lining & MA ke zipper front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            23.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA FRONT POCKET B ZIPPER",
+          "canonical_name": "Lapis lining ke MA front pocket B (zipper)",
+          "source_names": [
+            "Lapis lining ke MA front pocket B (zipper)"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            24.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT KUNCI FRONT POCKET B UPPER",
+          "canonical_name": "Jahit kunci front pocket B (upper)",
+          "source_names": [
+            "Jahit kunci front pocket B (upper)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            25.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT BOBOK ZIPPER KE FRONT POCKET B",
+          "canonical_name": "Jahit bobok zipper ke front pocket B",
+          "source_names": [
+            "Jahit bobok zipper ke front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            26.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KUPNAT AB SIDE FRONT POCKET B",
+          "canonical_name": "Kupnat AB side front pocket B",
+          "source_names": [
+            "Kupnat AB side front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            27.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN WEBBING REFLECTIVE 2 PCS KE FRONT POCKET B",
+          "canonical_name": "Join webbing reflective (2 pcs) ke front pocket B",
+          "source_names": [
+            "Join webbing reflective (2 pcs) ke front pocket B"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            28.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM ZIPPER FRONT POCKET B DAN KUPNAT",
+          "canonical_name": "Binding 20mm zipper front pocket B & kupnat",
+          "source_names": [
+            "Binding 20mm zipper front pocket B & kupnat"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            29.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LIPAT UJUNG BINDING AB FRONT POCKET B",
+          "canonical_name": "Lipat ujung binding AB front pocket B",
+          "source_names": [
+            "Lipat ujung binding AB front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            30.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE FRONT POCKET B",
+          "canonical_name": "Lapis lining ke front pocket B",
+          "source_names": [
+            "Lapis lining ke front pocket B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            31.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN LINING DAN MA LOWER FRONT PANEL B",
+          "canonical_name": "Join lining & MA lower front panel B",
+          "source_names": [
+            "Join lining & MA lower front panel B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            32.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA LOWER FRONT PANEL B",
+          "canonical_name": "Lapis lining ke MA lower front panel B",
+          "source_names": [
+            "Lapis lining ke MA lower front panel B"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            33.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN LINING DAN MA BOTTOM KE FRONT PANEL B",
+          "canonical_name": "Join lining & MA bottom ke front panel B",
+          "source_names": [
+            "Join lining & MA bottom ke front panel B"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            34.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA BOTTOM",
+          "canonical_name": "Lapis lining ke MA bottom",
+          "source_names": [
+            "Lapis lining ke MA bottom"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "process_numbers": [
+            35.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KUPNAT MA FRONT POCKET A",
+          "canonical_name": "Kupnat MA front pocket A",
+          "source_names": [
+            "Kupnat MA front pocket A"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            36.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KUPNAT LINING FRONT POCKET A",
+          "canonical_name": "Kupnat lining front pocket A",
+          "source_names": [
+            "Kupnat lining front pocket A"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            37.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA FRONT POCKET A",
+          "canonical_name": "Lapis lining ke MA front pocket A",
+          "source_names": [
+            "Lapis lining ke MA front pocket A"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            38.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS ORGANIZER KE LINING FRONT POCKET A DAN KEYHOOK",
+          "canonical_name": "Lapis organizer ke lining front pocket A + Keyhook",
+          "source_names": [
+            "Lapis organizer ke lining front pocket A + Keyhook"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            39.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR GUSSET FRONT POCKET A",
+          "canonical_name": "Jahit dasar gusset front pocket A",
+          "source_names": [
+            "Jahit dasar gusset front pocket A"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            40.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT GUSSET ZIPPER FRONT POCKET A",
+          "canonical_name": "Jahit gusset zipper front pocket A",
+          "source_names": [
+            "Jahit gusset zipper front pocket A"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            41.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA ZIPPER FRONT POCKET A",
+          "canonical_name": "Lapis lining ke MA zipper front pocket A",
+          "source_names": [
+            "Lapis lining ke MA zipper front pocket A"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            42.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN ZIPPER KE FRONT POCKET A MADOME",
+          "canonical_name": "Join zipper ke front pocket A (madome)",
+          "source_names": [
+            "Join zipper ke front pocket A (madome)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            43.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM FRONT POCKET A",
+          "canonical_name": "Binding 20mm front pocket A",
+          "source_names": [
+            "Binding 20mm front pocket A"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            44.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR UPPER FRONT PANEL",
+          "canonical_name": "Jahit dasar upper front panel",
+          "source_names": [
+            "Jahit dasar upper front panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            45.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM UPPER FRONT PANEL",
+          "canonical_name": "Binding 20mm upper front panel",
+          "source_names": [
+            "Binding 20mm upper front panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            46.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN FRONT POCKET A KE UPPER FRONT PANEL",
+          "canonical_name": "Join front pocket A ke upper front panel",
+          "source_names": [
+            "Join front pocket A ke upper front panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            47.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN ORGANIZER KE FRONT POCKET A",
+          "canonical_name": "Join organizer ke front pocket A",
+          "source_names": [
+            "Join organizer ke front pocket A"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            48.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM FRONT POCKET A ORGANIZER",
+          "canonical_name": "Binding 20mm front pocket A (organizer)",
+          "source_names": [
+            "Binding 20mm front pocket A (organizer)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "process_numbers": [
+            49.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK DASAR MESH AB SIDE POCKET 4X",
+          "canonical_name": "Bartack dasar mesh AB side pocket 4x",
+          "source_names": [
+            "Bartack dasar mesh AB side pocket 4x"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            50.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR LINING DAN MA KE MESH AB SIDE POCKET",
+          "canonical_name": "Jahit dasar lining & MA ke mesh AB side pocket",
+          "source_names": [
+            "Jahit dasar lining & MA ke mesh AB side pocket"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            51.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA AB MESH SIDE POCKET",
+          "canonical_name": "Lapis lining ke MA AB mesh side pocket",
+          "source_names": [
+            "Lapis lining ke MA AB mesh side pocket"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            52.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KUPNAT AB SIDE PANEL",
+          "canonical_name": "Kupnat AB side panel",
+          "source_names": [
+            "Kupnat AB side panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            53.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS SIDE POCKET KE AB SIDE PANEL",
+          "canonical_name": "Lapis side pocket ke AB side panel",
+          "source_names": [
+            "Lapis side pocket ke AB side panel"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            54.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT DASAR HANDLE KE MIDDLE MAIN ENTRY",
+          "canonical_name": "Jahit dasar handle ke middle main entry",
+          "source_names": [
+            "Jahit dasar handle ke middle main entry"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            55.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN HANDLE KE MAIN ENTRY AB",
+          "canonical_name": "Join handle ke main entry AB",
+          "source_names": [
+            "Join handle ke main entry AB"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            56.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 25MM HANDLE MAIN ENTRY AB",
+          "canonical_name": "Binding 25mm handle main entry AB",
+          "source_names": [
+            "Binding 25mm handle main entry AB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            57.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK HANDLE MAIN ENTRY 2X",
+          "canonical_name": "Bartack handle main entry 2x",
+          "source_names": [
+            "Bartack handle main entry 2x"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            58.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN ZIPPER KE MAIN ENTRY",
+          "canonical_name": "Join zipper ke main entry",
+          "source_names": [
+            "Join zipper ke main entry"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            59.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN ZIPPER KE FRONT PANEL A UPPER",
+          "canonical_name": "Join zipper ke front panel A (upper)",
+          "source_names": [
+            "Join zipper ke front panel A (upper)"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            60.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM ZIPPER MAIN ENTRY",
+          "canonical_name": "Binding 20mm zipper main entry",
+          "source_names": [
+            "Binding 20mm zipper main entry"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            61.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM ZIPPER FRONT PANEL A UPPER",
+          "canonical_name": "Binding 20mm zipper front panel A (upper)",
+          "source_names": [
+            "Binding 20mm zipper front panel A (upper)"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            62.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN AB SIDE POCKET KE BODY LOWER",
+          "canonical_name": "Join AB side pocket ke body (lower)",
+          "source_names": [
+            "Join AB side pocket ke body (lower)"
+          ],
+          "operator_allocations": 2,
+          "machine_allocations": 2,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            63.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 25MM AB SIDE BODY LOWER",
+          "canonical_name": "Binding 25mm AB side body (lower)",
+          "source_names": [
+            "Binding 25mm AB side body (lower)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            64.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN UPPER KE LOWER BODY MIDDLE BODY",
+          "canonical_name": "Join upper ke lower body (middle body)",
+          "source_names": [
+            "Join upper ke lower body (middle body)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            65.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 25MM MIDDLE BODY",
+          "canonical_name": "Binding 25mm middle body",
+          "source_names": [
+            "Binding 25mm middle body"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            66.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS AB MESH SIDE POCKET KE BODY LOWER",
+          "canonical_name": "Lapis AB mesh side pocket ke body (lower)",
+          "source_names": [
+            "Lapis AB mesh side pocket ke body (lower)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            67.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "INSERT WEBBING KE JA DAN KUNCI",
+          "canonical_name": "Insert webbing ke JA & kunci",
+          "source_names": [
+            "Insert webbing ke JA & kunci"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            68.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN FINISH BACK PANEL KE BODY",
+          "canonical_name": "Join finish back panel ke body",
+          "source_names": [
+            "Join finish back panel ke body"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            69.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 25MM FINISH BACK PANEL",
+          "canonical_name": "Binding 25mm finish back panel",
+          "source_names": [
+            "Binding 25mm finish back panel"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            70.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK FINISH BACK PANEL 10X",
+          "canonical_name": "Bartack finish back panel 10x",
+          "source_names": [
+            "Bartack finish back panel 10x"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            71.0
+          ],
+          "alias_applied": false
+        }
+      ],
+      "machines": [
+        {
+          "canonical_key": "LK-1900",
+          "canonical_name": "LK-1900",
+          "source_names": [
+            "LK-1900"
+          ],
+          "count": 5,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "DU-1481",
+          "canonical_name": "DU-1481",
+          "source_names": [
+            "DU-1481"
+          ],
+          "count": 35,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "UAS-H1510",
+          "canonical_name": "UAS-H1510",
+          "source_names": [
+            "UAS-H1510"
+          ],
+          "count": 4,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "DSC-246",
+          "canonical_name": "DSC-246",
+          "source_names": [
+            "DSC-246"
+          ],
+          "count": 11,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "H-5150",
+          "canonical_name": "H-5150",
+          "source_names": [
+            "H-5150"
+          ],
+          "count": 1,
+          "alias_applied": false
+        }
+      ]
+    },
+    {
+      "line_number": 61,
+      "line_label": "LINE 61 (A8MVX)",
+      "style": "A8MVX",
+      "source_file": "D:\\4. PYTHON\\COMPARE_CT\\input\\Grafik Cycle Time Line 61 TNF A8MVX - 03 November 2026 . Ke-3.xlsx",
+      "summary": {
+        "target_per_hour": 53,
+        "potential_per_hour": 28.424719391046317,
+        "actual_per_hour": 20,
+        "takt_time": 41,
+        "operator_allocations": 51,
+        "machine_allocations": 53,
+        "process_count": 55
+      },
+      "processes": [
+        {
+          "canonical_key": "JAHIT DASAR DAN LAPIS SAYAP AB BACK",
+          "canonical_name": "JAHIT DASAR + LAPIS SAYAP AB BACK",
+          "source_names": [
+            "JAHIT DASAR + LAPIS SAYAP AB BACK"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            1.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BACKTACK LIPAT UJUNG WEBBING AB TENSION TAB",
+          "canonical_name": "Backtack lipat ujung webbing AB tension tab",
+          "source_names": [
+            "BACKTACK LIPAT WEBBING TANSION TAB AB (2×)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            2.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN SHOULDER AB KE BACK PANEL DAN JOIN TANSION TAB AB KE BACK PANEL",
+          "canonical_name": "JOIN SHOULDER AB KE BACK PANEL + JOIN TANSION TAB AB KE BACK PANEL",
+          "source_names": [
+            "JOIN SHOULDER AB KE BACK PANEL + JOIN TANSION TAB AB KE BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            3.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KOMPUTER STICK AB SHOULDER UPPER",
+          "canonical_name": "Komputer stick AB shoulder (upper)",
+          "source_names": [
+            "COMPUTER STICK PANGKAL SHOULDER AB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            4.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JAHIT DASAR AB SIDE BACK PANEL",
+          "canonical_name": "Jahit dasar AB side back panel",
+          "source_names": [
+            "JAHIT DASAR SAYAP AB BACK"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            5.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "LAPIS DASAR HARDBOARD KE BACK PANEL",
+          "canonical_name": "Lapis dasar hardboard ke back panel",
+          "source_names": [
+            "LAPIS HARBOARD KE SPONGE BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            6.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "STICK DAN LAPIS LOWER BACK PANEL",
+          "canonical_name": "Stick & lapis lower back panel",
+          "source_names": [
+            "JOIN STICK LAPIS LOWER BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            7.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN AB SIDE KE BACK PANEL",
+          "canonical_name": "Join AB side ke back panel",
+          "source_names": [
+            "JOIN SAYAP AB KE BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            8.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "STICK AB SIDE BACK PANEL",
+          "canonical_name": "Stick AB side back panel",
+          "source_names": [
+            "STICK SAYAP AB KE BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            9.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "LAPIS BACK PANEL",
+          "canonical_name": "LAPIS BACK PANEL",
+          "source_names": [
+            "LAPIS BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            10.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK AB SHOULDER JA 2X",
+          "canonical_name": "Bartack AB shoulder JA (2x)",
+          "source_names": [
+            "BARTACK JA SHOULDER AB (2×)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            11.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BINDING 25MM AB SHOULDER",
+          "canonical_name": "Binding 25mm AB shoulder",
+          "source_names": [
+            "BINDING 25MM SHOULDER AB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            12.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BARTACK VARIASI AB SHOULDER 4X WEBBING DALAM",
+          "canonical_name": "Bartack variasi AB shoulder 4x (webbing dalam)",
+          "source_names": [
+            "BARTACK VARIASI SHOULDER (DALAM) AB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "BACK PANEL"
+          ],
+          "process_numbers": [
+            13.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN LINING DAN MA KE ZIPPER FRONT POCKET B",
+          "canonical_name": "Join lining & MA ke zipper front pocket B",
+          "source_names": [
+            "JOIN LINING + BAHAN MA KE ZIPPER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            14.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN REFLAKTIF AB DAN KUPNAT BOTTOM FRONT",
+          "canonical_name": "JOIN REFLAKTIF AB + KUPNAT BOTTOM FRONT",
+          "source_names": [
+            "JOIN REFLAKTIF AB + KUPNAT BOTTOM FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            15.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JAHIT BOBOK ZIPPER KE FRONT POCKET B",
+          "canonical_name": "Jahit bobok zipper ke front pocket B",
+          "source_names": [
+            "JAHIT BOBOK ZIPPER KE FRONT POCKET"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            16.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "KUNCI SIDE ZIPPER",
+          "canonical_name": "KUNCI SIDE ZIPPER",
+          "source_names": [
+            "KUNCI SIDE ZIPPER"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            17.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM ZIPPER FRONT POCKET B DAN KUPNAT",
+          "canonical_name": "Binding 20mm zipper front pocket B & kupnat",
+          "source_names": [
+            "BINDING 20MM ZIPPER BOBOK FRONT POCKET + SIDE KUPNAT LOWER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            18.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "LIPAT BINDING SIDE KUPNAT LOWER FRONT",
+          "canonical_name": "LIPAT BINDING SIDE KUPNAT LOWER FRONT",
+          "source_names": [
+            "LIPAT BINDING SIDE KUPNAT LOWER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            19.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN LINING KE MESH POCKET AB",
+          "canonical_name": "JOIN LINING KE MESH POCKET AB",
+          "source_names": [
+            "JOIN LINING KE MESH POCKET AB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            20.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS LINING KE FRONT POCKET B",
+          "canonical_name": "Lapis lining ke front pocket B",
+          "source_names": [
+            "LAPIS LINING KE FRONT POCKET"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            21.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN LINING DAN MA LOWER FRONT PANEL B",
+          "canonical_name": "Join lining & MA lower front panel B",
+          "source_names": [
+            "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            22.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BINDING 20MM UPPER FRONT PANEL",
+          "canonical_name": "Binding 20mm upper front panel",
+          "source_names": [
+            "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+            "BINDING 20MM POCKET UPPER FRONT"
+          ],
+          "operator_allocations": 2,
+          "machine_allocations": 2,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            23.0,
+            26.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN DEVIDER POCKET UPPER FRONT",
+          "canonical_name": "JOIN DEVIDER POCKET UPPER FRONT",
+          "source_names": [
+            "JOIN DEVIDER POCKET UPPER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            24.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN FRONT POCKET A KE UPPER FRONT PANEL",
+          "canonical_name": "Join front pocket A ke upper front panel",
+          "source_names": [
+            "JOIN POCKET KE MAIN UPPER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            25.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BINDING 20MM ZIPPER MAIN ENTRY",
+          "canonical_name": "Binding 20mm zipper main entry",
+          "source_names": [
+            "BINDING 20MM ZIPPER MAIN ENTRY BODY"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            27.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN ZIPPER KE FRONT PANEL A UPPER",
+          "canonical_name": "Join zipper ke front panel A (upper)",
+          "source_names": [
+            "JOIN ZIPPER KE POCKET UPPER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            28.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "LAPIS LINING KE MA FRONT POCKET A",
+          "canonical_name": "Lapis lining ke MA front pocket A",
+          "source_names": [
+            "LAPIS LINING KE BAHAN MA TOP FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            29.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "LINING ORGANIZER KEYHOOK TOP FRONT",
+          "canonical_name": "LINING ORGANIZER KEYHOOK TOP FRONT",
+          "source_names": [
+            "LINING ORGANIZER KEYHOOK TOP FRONT"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            30.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BACKTACK JA WEBBING POCKET FRONT",
+          "canonical_name": "BACKTACK JA WEBBING POCKET FRONT",
+          "source_names": [
+            "BACKTACK JA WEBBING POCKET FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            31.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK JA WEBBING POCKET FRONT",
+          "canonical_name": "BARTACK JA WEBBING POCKET FRONT",
+          "source_names": [
+            "BARTACK JA WEBBING POCKET FRONT"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 0,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            32.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM AB SIDE FRONT POCKET B",
+          "canonical_name": "Binding 20mm AB side front pocket B",
+          "source_names": [
+            "BINDING 20MM SIDE AB SHOVEL FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            33.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JAHIT DASAR SHOVEL AB FRONT",
+          "canonical_name": "JAHIT DASAR SHOVEL AB FRONT",
+          "source_names": [
+            "JAHIT DASAR SHOVEL AB FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            34.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 20MM FRONT POCKET A",
+          "canonical_name": "Binding 20mm front pocket A",
+          "source_names": [
+            "BINDING 20MM DASAR MAIN FRONT TOP POCKET"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            35.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JAHIT DASAR AB SIDE FRONT POCKET B",
+          "canonical_name": "Jahit dasar AB side front pocket B",
+          "source_names": [
+            "JAHIT DASAR MAIN FRONT TOP POCKET"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            36.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+          "canonical_name": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+          "source_names": [
+            "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            37.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "KUPNAT MA FRONT POCKET A",
+          "canonical_name": "Kupnat MA front pocket A",
+          "source_names": [
+            "KUPNAT MA TOP POCKET FRONT",
+            "KUPNAT DASAR POCKET"
+          ],
+          "operator_allocations": 2,
+          "machine_allocations": 2,
+          "groups": [
+            "FRONT PANEL",
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            38.0,
+            50.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "KUPNAT LINING FRONT POCKET A",
+          "canonical_name": "Kupnat lining front pocket A",
+          "source_names": [
+            "KUPNAT LINING TOP POCKET FRONT"
+          ],
+          "operator_allocations": 0,
+          "machine_allocations": 1,
+          "groups": [
+            "FRONT PANEL"
+          ],
+          "process_numbers": [
+            39.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN LAPIS BAHAN MA KE MESH POCKET AB",
+          "canonical_name": "JOIN LAPIS BAHAN MA KE MESH POCKET AB",
+          "source_names": [
+            "JOIN LAPIS BAHAN MA KE MESH POCKET AB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            40.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LAPIS MESH KE DASAR POCKET",
+          "canonical_name": "LAPIS MESH KE DASAR POCKET",
+          "source_names": [
+            "LAPIS MESH KE DASAR POCKET"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            41.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN LINING DAN MA BOTTOM KE FRONT PANEL B",
+          "canonical_name": "Join lining & MA bottom ke front panel B",
+          "source_names": [
+            "JOIN LAPIS (LINING + BAHAN MA) BOTTOM KE FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            42.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN SIDE AB POCKET MAIN ENTRY",
+          "canonical_name": "JOIN SIDE AB POCKET MAIN ENTRY",
+          "source_names": [
+            "JOIN SIDE AB POCKET MAIN ENTRY"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            43.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT DAN CENTER FRONT",
+          "canonical_name": "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT + CENTER FRONT",
+          "source_names": [
+            "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT + CENTER FRONT"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            44.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN ZIPPER KE MAIN ENTRY",
+          "canonical_name": "Join zipper ke main entry",
+          "source_names": [
+            "JOIN ZIPPER KE FRONT MAIN ENTRY"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            45.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BARTACK DASAR MESH AB SIDE POCKET 4X",
+          "canonical_name": "Bartack dasar mesh AB side pocket 4x",
+          "source_names": [
+            "BARTACK HLOOP MESH POCKET AB (4×)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            46.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BARTACK HANDLE MAIN ENTRY 2X",
+          "canonical_name": "Bartack handle main entry 2x",
+          "source_names": [
+            "BARTACK HANDLE GRIB (2×)"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            47.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BINDING 25MM HANDLE MAIN ENTRY AB",
+          "canonical_name": "Binding 25mm handle main entry AB",
+          "source_names": [
+            "BINDING 25MM HANDLE GRIB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            48.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JAHIT HANDLE GRIB",
+          "canonical_name": "JAHIT HANDLE GRIB",
+          "source_names": [
+            "JAHIT HANDLE GRIB"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "MAIN ENTRY"
+          ],
+          "process_numbers": [
+            49.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "BARTACK FINISH BACK PANEL 10X",
+          "canonical_name": "Bartack finish back panel 10x",
+          "source_names": [
+            "BARTACK FINISH BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            51.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "BINDING 25MM FINISH BACK PANEL",
+          "canonical_name": "Binding 25mm finish back panel",
+          "source_names": [
+            "BINDING 25MM FINSIH BACK PANEL"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            52.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "JOIN FINISH BACK PANEL KE BODY",
+          "canonical_name": "Join finish back panel ke body",
+          "source_names": [
+            "JOIN FINISH BACK PANEL"
+          ],
+          "operator_allocations": 2,
+          "machine_allocations": 2,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            53.0
+          ],
+          "alias_applied": true
+        },
+        {
+          "canonical_key": "LAPIS MESH POCKET MAIN BODY",
+          "canonical_name": "LAPIS MESH POCKET MAIN BODY",
+          "source_names": [
+            "LAPIS MESH POCKET MAIN BODY"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            54.0
+          ],
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "JOIN CENTER FRONT MAIN BODY",
+          "canonical_name": "JOIN CENTER FRONT MAIN BODY",
+          "source_names": [
+            "JOIN CENTER FRONT MAIN BODY"
+          ],
+          "operator_allocations": 1,
+          "machine_allocations": 1,
+          "groups": [
+            "FINISH"
+          ],
+          "process_numbers": [
+            55.0
+          ],
+          "alias_applied": false
+        }
+      ],
+      "machines": [
+        {
+          "canonical_key": "DU-1481-7",
+          "canonical_name": "DU-1481-7",
+          "source_names": [
+            "DU-1481-7"
+          ],
+          "count": 30,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "UAS-H900H-D",
+          "canonical_name": "UAS-H900H-D",
+          "source_names": [
+            "UAS-H900H-D"
+          ],
+          "count": 6,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "UAS-H1510-D",
+          "canonical_name": "UAS-H1510-D",
+          "source_names": [
+            "UAS-H1510-D"
+          ],
+          "count": 3,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "DSC-246",
+          "canonical_name": "DSC-246",
+          "source_names": [
+            "DSC-246"
+          ],
+          "count": 12,
+          "alias_applied": false
+        },
+        {
+          "canonical_key": "LS2-H6000XH-D",
+          "canonical_name": "LS2-H6000XH-D",
+          "source_names": [
+            "LS2-H6000XH-D"
+          ],
+          "count": 2,
+          "alias_applied": false
+        }
+      ]
+    }
+  ],
+  "process_catalog": [
+    {
+      "canonical_key": "BARTACK VARIASI AB SHOULDER 4X WEBBING DALAM",
+      "canonical_name": "Bartack variasi AB shoulder 4x (webbing dalam)",
+      "source_names": [
+        "Bartack variasi AB shoulder 4x (webbing dalam)",
+        "BARTACK VARIASI SHOULDER (DALAM) AB"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BACKTACK KUNCI AB SHOULDER",
+      "canonical_name": "Backtack kunci AB shoulder",
+      "source_names": [
+        "Backtack kunci AB shoulder"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 25MM AB SHOULDER",
+      "canonical_name": "Binding 25mm AB shoulder",
+      "source_names": [
+        "Binding 25mm AB shoulder",
+        "BINDING 25MM SHOULDER AB"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BARTACK AB SHOULDER JA 2X",
+      "canonical_name": "Bartack AB shoulder JA (2x)",
+      "source_names": [
+        "Bartack AB shoulder JA (2x)",
+        "BARTACK JA SHOULDER AB (2×)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "KOMPUTER STICK AB SHOULDER UPPER",
+      "canonical_name": "Komputer stick AB shoulder (upper)",
+      "source_names": [
+        "Komputer stick AB shoulder (upper)",
+        "COMPUTER STICK PANGKAL SHOULDER AB"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JAHIT DASAR AB TENSION TAB",
+      "canonical_name": "Jahit dasar AB tension tab",
+      "source_names": [
+        "Jahit dasar AB tension tab"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BOXSTICK AB TENSION TAB",
+      "canonical_name": "Boxstick AB tension tab",
+      "source_names": [
+        "Boxstick AB tension tab"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS DASAR HARDBOARD KE BACK PANEL",
+      "canonical_name": "Lapis dasar hardboard ke back panel",
+      "source_names": [
+        "Lapis dasar hardboard ke back panel",
+        "LAPIS HARBOARD KE SPONGE BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JOIN LOWER KE BACK PANEL",
+      "canonical_name": "Join lower ke back panel",
+      "source_names": [
+        "Join lower ke back panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "STICK DAN LAPIS LOWER BACK PANEL",
+      "canonical_name": "Stick & lapis lower back panel",
+      "source_names": [
+        "Stick & lapis lower back panel",
+        "JOIN STICK LAPIS LOWER BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JAHIT DASAR AB SIDE BACK PANEL",
+      "canonical_name": "Jahit dasar AB side back panel",
+      "source_names": [
+        "Jahit dasar AB side back panel",
+        "JAHIT DASAR SAYAP AB BACK"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS DASAR AB SIDE BACK PANEL",
+      "canonical_name": "Lapis dasar AB side back panel",
+      "source_names": [
+        "Lapis dasar AB side back panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN AB SIDE KE BACK PANEL",
+      "canonical_name": "Join AB side ke back panel",
+      "source_names": [
+        "Join AB side ke back panel",
+        "JOIN SAYAP AB KE BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "STICK AB SIDE BACK PANEL",
+      "canonical_name": "Stick AB side back panel",
+      "source_names": [
+        "Stick AB side back panel",
+        "STICK SAYAP AB KE BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS COMP SLEEVE KE BACK PANEL",
+      "canonical_name": "Lapis comp sleeve ke back panel",
+      "source_names": [
+        "Lapis comp sleeve ke back panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN SHOULDER KE BACK PANEL",
+      "canonical_name": "Join shoulder ke back panel",
+      "source_names": [
+        "Join shoulder ke back panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN AB TENSION KE BACK PANEL",
+      "canonical_name": "Join AB tension ke back panel",
+      "source_names": [
+        "Join AB tension ke back panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BACKTACK LIPAT UJUNG WEBBING AB TENSION TAB",
+      "canonical_name": "Backtack lipat ujung webbing AB tension tab",
+      "source_names": [
+        "Backtack lipat ujung webbing AB tension tab",
+        "BACKTACK LIPAT WEBBING TANSION TAB AB (2×)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JAHIT DASAR AB SIDE FRONT POCKET B",
+      "canonical_name": "Jahit dasar AB side front pocket B",
+      "source_names": [
+        "Jahit dasar AB side front pocket B",
+        "JAHIT DASAR MAIN FRONT TOP POCKET"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BINDING 20MM AB SIDE FRONT POCKET B",
+      "canonical_name": "Binding 20mm AB side front pocket B",
+      "source_names": [
+        "Binding 20mm AB side front pocket B",
+        "BINDING 20MM SIDE AB SHOVEL FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BARTACK AB SIDE FRONT POCKET B JA",
+      "canonical_name": "Bartack AB side front pocket B JA",
+      "source_names": [
+        "Bartack AB side front pocket B JA"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BACKTACK DASAR JA KE AB SIDE FRONT POCKET B",
+      "canonical_name": "Backtack dasar JA ke AB side front pocket B",
+      "source_names": [
+        "Backtack dasar JA ke AB side front pocket B"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN LINING DAN MA KE ZIPPER FRONT POCKET B",
+      "canonical_name": "Join lining & MA ke zipper front pocket B",
+      "source_names": [
+        "Join lining & MA ke zipper front pocket B",
+        "JOIN LINING + BAHAN MA KE ZIPPER FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS LINING KE MA FRONT POCKET B ZIPPER",
+      "canonical_name": "Lapis lining ke MA front pocket B (zipper)",
+      "source_names": [
+        "Lapis lining ke MA front pocket B (zipper)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT KUNCI FRONT POCKET B UPPER",
+      "canonical_name": "Jahit kunci front pocket B (upper)",
+      "source_names": [
+        "Jahit kunci front pocket B (upper)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT BOBOK ZIPPER KE FRONT POCKET B",
+      "canonical_name": "Jahit bobok zipper ke front pocket B",
+      "source_names": [
+        "Jahit bobok zipper ke front pocket B",
+        "JAHIT BOBOK ZIPPER KE FRONT POCKET"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "KUPNAT AB SIDE FRONT POCKET B",
+      "canonical_name": "Kupnat AB side front pocket B",
+      "source_names": [
+        "Kupnat AB side front pocket B"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN WEBBING REFLECTIVE 2 PCS KE FRONT POCKET B",
+      "canonical_name": "Join webbing reflective (2 pcs) ke front pocket B",
+      "source_names": [
+        "Join webbing reflective (2 pcs) ke front pocket B"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 20MM ZIPPER FRONT POCKET B DAN KUPNAT",
+      "canonical_name": "Binding 20mm zipper front pocket B & kupnat",
+      "source_names": [
+        "Binding 20mm zipper front pocket B & kupnat",
+        "BINDING 20MM ZIPPER BOBOK FRONT POCKET + SIDE KUPNAT LOWER FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LIPAT UJUNG BINDING AB FRONT POCKET B",
+      "canonical_name": "Lipat ujung binding AB front pocket B",
+      "source_names": [
+        "Lipat ujung binding AB front pocket B"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS LINING KE FRONT POCKET B",
+      "canonical_name": "Lapis lining ke front pocket B",
+      "source_names": [
+        "Lapis lining ke front pocket B",
+        "LAPIS LINING KE FRONT POCKET"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JOIN LINING DAN MA LOWER FRONT PANEL B",
+      "canonical_name": "Join lining & MA lower front panel B",
+      "source_names": [
+        "Join lining & MA lower front panel B",
+        "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS LINING KE MA LOWER FRONT PANEL B",
+      "canonical_name": "Lapis lining ke MA lower front panel B",
+      "source_names": [
+        "Lapis lining ke MA lower front panel B"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN LINING DAN MA BOTTOM KE FRONT PANEL B",
+      "canonical_name": "Join lining & MA bottom ke front panel B",
+      "source_names": [
+        "Join lining & MA bottom ke front panel B",
+        "JOIN LAPIS (LINING + BAHAN MA) BOTTOM KE FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS LINING KE MA BOTTOM",
+      "canonical_name": "Lapis lining ke MA bottom",
+      "source_names": [
+        "Lapis lining ke MA bottom"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "KUPNAT MA FRONT POCKET A",
+      "canonical_name": "Kupnat MA front pocket A",
+      "source_names": [
+        "Kupnat MA front pocket A",
+        "KUPNAT MA TOP POCKET FRONT",
+        "KUPNAT DASAR POCKET"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 2
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 2
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "KUPNAT LINING FRONT POCKET A",
+      "canonical_name": "Kupnat lining front pocket A",
+      "source_names": [
+        "Kupnat lining front pocket A",
+        "KUPNAT LINING TOP POCKET FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0,
+        "LINE 61 (A8MVX)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS LINING KE MA FRONT POCKET A",
+      "canonical_name": "Lapis lining ke MA front pocket A",
+      "source_names": [
+        "Lapis lining ke MA front pocket A",
+        "LAPIS LINING KE BAHAN MA TOP FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "LAPIS ORGANIZER KE LINING FRONT POCKET A DAN KEYHOOK",
+      "canonical_name": "Lapis organizer ke lining front pocket A + Keyhook",
+      "source_names": [
+        "Lapis organizer ke lining front pocket A + Keyhook"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT DASAR GUSSET FRONT POCKET A",
+      "canonical_name": "Jahit dasar gusset front pocket A",
+      "source_names": [
+        "Jahit dasar gusset front pocket A"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT GUSSET ZIPPER FRONT POCKET A",
+      "canonical_name": "Jahit gusset zipper front pocket A",
+      "source_names": [
+        "Jahit gusset zipper front pocket A"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS LINING KE MA ZIPPER FRONT POCKET A",
+      "canonical_name": "Lapis lining ke MA zipper front pocket A",
+      "source_names": [
+        "Lapis lining ke MA zipper front pocket A"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN ZIPPER KE FRONT POCKET A MADOME",
+      "canonical_name": "Join zipper ke front pocket A (madome)",
+      "source_names": [
+        "Join zipper ke front pocket A (madome)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 20MM FRONT POCKET A",
+      "canonical_name": "Binding 20mm front pocket A",
+      "source_names": [
+        "Binding 20mm front pocket A",
+        "BINDING 20MM DASAR MAIN FRONT TOP POCKET"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JAHIT DASAR UPPER FRONT PANEL",
+      "canonical_name": "Jahit dasar upper front panel",
+      "source_names": [
+        "Jahit dasar upper front panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 20MM UPPER FRONT PANEL",
+      "canonical_name": "Binding 20mm upper front panel",
+      "source_names": [
+        "Binding 20mm upper front panel",
+        "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+        "BINDING 20MM POCKET UPPER FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 2
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 2
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JOIN FRONT POCKET A KE UPPER FRONT PANEL",
+      "canonical_name": "Join front pocket A ke upper front panel",
+      "source_names": [
+        "Join front pocket A ke upper front panel",
+        "JOIN POCKET KE MAIN UPPER FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JOIN ORGANIZER KE FRONT POCKET A",
+      "canonical_name": "Join organizer ke front pocket A",
+      "source_names": [
+        "Join organizer ke front pocket A"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 20MM FRONT POCKET A ORGANIZER",
+      "canonical_name": "Binding 20mm front pocket A (organizer)",
+      "source_names": [
+        "Binding 20mm front pocket A (organizer)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BARTACK DASAR MESH AB SIDE POCKET 4X",
+      "canonical_name": "Bartack dasar mesh AB side pocket 4x",
+      "source_names": [
+        "Bartack dasar mesh AB side pocket 4x",
+        "BARTACK HLOOP MESH POCKET AB (4×)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JAHIT DASAR LINING DAN MA KE MESH AB SIDE POCKET",
+      "canonical_name": "Jahit dasar lining & MA ke mesh AB side pocket",
+      "source_names": [
+        "Jahit dasar lining & MA ke mesh AB side pocket"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS LINING KE MA AB MESH SIDE POCKET",
+      "canonical_name": "Lapis lining ke MA AB mesh side pocket",
+      "source_names": [
+        "Lapis lining ke MA AB mesh side pocket"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "KUPNAT AB SIDE PANEL",
+      "canonical_name": "Kupnat AB side panel",
+      "source_names": [
+        "Kupnat AB side panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS SIDE POCKET KE AB SIDE PANEL",
+      "canonical_name": "Lapis side pocket ke AB side panel",
+      "source_names": [
+        "Lapis side pocket ke AB side panel"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT DASAR HANDLE KE MIDDLE MAIN ENTRY",
+      "canonical_name": "Jahit dasar handle ke middle main entry",
+      "source_names": [
+        "Jahit dasar handle ke middle main entry"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN HANDLE KE MAIN ENTRY AB",
+      "canonical_name": "Join handle ke main entry AB",
+      "source_names": [
+        "Join handle ke main entry AB"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 25MM HANDLE MAIN ENTRY AB",
+      "canonical_name": "Binding 25mm handle main entry AB",
+      "source_names": [
+        "Binding 25mm handle main entry AB",
+        "BINDING 25MM HANDLE GRIB"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BARTACK HANDLE MAIN ENTRY 2X",
+      "canonical_name": "Bartack handle main entry 2x",
+      "source_names": [
+        "Bartack handle main entry 2x",
+        "BARTACK HANDLE GRIB (2×)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JOIN ZIPPER KE MAIN ENTRY",
+      "canonical_name": "Join zipper ke main entry",
+      "source_names": [
+        "Join zipper ke main entry",
+        "JOIN ZIPPER KE FRONT MAIN ENTRY"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JOIN ZIPPER KE FRONT PANEL A UPPER",
+      "canonical_name": "Join zipper ke front panel A (upper)",
+      "source_names": [
+        "Join zipper ke front panel A (upper)",
+        "JOIN ZIPPER KE POCKET UPPER FRONT"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BINDING 20MM ZIPPER MAIN ENTRY",
+      "canonical_name": "Binding 20mm zipper main entry",
+      "source_names": [
+        "Binding 20mm zipper main entry",
+        "BINDING 20MM ZIPPER MAIN ENTRY BODY"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BINDING 20MM ZIPPER FRONT PANEL A UPPER",
+      "canonical_name": "Binding 20mm zipper front panel A (upper)",
+      "source_names": [
+        "Binding 20mm zipper front panel A (upper)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN AB SIDE POCKET KE BODY LOWER",
+      "canonical_name": "Join AB side pocket ke body (lower)",
+      "source_names": [
+        "Join AB side pocket ke body (lower)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 2
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 2
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 25MM AB SIDE BODY LOWER",
+      "canonical_name": "Binding 25mm AB side body (lower)",
+      "source_names": [
+        "Binding 25mm AB side body (lower)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN UPPER KE LOWER BODY MIDDLE BODY",
+      "canonical_name": "Join upper ke lower body (middle body)",
+      "source_names": [
+        "Join upper ke lower body (middle body)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 25MM MIDDLE BODY",
+      "canonical_name": "Binding 25mm middle body",
+      "source_names": [
+        "Binding 25mm middle body"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS AB MESH SIDE POCKET KE BODY LOWER",
+      "canonical_name": "Lapis AB mesh side pocket ke body (lower)",
+      "source_names": [
+        "Lapis AB mesh side pocket ke body (lower)"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "INSERT WEBBING KE JA DAN KUNCI",
+      "canonical_name": "Insert webbing ke JA & kunci",
+      "source_names": [
+        "Insert webbing ke JA & kunci"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN FINISH BACK PANEL KE BODY",
+      "canonical_name": "Join finish back panel ke body",
+      "source_names": [
+        "Join finish back panel ke body",
+        "JOIN FINISH BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 2
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 2
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BINDING 25MM FINISH BACK PANEL",
+      "canonical_name": "Binding 25mm finish back panel",
+      "source_names": [
+        "Binding 25mm finish back panel",
+        "BINDING 25MM FINSIH BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "BARTACK FINISH BACK PANEL 10X",
+      "canonical_name": "Bartack finish back panel 10x",
+      "source_names": [
+        "Bartack finish back panel 10x",
+        "BARTACK FINISH BACK PANEL"
+      ],
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 37 (A8MVW)": 1,
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": true
+    },
+    {
+      "canonical_key": "JAHIT DASAR DAN LAPIS SAYAP AB BACK",
+      "canonical_name": "JAHIT DASAR + LAPIS SAYAP AB BACK",
+      "source_names": [
+        "JAHIT DASAR + LAPIS SAYAP AB BACK"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN SHOULDER AB KE BACK PANEL DAN JOIN TANSION TAB AB KE BACK PANEL",
+      "canonical_name": "JOIN SHOULDER AB KE BACK PANEL + JOIN TANSION TAB AB KE BACK PANEL",
+      "source_names": [
+        "JOIN SHOULDER AB KE BACK PANEL + JOIN TANSION TAB AB KE BACK PANEL"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS BACK PANEL",
+      "canonical_name": "LAPIS BACK PANEL",
+      "source_names": [
+        "LAPIS BACK PANEL"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN REFLAKTIF AB DAN KUPNAT BOTTOM FRONT",
+      "canonical_name": "JOIN REFLAKTIF AB + KUPNAT BOTTOM FRONT",
+      "source_names": [
+        "JOIN REFLAKTIF AB + KUPNAT BOTTOM FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "KUNCI SIDE ZIPPER",
+      "canonical_name": "KUNCI SIDE ZIPPER",
+      "source_names": [
+        "KUNCI SIDE ZIPPER"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LIPAT BINDING SIDE KUPNAT LOWER FRONT",
+      "canonical_name": "LIPAT BINDING SIDE KUPNAT LOWER FRONT",
+      "source_names": [
+        "LIPAT BINDING SIDE KUPNAT LOWER FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN LINING KE MESH POCKET AB",
+      "canonical_name": "JOIN LINING KE MESH POCKET AB",
+      "source_names": [
+        "JOIN LINING KE MESH POCKET AB"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN DEVIDER POCKET UPPER FRONT",
+      "canonical_name": "JOIN DEVIDER POCKET UPPER FRONT",
+      "source_names": [
+        "JOIN DEVIDER POCKET UPPER FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LINING ORGANIZER KEYHOOK TOP FRONT",
+      "canonical_name": "LINING ORGANIZER KEYHOOK TOP FRONT",
+      "source_names": [
+        "LINING ORGANIZER KEYHOOK TOP FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BACKTACK JA WEBBING POCKET FRONT",
+      "canonical_name": "BACKTACK JA WEBBING POCKET FRONT",
+      "source_names": [
+        "BACKTACK JA WEBBING POCKET FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BARTACK JA WEBBING POCKET FRONT",
+      "canonical_name": "BARTACK JA WEBBING POCKET FRONT",
+      "source_names": [
+        "BARTACK JA WEBBING POCKET FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 0
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 0
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT DASAR SHOVEL AB FRONT",
+      "canonical_name": "JAHIT DASAR SHOVEL AB FRONT",
+      "source_names": [
+        "JAHIT DASAR SHOVEL AB FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+      "canonical_name": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+      "source_names": [
+        "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN LAPIS BAHAN MA KE MESH POCKET AB",
+      "canonical_name": "JOIN LAPIS BAHAN MA KE MESH POCKET AB",
+      "source_names": [
+        "JOIN LAPIS BAHAN MA KE MESH POCKET AB"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS MESH KE DASAR POCKET",
+      "canonical_name": "LAPIS MESH KE DASAR POCKET",
+      "source_names": [
+        "LAPIS MESH KE DASAR POCKET"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN SIDE AB POCKET MAIN ENTRY",
+      "canonical_name": "JOIN SIDE AB POCKET MAIN ENTRY",
+      "source_names": [
+        "JOIN SIDE AB POCKET MAIN ENTRY"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT DAN CENTER FRONT",
+      "canonical_name": "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT + CENTER FRONT",
+      "source_names": [
+        "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT + CENTER FRONT"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JAHIT HANDLE GRIB",
+      "canonical_name": "JAHIT HANDLE GRIB",
+      "source_names": [
+        "JAHIT HANDLE GRIB"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LAPIS MESH POCKET MAIN BODY",
+      "canonical_name": "LAPIS MESH POCKET MAIN BODY",
+      "source_names": [
+        "LAPIS MESH POCKET MAIN BODY"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "JOIN CENTER FRONT MAIN BODY",
+      "canonical_name": "JOIN CENTER FRONT MAIN BODY",
+      "source_names": [
+        "JOIN CENTER FRONT MAIN BODY"
+      ],
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "operator_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "machine_allocations_by_line": {
+        "LINE 61 (A8MVX)": 1
+      },
+      "alias_applied": false
+    }
+  ],
+  "machine_catalog": [
+    {
+      "canonical_key": "LK-1900",
+      "canonical_name": "LK-1900",
+      "source_names": [
+        "LK-1900"
+      ],
+      "counts_by_line": {
+        "LINE 37 (A8MVW)": 5
+      },
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "DU-1481",
+      "canonical_name": "DU-1481",
+      "source_names": [
+        "DU-1481"
+      ],
+      "counts_by_line": {
+        "LINE 37 (A8MVW)": 35
+      },
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "UAS-H1510",
+      "canonical_name": "UAS-H1510",
+      "source_names": [
+        "UAS-H1510"
+      ],
+      "counts_by_line": {
+        "LINE 37 (A8MVW)": 4
+      },
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "DSC-246",
+      "canonical_name": "DSC-246",
+      "source_names": [
+        "DSC-246"
+      ],
+      "counts_by_line": {
+        "LINE 37 (A8MVW)": 11,
+        "LINE 61 (A8MVX)": 12
+      },
+      "lines": [
+        "LINE 37 (A8MVW)",
+        "LINE 61 (A8MVX)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "H-5150",
+      "canonical_name": "H-5150",
+      "source_names": [
+        "H-5150"
+      ],
+      "counts_by_line": {
+        "LINE 37 (A8MVW)": 1
+      },
+      "lines": [
+        "LINE 37 (A8MVW)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "DU-1481-7",
+      "canonical_name": "DU-1481-7",
+      "source_names": [
+        "DU-1481-7"
+      ],
+      "counts_by_line": {
+        "LINE 61 (A8MVX)": 30
+      },
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "UAS-H900H-D",
+      "canonical_name": "UAS-H900H-D",
+      "source_names": [
+        "UAS-H900H-D"
+      ],
+      "counts_by_line": {
+        "LINE 61 (A8MVX)": 6
+      },
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "UAS-H1510-D",
+      "canonical_name": "UAS-H1510-D",
+      "source_names": [
+        "UAS-H1510-D"
+      ],
+      "counts_by_line": {
+        "LINE 61 (A8MVX)": 3
+      },
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "alias_applied": false
+    },
+    {
+      "canonical_key": "LS2-H6000XH-D",
+      "canonical_name": "LS2-H6000XH-D",
+      "source_names": [
+        "LS2-H6000XH-D"
+      ],
+      "counts_by_line": {
+        "LINE 61 (A8MVX)": 2
+      },
+      "lines": [
+        "LINE 61 (A8MVX)"
+      ],
+      "alias_applied": false
+    }
+  ],
+  "process_match_candidates": [
+    {
+      "process_a": "Lapis lining ke MA front pocket A",
+      "process_b": "LAPIS LINING KE FRONT POCKET",
+      "normalized_a": "LAPIS LINING KE MA FRONT POCKET A",
+      "normalized_b": "LAPIS LINING KE FRONT POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.8875,
+      "confidence": "MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Lapis lining ke MA front pocket B (zipper)",
+      "process_b": "LAPIS LINING KE FRONT POCKET",
+      "normalized_a": "LAPIS LINING KE MA FRONT POCKET B ZIPPER",
+      "normalized_b": "LAPIS LINING KE FRONT POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7937,
+      "confidence": "CUKUP MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Lapis lining ke MA zipper front pocket A",
+      "process_b": "LAPIS LINING KE FRONT POCKET",
+      "normalized_a": "LAPIS LINING KE MA ZIPPER FRONT POCKET A",
+      "normalized_b": "LAPIS LINING KE FRONT POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7937,
+      "confidence": "CUKUP MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join AB tension ke back panel",
+      "process_b": "JOIN SAYAP AB KE BACK PANEL",
+      "normalized_a": "JOIN AB TENSION KE BACK PANEL",
+      "normalized_b": "JOIN SAYAP AB KE BACK PANEL",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7696,
+      "confidence": "CUKUP MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Binding 20mm front pocket A",
+      "process_b": "BINDING 20MM POCKET UPPER FRONT",
+      "normalized_a": "BINDING 20MM FRONT POCKET A",
+      "normalized_b": "BINDING 20MM POCKET UPPER FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7466,
+      "confidence": "CUKUP MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Jahit gusset zipper front pocket A",
+      "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+      "normalized_a": "JAHIT GUSSET ZIPPER FRONT POCKET A",
+      "normalized_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.725,
+      "confidence": "CUKUP MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join lower ke back panel",
+      "process_b": "JOIN STICK LAPIS LOWER BACK PANEL",
+      "normalized_a": "JOIN LOWER KE BACK PANEL",
+      "normalized_b": "JOIN STICK LAPIS LOWER BACK PANEL",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7243,
+      "confidence": "CUKUP MIRIP",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join zipper ke front pocket A (madome)",
+      "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+      "normalized_a": "JOIN ZIPPER KE FRONT POCKET A MADOME",
+      "normalized_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7155,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join shoulder ke back panel",
+      "process_b": "JOIN SAYAP AB KE BACK PANEL",
+      "normalized_a": "JOIN SHOULDER KE BACK PANEL",
+      "normalized_b": "JOIN SAYAP AB KE BACK PANEL",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7153,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join zipper ke front panel A (upper)",
+      "process_b": "JOIN ZIPPER KE FRONT MAIN ENTRY",
+      "normalized_a": "JOIN ZIPPER KE FRONT PANEL A UPPER",
+      "normalized_b": "JOIN ZIPPER KE FRONT MAIN ENTRY",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7097,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Jahit dasar gusset front pocket A",
+      "process_b": "JAHIT DASAR MAIN FRONT TOP POCKET",
+      "normalized_a": "JAHIT DASAR GUSSET FRONT POCKET A",
+      "normalized_b": "JAHIT DASAR MAIN FRONT TOP POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7083,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Lapis lining ke MA lower front panel B",
+      "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "normalized_a": "LAPIS LINING KE MA LOWER FRONT PANEL B",
+      "normalized_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7083,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join lower ke back panel",
+      "process_b": "JOIN SAYAP AB KE BACK PANEL",
+      "normalized_a": "JOIN LOWER KE BACK PANEL",
+      "normalized_b": "JOIN SAYAP AB KE BACK PANEL",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.7053,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Lapis lining ke MA bottom",
+      "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "normalized_a": "LAPIS LINING KE MA BOTTOM",
+      "normalized_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6919,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Lapis lining ke MA zipper front pocket A",
+      "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "normalized_a": "LAPIS LINING KE MA ZIPPER FRONT POCKET A",
+      "normalized_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6912,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Binding 20mm AB side front pocket B",
+      "process_b": "BINDING 20MM DASAR MAIN FRONT TOP POCKET",
+      "normalized_a": "BINDING 20MM AB SIDE FRONT POCKET B",
+      "normalized_b": "BINDING 20MM DASAR MAIN FRONT TOP POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6893,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Binding 25mm finish back panel",
+      "process_b": "JOIN FINISH BACK PANEL",
+      "normalized_a": "BINDING 25MM FINISH BACK PANEL",
+      "normalized_b": "JOIN FINISH BACK PANEL",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6885,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Binding 25mm middle body",
+      "process_b": "BINDING 25MM HANDLE GRIB",
+      "normalized_a": "BINDING 25MM MIDDLE BODY",
+      "normalized_b": "BINDING 25MM HANDLE GRIB",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6875,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join front pocket A ke upper front panel",
+      "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+      "normalized_a": "JOIN FRONT POCKET A KE UPPER FRONT PANEL",
+      "normalized_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6855,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join lining & MA bottom ke front panel B",
+      "process_b": "JOIN LINING + BAHAN MA KE ZIPPER FRONT",
+      "normalized_a": "JOIN LINING DAN MA BOTTOM KE FRONT PANEL B",
+      "normalized_b": "JOIN LINING DAN BAHAN MA KE ZIPPER FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6843,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Binding 20mm front pocket A",
+      "process_b": "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+      "normalized_a": "BINDING 20MM FRONT POCKET A",
+      "normalized_b": "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6842,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Join zipper ke front pocket A (madome)",
+      "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+      "normalized_a": "JOIN ZIPPER KE FRONT POCKET A MADOME",
+      "normalized_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6838,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    },
+    {
+      "process_a": "Lapis lining ke MA lower front panel B",
+      "process_b": "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT",
+      "normalized_a": "LAPIS LINING KE MA LOWER FRONT PANEL B",
+      "normalized_b": "JOIN LAPIS LINING DAN BAHAN MA LOWER FRONT",
+      "lines_a": [
+        "LINE 37 (A8MVW)"
+      ],
+      "lines_b": [
+        "LINE 61 (A8MVX)"
+      ],
+      "similarity": 0.6807,
+      "confidence": "KEMUNGKINAN RENDAH",
+      "decision": "REVIEW_REQUIRED",
+      "auto_merged": false,
+      "instruction": "Periksa arti pekerjaan sebelum menambahkan alias ke mapping.json."
+    }
+  ],
+  "rules": {
+    "normalization_only": "case, Unicode, spacing, punctuation and conjunction formatting",
+    "approved_aliases_only": true,
+    "fuzzy_matching_is_suggestion_only": true,
+    "machine_fuzzy_matching": false,
+    "operator_count_basis": "non-empty operator allocation rows from reader summary"
+  },
+  "mapping_stats": {
+    "process_aliases": 35,
+    "machine_aliases": 0,
+    "fuzzy_candidates": 23,
+    "fuzzy_threshold": 0.68
+  }
+}

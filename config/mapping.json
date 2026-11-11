@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "description": "Kamus alias yang sudah dikonfirmasi. Jangan menambahkan pasangan proses sebelum makna pekerjaannya dipastikan sama.",
+  "process_aliases": {
+    "BARTACK JA SHOULDER AB (2×)": "Bartack AB shoulder JA (2x)",
+    "JAHIT BOBOK ZIPPER KE FRONT POCKET": "Jahit bobok zipper ke front pocket B",
+    "LAPIS LINING KE FRONT POCKET": "Lapis lining ke front pocket B",
+    "BINDING 25MM SHOULDER AB": "Binding 25mm AB shoulder",
+    "BINDING 25MM FINSIH BACK PANEL": "Binding 25mm finish back panel",
+    "BINDING 20MM ZIPPER MAIN ENTRY BODY": "Binding 20mm zipper main entry",
+    "BARTACK FINISH BACK PANEL": "Bartack finish back panel 10x",
+    "JOIN ZIPPER KE FRONT MAIN ENTRY": "Join zipper ke main entry",
+    "JOIN STICK LAPIS LOWER BACK PANEL": "Stick & lapis lower back panel",
+    "JOIN FINISH BACK PANEL": "Join finish back panel ke body",
+    "JOIN LINING + BAHAN MA KE ZIPPER FRONT": "Join lining & MA ke zipper front pocket B",
+    "KUPNAT LINING TOP POCKET FRONT": "Kupnat lining front pocket A",
+    "JOIN SAYAP AB KE BACK PANEL": "Join AB side ke back panel",
+    "BINDING 20MM POCKET UPPER FRONT": "Binding 20mm upper front panel",
+    "BARTACK VARIASI SHOULDER (DALAM) AB": "Bartack variasi AB shoulder 4x (webbing dalam)",
+    "KUPNAT MA TOP POCKET FRONT": "Kupnat MA front pocket A",
+    "BACKTACK LIPAT WEBBING TANSION TAB AB (2×)": "Backtack lipat ujung webbing AB tension tab",
+    "STICK SAYAP AB KE BACK PANEL": "Stick AB side back panel",
+    "JOIN LAPIS (LINING + BAHAN MA) BOTTOM KE FRONT": "Join lining & MA bottom ke front panel B",
+    "LAPIS HARBOARD KE SPONGE BACK PANEL": "Lapis dasar hardboard ke back panel",
+    "BINDING 20MM ZIPPER BOBOK FRONT POCKET + SIDE KUPNAT LOWER FRONT": "Binding 20mm zipper front pocket B & kupnat",
+    "JOIN POCKET KE MAIN UPPER FRONT": "Join front pocket A ke upper front panel",
+    "BINDING 20MM SIDE AB SHOVEL FRONT": "Binding 20mm AB side front pocket B",
+    "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT": "Join lining & MA lower front panel B",
+    "JOIN ZIPPER KE POCKET UPPER FRONT": "Join zipper ke front panel A (upper)",
+    "LAPIS LINING KE BAHAN MA TOP FRONT": "Lapis lining ke MA front pocket A",
+    "JAHIT DASAR MAIN FRONT TOP POCKET": "Jahit dasar AB side front pocket B",
+    "BARTACK HANDLE GRIB (2×)": "Bartack handle main entry 2x",
+    "BINDING 20MM DASAR MAIN FRONT TOP POCKET": "Binding 20mm front pocket A",
+    "BARTACK HLOOP MESH POCKET AB (4×)": "Bartack dasar mesh AB side pocket 4x",
+    "COMPUTER STICK PANGKAL SHOULDER AB": "Komputer stick AB shoulder (upper)",
+    "BINDING 25MM HANDLE GRIB": "Binding 25mm handle main entry AB",
+    "BINDING 20MM DEVIDER POCKET UPPER FRONT": "Binding 20mm upper front panel",
+    "JAHIT DASAR SAYAP AB BACK": "Jahit dasar AB side back panel",
+    "KUPNAT DASAR POCKET": "Kupnat MA front pocket A"
+  },
+  "machine_aliases": {},
+  "fuzzy_review": {
+    "minimum_score": 0.68,
+    "max_suggestions_per_process": 3
+  },
+  "process_match_decisions": {
+    "d3d9669b420d4f4037a50150e4fa94d68f27f64c6d3f8ea35ba4d09024bf2b26": {
+      "decision": "SAME",
+      "process_a": "Bartack AB shoulder JA (2x)",
+      "process_b": "BARTACK JA SHOULDER AB (2×)",
+      "normalized_a": "BARTACK AB SHOULDER JA 2X",
+      "normalized_b": "BARTACK JA SHOULDER AB 2X",
+      "canonical_name": "Bartack AB shoulder JA (2x)",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:44:48+00:00"
+    },
+    "5f39f38a86b97f1267d2419c3bfddccd26c475d43aba764ad1f0412bc12f5523": {
+      "decision": "SAME",
+      "process_a": "Jahit bobok zipper ke front pocket B",
+      "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+      "normalized_a": "JAHIT BOBOK ZIPPER KE FRONT POCKET B",
+      "normalized_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+      "canonical_name": "Jahit bobok zipper ke front pocket B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:45:19+00:00"
+    },
+    "ca3f730ca0bc2192b1a03a006f3212aa7c65b60904d4e822a041d8bae89af016": {
+      "decision": "SAME",
+      "process_a": "Lapis lining ke front pocket B",
+      "process_b": "LAPIS LINING KE FRONT POCKET",
+      "normalized_a": "LAPIS LINING KE FRONT POCKET B",
+      "normalized_b": "LAPIS LINING KE FRONT POCKET",
+      "canonical_name": "Lapis lining ke front pocket B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:45:26+00:00"
+    },
+    "148c8941e13c6985525b8b380e51b7530c0cba4165d0d83207847d89f03a6d09": {
+      "decision": "SAME",
+      "process_a": "Binding 25mm AB shoulder",
+      "process_b": "BINDING 25MM SHOULDER AB",
+      "normalized_a": "BINDING 25MM AB SHOULDER",
+      "normalized_b": "BINDING 25MM SHOULDER AB",
+      "canonical_name": "Binding 25mm AB shoulder",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:45:31+00:00"
+    },
+    "36ca723fee869bcafab0a3453153a8cd8161ebb522b1413581d7f534a76e1f80": {
+      "decision": "SAME",
+      "process_a": "Binding 25mm finish back panel",
+      "process_b": "BINDING 25MM FINSIH BACK PANEL",
+      "normalized_a": "BINDING 25MM FINISH BACK PANEL",
+      "normalized_b": "BINDING 25MM FINSIH BACK PANEL",
+      "canonical_name": "Binding 25mm finish back panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:45:40+00:00"
+    },
+    "919e06ff28ef483bbbfc99523e3ee9595339ee11aef769f77cd8d8b7dec91043": {
+      "decision": "SAME",
+      "process_a": "Binding 20mm zipper main entry",
+      "process_b": "BINDING 20MM ZIPPER MAIN ENTRY BODY",
+      "normalized_a": "BINDING 20MM ZIPPER MAIN ENTRY",
+      "normalized_b": "BINDING 20MM ZIPPER MAIN ENTRY BODY",
+      "canonical_name": "Binding 20mm zipper main entry",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:45:45+00:00"
+    },
+    "1078993e41b30dadc28aad76aa35aea7c5291f5a035ab502b6db1a5265da9727": {
+      "decision": "SAME",
+      "process_a": "Bartack finish back panel 10x",
+      "process_b": "BARTACK FINISH BACK PANEL",
+      "normalized_a": "BARTACK FINISH BACK PANEL 10X",
+      "normalized_b": "BARTACK FINISH BACK PANEL",
+      "canonical_name": "Bartack finish back panel 10x",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:46:22+00:00"
+    },
+    "0a0b50b65b5cde916fee335135dcd5cb8369d9989fdc28e9a310d2ed8ab5b076": {
+      "decision": "SAME",
+      "process_a": "Join zipper ke main entry",
+      "process_b": "JOIN ZIPPER KE FRONT MAIN ENTRY",
+      "normalized_a": "JOIN ZIPPER KE MAIN ENTRY",
+      "normalized_b": "JOIN ZIPPER KE FRONT MAIN ENTRY",
+      "canonical_name": "Join zipper ke main entry",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:46:38+00:00"
+    },
+    "3d9e8685916db8aa1c66bd7f1d5ac3584ce950de9fd3b8cfb524eb90cb036d55": {
+      "decision": "SAME",
+      "process_a": "Stick & lapis lower back panel",
+      "process_b": "JOIN STICK LAPIS LOWER BACK PANEL",
+      "normalized_a": "STICK DAN LAPIS LOWER BACK PANEL",
+      "normalized_b": "JOIN STICK LAPIS LOWER BACK PANEL",
+      "canonical_name": "Stick & lapis lower back panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:46:52+00:00"
+    },
+    "1a923fa989612ff48b9fa5bb57aaa784cab204b07ecc975a0ce46439662f8192": {
+      "decision": "SAME",
+      "process_a": "Join finish back panel ke body",
+      "process_b": "JOIN FINISH BACK PANEL",
+      "normalized_a": "JOIN FINISH BACK PANEL KE BODY",
+      "normalized_b": "JOIN FINISH BACK PANEL",
+      "canonical_name": "Join finish back panel ke body",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:47:08+00:00"
+    },
+    "a4111817cb8b5592ada5425a1fba9150be82cedefa99fc6db8b3e38cf83216d9": {
+      "decision": "DIFFERENT",
+      "process_a": "Jahit gusset zipper front pocket A",
+      "process_b": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+      "normalized_a": "JAHIT GUSSET ZIPPER FRONT POCKET A",
+      "normalized_b": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+      "canonical_name": null,
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:47:27+00:00"
+    },
+    "cca1b83e28b7be4b84b133634a14f62dc0365b4e7ada2154ee05bf55f4dea135": {
+      "decision": "SAME",
+      "process_a": "Join lining & MA ke zipper front pocket B",
+      "process_b": "JOIN LINING + BAHAN MA KE ZIPPER FRONT",
+      "normalized_a": "JOIN LINING DAN MA KE ZIPPER FRONT POCKET B",
+      "normalized_b": "JOIN LINING DAN BAHAN MA KE ZIPPER FRONT",
+      "canonical_name": "Join lining & MA ke zipper front pocket B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:47:39+00:00"
+    },
+    "50541354881cbd4d295ee424d76776112d90c0c7e20b150deb6e2e42ed906bf4": {
+      "decision": "SAME",
+      "process_a": "Kupnat lining front pocket A",
+      "process_b": "KUPNAT LINING TOP POCKET FRONT",
+      "normalized_a": "KUPNAT LINING FRONT POCKET A",
+      "normalized_b": "KUPNAT LINING TOP POCKET FRONT",
+      "canonical_name": "Kupnat lining front pocket A",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:47:48+00:00"
+    },
+    "2495f4382d896979ee66b63a86221e618e65614e435ac3c01fe1d2c7f02b3ab9": {
+      "decision": "SAME",
+      "process_a": "Join AB side ke back panel",
+      "process_b": "JOIN SAYAP AB KE BACK PANEL",
+      "normalized_a": "JOIN AB SIDE KE BACK PANEL",
+      "normalized_b": "JOIN SAYAP AB KE BACK PANEL",
+      "canonical_name": "Join AB side ke back panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:04+00:00"
+    },
+    "dae075255d0253fa27a193eaac50282d3f0d4eaf3013615e3c047c80344f88eb": {
+      "decision": "SAME",
+      "process_a": "Binding 20mm upper front panel",
+      "process_b": "BINDING 20MM POCKET UPPER FRONT",
+      "normalized_a": "BINDING 20MM UPPER FRONT PANEL",
+      "normalized_b": "BINDING 20MM POCKET UPPER FRONT",
+      "canonical_name": "Binding 20mm upper front panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:10+00:00"
+    },
+    "9f495ba1679ac41f35b948aa25e5bb2b814749a3679660e0fe125879552507e9": {
+      "decision": "SAME",
+      "process_a": "Bartack variasi AB shoulder 4x (webbing dalam)",
+      "process_b": "BARTACK VARIASI SHOULDER (DALAM) AB",
+      "normalized_a": "BARTACK VARIASI AB SHOULDER 4X WEBBING DALAM",
+      "normalized_b": "BARTACK VARIASI SHOULDER DALAM AB",
+      "canonical_name": "Bartack variasi AB shoulder 4x (webbing dalam)",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:12+00:00"
+    },
+    "bae4a669089a47ec24efdb4a20908a8c14a5c95fd481b0ebc30f53b0203aea53": {
+      "decision": "SAME",
+      "process_a": "Kupnat MA front pocket A",
+      "process_b": "KUPNAT MA TOP POCKET FRONT",
+      "normalized_a": "KUPNAT MA FRONT POCKET A",
+      "normalized_b": "KUPNAT MA TOP POCKET FRONT",
+      "canonical_name": "Kupnat MA front pocket A",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:16+00:00"
+    },
+    "230bfe58ad298ea8fdeb8ac31599e46a9d609a9fe8d0ac804ab08b5d7f805161": {
+      "decision": "SAME",
+      "process_a": "Backtack lipat ujung webbing AB tension tab",
+      "process_b": "BACKTACK LIPAT WEBBING TANSION TAB AB (2×)",
+      "normalized_a": "BACKTACK LIPAT UJUNG WEBBING AB TENSION TAB",
+      "normalized_b": "BACKTACK LIPAT WEBBING TANSION TAB AB 2X",
+      "canonical_name": "Backtack lipat ujung webbing AB tension tab",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:18+00:00"
+    },
+    "5a7f05266c842eff6ca5ebd872a4ed94d0e5cb5be4598542e4c3905cabe49900": {
+      "decision": "SAME",
+      "process_a": "Stick AB side back panel",
+      "process_b": "STICK SAYAP AB KE BACK PANEL",
+      "normalized_a": "STICK AB SIDE BACK PANEL",
+      "normalized_b": "STICK SAYAP AB KE BACK PANEL",
+      "canonical_name": "Stick AB side back panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:20+00:00"
+    },
+    "32425102d782ddac80f030c00fc5392c64d97063fae47c04918ff3825d502994": {
+      "decision": "SAME",
+      "process_a": "Join lining & MA bottom ke front panel B",
+      "process_b": "JOIN LAPIS (LINING + BAHAN MA) BOTTOM KE FRONT",
+      "normalized_a": "JOIN LINING DAN MA BOTTOM KE FRONT PANEL B",
+      "normalized_b": "JOIN LAPIS LINING DAN BAHAN MA BOTTOM KE FRONT",
+      "canonical_name": "Join lining & MA bottom ke front panel B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:23+00:00"
+    },
+    "d38dfd9ec744d4ce182d6516b276d204cd5783e94ba75c725df72b363e4a16a4": {
+      "decision": "SAME",
+      "process_a": "Lapis dasar hardboard ke back panel",
+      "process_b": "LAPIS HARBOARD KE SPONGE BACK PANEL",
+      "normalized_a": "LAPIS DASAR HARDBOARD KE BACK PANEL",
+      "normalized_b": "LAPIS HARBOARD KE SPONGE BACK PANEL",
+      "canonical_name": "Lapis dasar hardboard ke back panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:24+00:00"
+    },
+    "29a35b62fb92a6884765f975f407bbc0d79e7e596283f1f9eb0e24dbd79451ba": {
+      "decision": "SAME",
+      "process_a": "Binding 20mm zipper front pocket B & kupnat",
+      "process_b": "BINDING 20MM ZIPPER BOBOK FRONT POCKET + SIDE KUPNAT LOWER FRONT",
+      "normalized_a": "BINDING 20MM ZIPPER FRONT POCKET B DAN KUPNAT",
+      "normalized_b": "BINDING 20MM ZIPPER BOBOK FRONT POCKET DAN SIDE KUPNAT LOWER FRONT",
+      "canonical_name": "Binding 20mm zipper front pocket B & kupnat",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:26+00:00"
+    },
+    "58e0dbe0c414b21b1322ceda53ac5cdc0d863fc712dff5b6e4998bc374b426e5": {
+      "decision": "SAME",
+      "process_a": "Join front pocket A ke upper front panel",
+      "process_b": "JOIN POCKET KE MAIN UPPER FRONT",
+      "normalized_a": "JOIN FRONT POCKET A KE UPPER FRONT PANEL",
+      "normalized_b": "JOIN POCKET KE MAIN UPPER FRONT",
+      "canonical_name": "Join front pocket A ke upper front panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:29+00:00"
+    },
+    "ce8583f0f2b2bbb1364c3c3fd62bd801e9362e964e64f32dce8abb3721315830": {
+      "decision": "SAME",
+      "process_a": "Binding 20mm AB side front pocket B",
+      "process_b": "BINDING 20MM SIDE AB SHOVEL FRONT",
+      "normalized_a": "BINDING 20MM AB SIDE FRONT POCKET B",
+      "normalized_b": "BINDING 20MM SIDE AB SHOVEL FRONT",
+      "canonical_name": "Binding 20mm AB side front pocket B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:30+00:00"
+    },
+    "ce25887fc23a40e9da745221ab90f1f0f542b02036fe0e2edb7ea2267702e2d1": {
+      "decision": "SAME",
+      "process_a": "Join lining & MA lower front panel B",
+      "process_b": "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT",
+      "normalized_a": "JOIN LINING DAN MA LOWER FRONT PANEL B",
+      "normalized_b": "JOIN LAPIS LINING DAN BAHAN MA LOWER FRONT",
+      "canonical_name": "Join lining & MA lower front panel B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:31+00:00"
+    },
+    "7039887a1997b618045a526e21fb38cccef71a220ca80f002f01f6ab758f54a2": {
+      "decision": "SAME",
+      "process_a": "Join zipper ke front panel A (upper)",
+      "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+      "normalized_a": "JOIN ZIPPER KE FRONT PANEL A UPPER",
+      "normalized_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+      "canonical_name": "Join zipper ke front panel A (upper)",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:32+00:00"
+    },
+    "81e208bf4e5231f572190f87a9b8ea6d9c8b34cf1d1d992370f65c27751a9d56": {
+      "decision": "SAME",
+      "process_a": "Lapis lining ke MA front pocket A",
+      "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "normalized_a": "LAPIS LINING KE MA FRONT POCKET A",
+      "normalized_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+      "canonical_name": "Lapis lining ke MA front pocket A",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:35+00:00"
+    },
+    "97368c3b0c953bb58761acff4f44e98c304c48c42e2c776d94d1f04f3b7390a9": {
+      "decision": "SAME",
+      "process_a": "Jahit dasar AB side front pocket B",
+      "process_b": "JAHIT DASAR MAIN FRONT TOP POCKET",
+      "normalized_a": "JAHIT DASAR AB SIDE FRONT POCKET B",
+      "normalized_b": "JAHIT DASAR MAIN FRONT TOP POCKET",
+      "canonical_name": "Jahit dasar AB side front pocket B",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:36+00:00"
+    },
+    "689389778f217312e0742035fc505980dcff2a5f3268068113fd65125a4716f0": {
+      "decision": "SAME",
+      "process_a": "Bartack handle main entry 2x",
+      "process_b": "BARTACK HANDLE GRIB (2×)",
+      "normalized_a": "BARTACK HANDLE MAIN ENTRY 2X",
+      "normalized_b": "BARTACK HANDLE GRIB 2X",
+      "canonical_name": "Bartack handle main entry 2x",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:40+00:00"
+    },
+    "112001606fb7fece9e0f4f2af85ac937f7016705db689527dc1a51f953d40758": {
+      "decision": "SAME",
+      "process_a": "Binding 20mm front pocket A",
+      "process_b": "BINDING 20MM DASAR MAIN FRONT TOP POCKET",
+      "normalized_a": "BINDING 20MM FRONT POCKET A",
+      "normalized_b": "BINDING 20MM DASAR MAIN FRONT TOP POCKET",
+      "canonical_name": "Binding 20mm front pocket A",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:44+00:00"
+    },
+    "4b350396cdc7dfa91c868371dba7676c4f1bfe5b4684ee471635c32f2c00a238": {
+      "decision": "SAME",
+      "process_a": "Bartack dasar mesh AB side pocket 4x",
+      "process_b": "BARTACK HLOOP MESH POCKET AB (4×)",
+      "normalized_a": "BARTACK DASAR MESH AB SIDE POCKET 4X",
+      "normalized_b": "BARTACK HLOOP MESH POCKET AB 4X",
+      "canonical_name": "Bartack dasar mesh AB side pocket 4x",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:45+00:00"
+    },
+    "e3dee99c0d7dfdd239cd14ea1a0979cef8fa75ecb0c76abfb6c5fb84924c2f5e": {
+      "decision": "SAME",
+      "process_a": "Komputer stick AB shoulder (upper)",
+      "process_b": "COMPUTER STICK PANGKAL SHOULDER AB",
+      "normalized_a": "KOMPUTER STICK AB SHOULDER UPPER",
+      "normalized_b": "COMPUTER STICK PANGKAL SHOULDER AB",
+      "canonical_name": "Komputer stick AB shoulder (upper)",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:48+00:00"
+    },
+    "ea69dbbdfbb29de320c010755f07e55d49d2918fa40aa26c99b489f54fe46f3f": {
+      "decision": "SAME",
+      "process_a": "Binding 25mm handle main entry AB",
+      "process_b": "BINDING 25MM HANDLE GRIB",
+      "normalized_a": "BINDING 25MM HANDLE MAIN ENTRY AB",
+      "normalized_b": "BINDING 25MM HANDLE GRIB",
+      "canonical_name": "Binding 25mm handle main entry AB",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:49+00:00"
+    },
+    "bcb7102e06b6beb20c7c89fcf06dbd559e4019b001dc6787eac4d8cb561debb6": {
+      "decision": "SAME",
+      "process_a": "Binding 20mm upper front panel",
+      "process_b": "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+      "normalized_a": "BINDING 20MM UPPER FRONT PANEL",
+      "normalized_b": "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+      "canonical_name": "Binding 20mm upper front panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:50+00:00"
+    },
+    "374cc89ac98b7dd8fa11cb483307e4c194c8acfe7b32903a58986a63cafa6055": {
+      "decision": "SAME",
+      "process_a": "Jahit dasar AB side back panel",
+      "process_b": "JAHIT DASAR SAYAP AB BACK",
+      "normalized_a": "JAHIT DASAR AB SIDE BACK PANEL",
+      "normalized_b": "JAHIT DASAR SAYAP AB BACK",
+      "canonical_name": "Jahit dasar AB side back panel",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:48:51+00:00"
+    },
+    "e6f3048445f919f66c45a5494d586ad94a0919a3600beb5c0588504aaf589eb1": {
+      "decision": "SAME",
+      "process_a": "Kupnat MA front pocket A",
+      "process_b": "KUPNAT DASAR POCKET",
+      "normalized_a": "KUPNAT MA FRONT POCKET A",
+      "normalized_b": "KUPNAT DASAR POCKET",
+      "canonical_name": "Kupnat MA front pocket A",
+      "note": "",
+      "decided_at_utc": "2026-11-10T07:49:04+00:00"
+    }
+  }
+}

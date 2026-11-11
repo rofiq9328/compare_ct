@@ -1,0 +1,1990 @@
+{
+  "schema_version": 1,
+  "analysis_type": "conservative_multi_line_analysis",
+  "line_count": 2,
+  "line_labels": [
+    "LINE 37 (A8MVW)",
+    "LINE 61 (A8MVX)"
+  ],
+  "reference_line_for_deltas": "LINE 37 (A8MVW)",
+  "line_kpis": {
+    "LINE 37 (A8MVW)": {
+      "target_per_hour": 55.0,
+      "potential_per_hour": 39.5859,
+      "actual_per_hour": 30.0,
+      "takt_time_seconds": 39.0,
+      "operator_allocations": 54,
+      "actual_vs_target_pct": 54.55,
+      "actual_vs_potential_pct": 75.78,
+      "potential_vs_target_pct": 71.97,
+      "target_gap_pcs_per_hour": 25.0,
+      "potential_gap_to_target_pcs_per_hour": 15.41,
+      "production_status": "AKTUAL_DI_BAWAH_TARGET"
+    },
+    "LINE 61 (A8MVX)": {
+      "target_per_hour": 53.0,
+      "potential_per_hour": 28.4247,
+      "actual_per_hour": 20.0,
+      "takt_time_seconds": 41.0,
+      "operator_allocations": 51,
+      "actual_vs_target_pct": 37.74,
+      "actual_vs_potential_pct": 70.36,
+      "potential_vs_target_pct": 53.63,
+      "target_gap_pcs_per_hour": 33.0,
+      "potential_gap_to_target_pcs_per_hour": 24.58,
+      "production_status": "AKTUAL_DI_BAWAH_TARGET"
+    }
+  },
+  "summary_differences": [
+    {
+      "key": "operator_allocations",
+      "label": "Jumlah Operator",
+      "unit": "OPT",
+      "reference_line": "LINE 37 (A8MVW)",
+      "values_by_line": {
+        "LINE 37 (A8MVW)": {
+          "value": 54.0,
+          "delta_vs_reference": 0.0,
+          "delta_vs_reference_pct": 0.0
+        },
+        "LINE 61 (A8MVX)": {
+          "value": 51.0,
+          "delta_vs_reference": -3.0,
+          "delta_vs_reference_pct": -5.56
+        }
+      }
+    },
+    {
+      "key": "takt_time",
+      "label": "Takt Time",
+      "unit": "detik",
+      "reference_line": "LINE 37 (A8MVW)",
+      "values_by_line": {
+        "LINE 37 (A8MVW)": {
+          "value": 39.0,
+          "delta_vs_reference": 0.0,
+          "delta_vs_reference_pct": 0.0
+        },
+        "LINE 61 (A8MVX)": {
+          "value": 41.0,
+          "delta_vs_reference": 2.0,
+          "delta_vs_reference_pct": 5.13
+        }
+      }
+    },
+    {
+      "key": "target_per_hour",
+      "label": "Target Output / Jam",
+      "unit": "pcs",
+      "reference_line": "LINE 37 (A8MVW)",
+      "values_by_line": {
+        "LINE 37 (A8MVW)": {
+          "value": 55.0,
+          "delta_vs_reference": 0.0,
+          "delta_vs_reference_pct": 0.0
+        },
+        "LINE 61 (A8MVX)": {
+          "value": 53.0,
+          "delta_vs_reference": -2.0,
+          "delta_vs_reference_pct": -3.64
+        }
+      }
+    },
+    {
+      "key": "potential_per_hour",
+      "label": "Potensial Output / Jam",
+      "unit": "pcs",
+      "reference_line": "LINE 37 (A8MVW)",
+      "values_by_line": {
+        "LINE 37 (A8MVW)": {
+          "value": 39.5859,
+          "delta_vs_reference": 0.0,
+          "delta_vs_reference_pct": 0.0
+        },
+        "LINE 61 (A8MVX)": {
+          "value": 28.4247,
+          "delta_vs_reference": -11.1612,
+          "delta_vs_reference_pct": -28.19
+        }
+      }
+    },
+    {
+      "key": "actual_per_hour",
+      "label": "Aktual Output / Jam",
+      "unit": "pcs",
+      "reference_line": "LINE 37 (A8MVW)",
+      "values_by_line": {
+        "LINE 37 (A8MVW)": {
+          "value": 30.0,
+          "delta_vs_reference": 0.0,
+          "delta_vs_reference_pct": 0.0
+        },
+        "LINE 61 (A8MVX)": {
+          "value": 20.0,
+          "delta_vs_reference": -10.0,
+          "delta_vs_reference_pct": -33.33
+        }
+      }
+    }
+  ],
+  "machine_analysis": {
+    "machine_type_count": 9,
+    "machine_types_with_allocation_difference": [
+      {
+        "machine": "LK-1900",
+        "canonical_key": "LK-1900",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 5,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 5,
+        "alias_applied": false
+      },
+      {
+        "machine": "DU-1481",
+        "canonical_key": "DU-1481",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 35,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 35,
+        "alias_applied": false
+      },
+      {
+        "machine": "UAS-H1510",
+        "canonical_key": "UAS-H1510",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 4,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 4,
+        "alias_applied": false
+      },
+      {
+        "machine": "DSC-246",
+        "canonical_key": "DSC-246",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 11,
+          "LINE 61 (A8MVX)": 12
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 1,
+        "alias_applied": false
+      },
+      {
+        "machine": "H-5150",
+        "canonical_key": "H-5150",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 1,
+        "alias_applied": false
+      },
+      {
+        "machine": "DU-1481-7",
+        "canonical_key": "DU-1481-7",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 30
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 30,
+        "alias_applied": false
+      },
+      {
+        "machine": "UAS-H900H-D",
+        "canonical_key": "UAS-H900H-D",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 6
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 6,
+        "alias_applied": false
+      },
+      {
+        "machine": "UAS-H1510-D",
+        "canonical_key": "UAS-H1510-D",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 3
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 3,
+        "alias_applied": false
+      },
+      {
+        "machine": "LS2-H6000XH-D",
+        "canonical_key": "LS2-H6000XH-D",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 2
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 2,
+        "alias_applied": false
+      }
+    ],
+    "machine_types_allocated_in_one_line_only": [
+      {
+        "machine": "LK-1900",
+        "canonical_key": "LK-1900",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 5,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 5,
+        "alias_applied": false
+      },
+      {
+        "machine": "DU-1481",
+        "canonical_key": "DU-1481",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 35,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 35,
+        "alias_applied": false
+      },
+      {
+        "machine": "UAS-H1510",
+        "canonical_key": "UAS-H1510",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 4,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 4,
+        "alias_applied": false
+      },
+      {
+        "machine": "H-5150",
+        "canonical_key": "H-5150",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 0
+        },
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "lines_with_allocation": [
+          "LINE 37 (A8MVW)"
+        ],
+        "allocation_spread": 1,
+        "alias_applied": false
+      },
+      {
+        "machine": "DU-1481-7",
+        "canonical_key": "DU-1481-7",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 30
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 30,
+        "alias_applied": false
+      },
+      {
+        "machine": "UAS-H900H-D",
+        "canonical_key": "UAS-H900H-D",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 6
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 6,
+        "alias_applied": false
+      },
+      {
+        "machine": "UAS-H1510-D",
+        "canonical_key": "UAS-H1510-D",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 3
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 3,
+        "alias_applied": false
+      },
+      {
+        "machine": "LS2-H6000XH-D",
+        "canonical_key": "LS2-H6000XH-D",
+        "values_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 2
+        },
+        "present_in_lines": [
+          "LINE 61 (A8MVX)"
+        ],
+        "lines_with_allocation": [
+          "LINE 61 (A8MVX)"
+        ],
+        "allocation_spread": 2,
+        "alias_applied": false
+      }
+    ]
+  },
+  "process_analysis": {
+    "process_row_count": 91,
+    "matched_processes_with_allocation_difference": [
+      {
+        "process": "Jahit dasar AB side back panel",
+        "canonical_key": "JAHIT DASAR AB SIDE BACK PANEL",
+        "matching_status": "APPROVED_ALIAS",
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "operator_allocations_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 0
+        },
+        "operator_allocation_spread": 1,
+        "machine_allocations_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 1
+        },
+        "machine_allocation_spread": 0,
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "BACK PANEL"
+          ],
+          "LINE 61 (A8MVX)": [
+            "BACK PANEL"
+          ]
+        },
+        "note": "Perbedaan alokasi teramati; bukan bukti bottleneck atau penyebab produktivitas."
+      },
+      {
+        "process": "Kupnat MA front pocket A",
+        "canonical_key": "KUPNAT MA FRONT POCKET A",
+        "matching_status": "APPROVED_ALIAS",
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "operator_allocations_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 2
+        },
+        "operator_allocation_spread": 1,
+        "machine_allocations_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 2
+        },
+        "machine_allocation_spread": 1,
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "LINE 61 (A8MVX)": [
+            "FRONT PANEL",
+            "MAIN ENTRY"
+          ]
+        },
+        "note": "Perbedaan alokasi teramati; bukan bukti bottleneck atau penyebab produktivitas."
+      },
+      {
+        "process": "Bartack handle main entry 2x",
+        "canonical_key": "BARTACK HANDLE MAIN ENTRY 2X",
+        "matching_status": "APPROVED_ALIAS",
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "operator_allocations_by_line": {
+          "LINE 37 (A8MVW)": 0,
+          "LINE 61 (A8MVX)": 1
+        },
+        "operator_allocation_spread": 1,
+        "machine_allocations_by_line": {
+          "LINE 37 (A8MVW)": 1,
+          "LINE 61 (A8MVX)": 1
+        },
+        "machine_allocation_spread": 0,
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "MAIN ENTRY"
+          ],
+          "LINE 61 (A8MVX)": [
+            "MAIN ENTRY"
+          ]
+        },
+        "note": "Perbedaan alokasi teramati; bukan bukti bottleneck atau penyebab produktivitas."
+      }
+    ],
+    "processes_present_in_one_line_only": [
+      {
+        "process": "Backtack kunci AB shoulder",
+        "canonical_key": "BACKTACK KUNCI AB SHOULDER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Jahit dasar AB tension tab",
+        "canonical_key": "JAHIT DASAR AB TENSION TAB",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Boxstick AB tension tab",
+        "canonical_key": "BOXSTICK AB TENSION TAB",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lapis dasar AB side back panel",
+        "canonical_key": "LAPIS DASAR AB SIDE BACK PANEL",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lapis comp sleeve ke back panel",
+        "canonical_key": "LAPIS COMP SLEEVE KE BACK PANEL",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Bartack AB side front pocket B JA",
+        "canonical_key": "BARTACK AB SIDE FRONT POCKET B JA",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Backtack dasar JA ke AB side front pocket B",
+        "canonical_key": "BACKTACK DASAR JA KE AB SIDE FRONT POCKET B",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Jahit kunci front pocket B (upper)",
+        "canonical_key": "JAHIT KUNCI FRONT POCKET B UPPER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Kupnat AB side front pocket B",
+        "canonical_key": "KUPNAT AB SIDE FRONT POCKET B",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Join webbing reflective (2 pcs) ke front pocket B",
+        "canonical_key": "JOIN WEBBING REFLECTIVE 2 PCS KE FRONT POCKET B",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lipat ujung binding AB front pocket B",
+        "canonical_key": "LIPAT UJUNG BINDING AB FRONT POCKET B",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lapis organizer ke lining front pocket A + Keyhook",
+        "canonical_key": "LAPIS ORGANIZER KE LINING FRONT POCKET A DAN KEYHOOK",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Jahit dasar upper front panel",
+        "canonical_key": "JAHIT DASAR UPPER FRONT PANEL",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Join organizer ke front pocket A",
+        "canonical_key": "JOIN ORGANIZER KE FRONT POCKET A",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Binding 20mm front pocket A (organizer)",
+        "canonical_key": "BINDING 20MM FRONT POCKET A ORGANIZER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Jahit dasar lining & MA ke mesh AB side pocket",
+        "canonical_key": "JAHIT DASAR LINING DAN MA KE MESH AB SIDE POCKET",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lapis lining ke MA AB mesh side pocket",
+        "canonical_key": "LAPIS LINING KE MA AB MESH SIDE POCKET",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Kupnat AB side panel",
+        "canonical_key": "KUPNAT AB SIDE PANEL",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lapis side pocket ke AB side panel",
+        "canonical_key": "LAPIS SIDE POCKET KE AB SIDE PANEL",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Jahit dasar handle ke middle main entry",
+        "canonical_key": "JAHIT DASAR HANDLE KE MIDDLE MAIN ENTRY",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Join handle ke main entry AB",
+        "canonical_key": "JOIN HANDLE KE MAIN ENTRY AB",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Binding 20mm zipper front panel A (upper)",
+        "canonical_key": "BINDING 20MM ZIPPER FRONT PANEL A UPPER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Join AB side pocket ke body (lower)",
+        "canonical_key": "JOIN AB SIDE POCKET KE BODY LOWER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 2,
+        "machine_allocations": 2,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Binding 25mm AB side body (lower)",
+        "canonical_key": "BINDING 25MM AB SIDE BODY LOWER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Join upper ke lower body (middle body)",
+        "canonical_key": "JOIN UPPER KE LOWER BODY MIDDLE BODY",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Lapis AB mesh side pocket ke body (lower)",
+        "canonical_key": "LAPIS AB MESH SIDE POCKET KE BODY LOWER",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "Insert webbing ke JA & kunci",
+        "canonical_key": "INSERT WEBBING KE JA DAN KUNCI",
+        "present_in_line": "LINE 37 (A8MVW)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JAHIT DASAR + LAPIS SAYAP AB BACK",
+        "canonical_key": "JAHIT DASAR DAN LAPIS SAYAP AB BACK",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN SHOULDER AB KE BACK PANEL + JOIN TANSION TAB AB KE BACK PANEL",
+        "canonical_key": "JOIN SHOULDER AB KE BACK PANEL DAN JOIN TANSION TAB AB KE BACK PANEL",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "LAPIS BACK PANEL",
+        "canonical_key": "LAPIS BACK PANEL",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN REFLAKTIF AB + KUPNAT BOTTOM FRONT",
+        "canonical_key": "JOIN REFLAKTIF AB DAN KUPNAT BOTTOM FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "KUNCI SIDE ZIPPER",
+        "canonical_key": "KUNCI SIDE ZIPPER",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "LIPAT BINDING SIDE KUPNAT LOWER FRONT",
+        "canonical_key": "LIPAT BINDING SIDE KUPNAT LOWER FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN LINING KE MESH POCKET AB",
+        "canonical_key": "JOIN LINING KE MESH POCKET AB",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN DEVIDER POCKET UPPER FRONT",
+        "canonical_key": "JOIN DEVIDER POCKET UPPER FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "LINING ORGANIZER KEYHOOK TOP FRONT",
+        "canonical_key": "LINING ORGANIZER KEYHOOK TOP FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "BACKTACK JA WEBBING POCKET FRONT",
+        "canonical_key": "BACKTACK JA WEBBING POCKET FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "BARTACK JA WEBBING POCKET FRONT",
+        "canonical_key": "BARTACK JA WEBBING POCKET FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 0,
+        "machine_allocations": 0,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JAHIT DASAR SHOVEL AB FRONT",
+        "canonical_key": "JAHIT DASAR SHOVEL AB FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+        "canonical_key": "JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN LAPIS BAHAN MA KE MESH POCKET AB",
+        "canonical_key": "JOIN LAPIS BAHAN MA KE MESH POCKET AB",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "LAPIS MESH KE DASAR POCKET",
+        "canonical_key": "LAPIS MESH KE DASAR POCKET",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN SIDE AB POCKET MAIN ENTRY",
+        "canonical_key": "JOIN SIDE AB POCKET MAIN ENTRY",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT + CENTER FRONT",
+        "canonical_key": "BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT DAN CENTER FRONT",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JAHIT HANDLE GRIB",
+        "canonical_key": "JAHIT HANDLE GRIB",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "LAPIS MESH POCKET MAIN BODY",
+        "canonical_key": "LAPIS MESH POCKET MAIN BODY",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      },
+      {
+        "process": "JOIN CENTER FRONT MAIN BODY",
+        "canonical_key": "JOIN CENTER FRONT MAIN BODY",
+        "present_in_line": "LINE 61 (A8MVX)",
+        "operator_allocations": 1,
+        "machine_allocations": 1,
+        "matching_status": "ONLY_IN_LISTED_LINES"
+      }
+    ],
+    "processes_requiring_matching_review": [
+      {
+        "process": "Join lower ke back panel",
+        "source_names": [
+          "Join lower ke back panel"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join lower ke back panel",
+            "process_b": "JOIN STICK LAPIS LOWER BACK PANEL",
+            "similarity": 0.7243,
+            "confidence": "CUKUP MIRIP"
+          },
+          {
+            "process_a": "Join lower ke back panel",
+            "process_b": "JOIN SAYAP AB KE BACK PANEL",
+            "similarity": 0.7053,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Stick & lapis lower back panel",
+        "source_names": [
+          "Stick & lapis lower back panel",
+          "JOIN STICK LAPIS LOWER BACK PANEL"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join lower ke back panel",
+            "process_b": "JOIN STICK LAPIS LOWER BACK PANEL",
+            "similarity": 0.7243,
+            "confidence": "CUKUP MIRIP"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join AB side ke back panel",
+        "source_names": [
+          "Join AB side ke back panel",
+          "JOIN SAYAP AB KE BACK PANEL"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join AB tension ke back panel",
+            "process_b": "JOIN SAYAP AB KE BACK PANEL",
+            "similarity": 0.7696,
+            "confidence": "CUKUP MIRIP"
+          },
+          {
+            "process_a": "Join shoulder ke back panel",
+            "process_b": "JOIN SAYAP AB KE BACK PANEL",
+            "similarity": 0.7153,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Join lower ke back panel",
+            "process_b": "JOIN SAYAP AB KE BACK PANEL",
+            "similarity": 0.7053,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join shoulder ke back panel",
+        "source_names": [
+          "Join shoulder ke back panel"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join shoulder ke back panel",
+            "process_b": "JOIN SAYAP AB KE BACK PANEL",
+            "similarity": 0.7153,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join AB tension ke back panel",
+        "source_names": [
+          "Join AB tension ke back panel"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join AB tension ke back panel",
+            "process_b": "JOIN SAYAP AB KE BACK PANEL",
+            "similarity": 0.7696,
+            "confidence": "CUKUP MIRIP"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Jahit dasar AB side front pocket B",
+        "source_names": [
+          "Jahit dasar AB side front pocket B",
+          "JAHIT DASAR MAIN FRONT TOP POCKET"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Jahit dasar gusset front pocket A",
+            "process_b": "JAHIT DASAR MAIN FRONT TOP POCKET",
+            "similarity": 0.7083,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Binding 20mm AB side front pocket B",
+        "source_names": [
+          "Binding 20mm AB side front pocket B",
+          "BINDING 20MM SIDE AB SHOVEL FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 20mm AB side front pocket B",
+            "process_b": "BINDING 20MM DASAR MAIN FRONT TOP POCKET",
+            "similarity": 0.6893,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join lining & MA ke zipper front pocket B",
+        "source_names": [
+          "Join lining & MA ke zipper front pocket B",
+          "JOIN LINING + BAHAN MA KE ZIPPER FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join lining & MA bottom ke front panel B",
+            "process_b": "JOIN LINING + BAHAN MA KE ZIPPER FRONT",
+            "similarity": 0.6843,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Lapis lining ke MA front pocket B (zipper)",
+        "source_names": [
+          "Lapis lining ke MA front pocket B (zipper)"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA front pocket B (zipper)",
+            "process_b": "LAPIS LINING KE FRONT POCKET",
+            "similarity": 0.7937,
+            "confidence": "CUKUP MIRIP"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Jahit bobok zipper ke front pocket B",
+        "source_names": [
+          "Jahit bobok zipper ke front pocket B",
+          "JAHIT BOBOK ZIPPER KE FRONT POCKET"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Jahit gusset zipper front pocket A",
+            "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+            "similarity": 0.725,
+            "confidence": "CUKUP MIRIP"
+          },
+          {
+            "process_a": "Join zipper ke front pocket A (madome)",
+            "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+            "similarity": 0.6838,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Lapis lining ke front pocket B",
+        "source_names": [
+          "Lapis lining ke front pocket B",
+          "LAPIS LINING KE FRONT POCKET"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA front pocket A",
+            "process_b": "LAPIS LINING KE FRONT POCKET",
+            "similarity": 0.8875,
+            "confidence": "MIRIP"
+          },
+          {
+            "process_a": "Lapis lining ke MA front pocket B (zipper)",
+            "process_b": "LAPIS LINING KE FRONT POCKET",
+            "similarity": 0.7937,
+            "confidence": "CUKUP MIRIP"
+          },
+          {
+            "process_a": "Lapis lining ke MA zipper front pocket A",
+            "process_b": "LAPIS LINING KE FRONT POCKET",
+            "similarity": 0.7937,
+            "confidence": "CUKUP MIRIP"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join lining & MA lower front panel B",
+        "source_names": [
+          "Join lining & MA lower front panel B",
+          "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA lower front panel B",
+            "process_b": "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT",
+            "similarity": 0.6807,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Lapis lining ke MA lower front panel B",
+        "source_names": [
+          "Lapis lining ke MA lower front panel B"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA lower front panel B",
+            "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+            "similarity": 0.7083,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Lapis lining ke MA lower front panel B",
+            "process_b": "JOIN LAPIS (LINING + BAHAN MA) LOWER FRONT",
+            "similarity": 0.6807,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join lining & MA bottom ke front panel B",
+        "source_names": [
+          "Join lining & MA bottom ke front panel B",
+          "JOIN LAPIS (LINING + BAHAN MA) BOTTOM KE FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join lining & MA bottom ke front panel B",
+            "process_b": "JOIN LINING + BAHAN MA KE ZIPPER FRONT",
+            "similarity": 0.6843,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Lapis lining ke MA bottom",
+        "source_names": [
+          "Lapis lining ke MA bottom"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA bottom",
+            "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+            "similarity": 0.6919,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Lapis lining ke MA front pocket A",
+        "source_names": [
+          "Lapis lining ke MA front pocket A",
+          "LAPIS LINING KE BAHAN MA TOP FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA front pocket A",
+            "process_b": "LAPIS LINING KE FRONT POCKET",
+            "similarity": 0.8875,
+            "confidence": "MIRIP"
+          },
+          {
+            "process_a": "Lapis lining ke MA lower front panel B",
+            "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+            "similarity": 0.7083,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Lapis lining ke MA bottom",
+            "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+            "similarity": 0.6919,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Lapis lining ke MA zipper front pocket A",
+            "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+            "similarity": 0.6912,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Jahit dasar gusset front pocket A",
+        "source_names": [
+          "Jahit dasar gusset front pocket A"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Jahit dasar gusset front pocket A",
+            "process_b": "JAHIT DASAR MAIN FRONT TOP POCKET",
+            "similarity": 0.7083,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Jahit gusset zipper front pocket A",
+        "source_names": [
+          "Jahit gusset zipper front pocket A"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Jahit gusset zipper front pocket A",
+            "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+            "similarity": 0.725,
+            "confidence": "CUKUP MIRIP"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Lapis lining ke MA zipper front pocket A",
+        "source_names": [
+          "Lapis lining ke MA zipper front pocket A"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Lapis lining ke MA zipper front pocket A",
+            "process_b": "LAPIS LINING KE FRONT POCKET",
+            "similarity": 0.7937,
+            "confidence": "CUKUP MIRIP"
+          },
+          {
+            "process_a": "Lapis lining ke MA zipper front pocket A",
+            "process_b": "LAPIS LINING KE BAHAN MA TOP FRONT",
+            "similarity": 0.6912,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join zipper ke front pocket A (madome)",
+        "source_names": [
+          "Join zipper ke front pocket A (madome)"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join zipper ke front pocket A (madome)",
+            "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+            "similarity": 0.7155,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Join zipper ke front pocket A (madome)",
+            "process_b": "JAHIT BOBOK ZIPPER KE FRONT POCKET",
+            "similarity": 0.6838,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Binding 20mm front pocket A",
+        "source_names": [
+          "Binding 20mm front pocket A",
+          "BINDING 20MM DASAR MAIN FRONT TOP POCKET"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 20mm front pocket A",
+            "process_b": "BINDING 20MM POCKET UPPER FRONT",
+            "similarity": 0.7466,
+            "confidence": "CUKUP MIRIP"
+          },
+          {
+            "process_a": "Binding 20mm front pocket A",
+            "process_b": "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+            "similarity": 0.6842,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Binding 20mm AB side front pocket B",
+            "process_b": "BINDING 20MM DASAR MAIN FRONT TOP POCKET",
+            "similarity": 0.6893,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Binding 20mm upper front panel",
+        "source_names": [
+          "Binding 20mm upper front panel",
+          "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+          "BINDING 20MM POCKET UPPER FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 20mm front pocket A",
+            "process_b": "BINDING 20MM DEVIDER POCKET UPPER FRONT",
+            "similarity": 0.6842,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Binding 20mm front pocket A",
+            "process_b": "BINDING 20MM POCKET UPPER FRONT",
+            "similarity": 0.7466,
+            "confidence": "CUKUP MIRIP"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join front pocket A ke upper front panel",
+        "source_names": [
+          "Join front pocket A ke upper front panel",
+          "JOIN POCKET KE MAIN UPPER FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join front pocket A ke upper front panel",
+            "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+            "similarity": 0.6855,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Binding 25mm handle main entry AB",
+        "source_names": [
+          "Binding 25mm handle main entry AB",
+          "BINDING 25MM HANDLE GRIB"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 25mm middle body",
+            "process_b": "BINDING 25MM HANDLE GRIB",
+            "similarity": 0.6875,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join zipper ke main entry",
+        "source_names": [
+          "Join zipper ke main entry",
+          "JOIN ZIPPER KE FRONT MAIN ENTRY"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join zipper ke front panel A (upper)",
+            "process_b": "JOIN ZIPPER KE FRONT MAIN ENTRY",
+            "similarity": 0.7097,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join zipper ke front panel A (upper)",
+        "source_names": [
+          "Join zipper ke front panel A (upper)",
+          "JOIN ZIPPER KE POCKET UPPER FRONT"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Join zipper ke front panel A (upper)",
+            "process_b": "JOIN ZIPPER KE FRONT MAIN ENTRY",
+            "similarity": 0.7097,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Join zipper ke front pocket A (madome)",
+            "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+            "similarity": 0.7155,
+            "confidence": "KEMUNGKINAN RENDAH"
+          },
+          {
+            "process_a": "Join front pocket A ke upper front panel",
+            "process_b": "JOIN ZIPPER KE POCKET UPPER FRONT",
+            "similarity": 0.6855,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Binding 25mm middle body",
+        "source_names": [
+          "Binding 25mm middle body"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 25mm middle body",
+            "process_b": "BINDING 25MM HANDLE GRIB",
+            "similarity": 0.6875,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Join finish back panel ke body",
+        "source_names": [
+          "Join finish back panel ke body",
+          "JOIN FINISH BACK PANEL"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 25mm finish back panel",
+            "process_b": "JOIN FINISH BACK PANEL",
+            "similarity": 0.6885,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      },
+      {
+        "process": "Binding 25mm finish back panel",
+        "source_names": [
+          "Binding 25mm finish back panel",
+          "BINDING 25MM FINSIH BACK PANEL"
+        ],
+        "present_in_lines": [
+          "LINE 37 (A8MVW)",
+          "LINE 61 (A8MVX)"
+        ],
+        "review_candidates": [
+          {
+            "process_a": "Binding 25mm finish back panel",
+            "process_b": "JOIN FINISH BACK PANEL",
+            "similarity": 0.6885,
+            "confidence": "KEMUNGKINAN RENDAH"
+          }
+        ],
+        "note": "Belum dikonfirmasi; tidak dianalisis sebagai proses yang sama antar-line."
+      }
+    ],
+    "process_group_variations": [
+      {
+        "process": "Binding 20mm zipper front pocket B & kupnat",
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "FRONT PANEL B (LOWER) + BOTTOM"
+          ],
+          "LINE 61 (A8MVX)": [
+            "FRONT PANEL"
+          ]
+        },
+        "note": "Group sumber berbeda; periksa apakah perbedaan hanya penamaan atau memang alur kerja berbeda."
+      },
+      {
+        "process": "Kupnat MA front pocket A",
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "LINE 61 (A8MVX)": [
+            "FRONT PANEL",
+            "MAIN ENTRY"
+          ]
+        },
+        "note": "Group sumber berbeda; periksa apakah perbedaan hanya penamaan atau memang alur kerja berbeda."
+      },
+      {
+        "process": "Kupnat lining front pocket A",
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "FRONT PANEL A (UPPER)"
+          ],
+          "LINE 61 (A8MVX)": [
+            "FRONT PANEL"
+          ]
+        },
+        "note": "Group sumber berbeda; periksa apakah perbedaan hanya penamaan atau memang alur kerja berbeda."
+      },
+      {
+        "process": "Binding 20mm zipper main entry",
+        "groups_by_line": {
+          "LINE 37 (A8MVW)": [
+            "MAIN ENTRY"
+          ],
+          "LINE 61 (A8MVX)": [
+            "FRONT PANEL"
+          ]
+        },
+        "note": "Group sumber berbeda; periksa apakah perbedaan hanya penamaan atau memang alur kerja berbeda."
+      }
+    ]
+  },
+  "observations": [
+    {
+      "type": "ACTUAL_BELOW_TARGET",
+      "severity": "INFO",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Aktual 30.0 pcs/jam berada 25.0 pcs/jam di bawah target 55.0 pcs/jam."
+    },
+    {
+      "type": "POTENTIAL_BELOW_TARGET",
+      "severity": "INFO",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Potensial 39.5859 pcs/jam masih 15.41 pcs/jam di bawah target 55.0 pcs/jam."
+    },
+    {
+      "type": "ACTUAL_BELOW_TARGET",
+      "severity": "INFO",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Aktual 20.0 pcs/jam berada 33.0 pcs/jam di bawah target 53.0 pcs/jam."
+    },
+    {
+      "type": "POTENTIAL_BELOW_TARGET",
+      "severity": "INFO",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Potensial 28.4247 pcs/jam masih 24.58 pcs/jam di bawah target 53.0 pcs/jam."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Backtack kunci AB shoulder' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Jahit dasar AB tension tab' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Boxstick AB tension tab' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lapis dasar AB side back panel' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lapis comp sleeve ke back panel' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Bartack AB side front pocket B JA' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Backtack dasar JA ke AB side front pocket B' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Jahit kunci front pocket B (upper)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Kupnat AB side front pocket B' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Join webbing reflective (2 pcs) ke front pocket B' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lipat ujung binding AB front pocket B' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lapis organizer ke lining front pocket A + Keyhook' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Jahit dasar upper front panel' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Join organizer ke front pocket A' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Binding 20mm front pocket A (organizer)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Jahit dasar lining & MA ke mesh AB side pocket' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lapis lining ke MA AB mesh side pocket' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Kupnat AB side panel' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lapis side pocket ke AB side panel' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Jahit dasar handle ke middle main entry' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Join handle ke main entry AB' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Binding 20mm zipper front panel A (upper)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Join AB side pocket ke body (lower)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Binding 25mm AB side body (lower)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Join upper ke lower body (middle body)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Lapis AB mesh side pocket ke body (lower)' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Proses 'Insert webbing ke JA & kunci' hanya tercatat pada LINE 37 (A8MVW). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JAHIT DASAR + LAPIS SAYAP AB BACK' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN SHOULDER AB KE BACK PANEL + JOIN TANSION TAB AB KE BACK PANEL' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'LAPIS BACK PANEL' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN REFLAKTIF AB + KUPNAT BOTTOM FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'KUNCI SIDE ZIPPER' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'LIPAT BINDING SIDE KUPNAT LOWER FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN LINING KE MESH POCKET AB' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN DEVIDER POCKET UPPER FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'LINING ORGANIZER KEYHOOK TOP FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'BACKTACK JA WEBBING POCKET FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'BARTACK JA WEBBING POCKET FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JAHIT DASAR SHOVEL AB FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JAHIT GUSSET ZIPPER MAIN FRONT TOP POCKET' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN LAPIS BAHAN MA KE MESH POCKET AB' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'LAPIS MESH KE DASAR POCKET' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN SIDE AB POCKET MAIN ENTRY' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'BINDING 25MM SIDE AB POCKET MAIN ENTRY FRONT + CENTER FRONT' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JAHIT HANDLE GRIB' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'LAPIS MESH POCKET MAIN BODY' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "PROCESS_ONLY_IN_ONE_LINE",
+      "severity": "REVIEW",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Proses 'JOIN CENTER FRONT MAIN BODY' hanya tercatat pada LINE 61 (A8MVX). Pastikan memang tidak digunakan di line lain, bukan akibat perbedaan nama yang belum terpetakan."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Tipe mesin 'LK-1900' hanya memiliki alokasi pada LINE 37 (A8MVW) (jumlah 5)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Tipe mesin 'DU-1481' hanya memiliki alokasi pada LINE 37 (A8MVW) (jumlah 35)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Tipe mesin 'UAS-H1510' hanya memiliki alokasi pada LINE 37 (A8MVW) (jumlah 4)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 37 (A8MVW)",
+      "message": "Tipe mesin 'H-5150' hanya memiliki alokasi pada LINE 37 (A8MVW) (jumlah 1)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Tipe mesin 'DU-1481-7' hanya memiliki alokasi pada LINE 61 (A8MVX) (jumlah 30)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Tipe mesin 'UAS-H900H-D' hanya memiliki alokasi pada LINE 61 (A8MVX) (jumlah 6)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Tipe mesin 'UAS-H1510-D' hanya memiliki alokasi pada LINE 61 (A8MVX) (jumlah 3)."
+    },
+    {
+      "type": "MACHINE_ONLY_IN_ONE_LINE",
+      "severity": "INFO",
+      "line": "LINE 61 (A8MVX)",
+      "message": "Tipe mesin 'LS2-H6000XH-D' hanya memiliki alokasi pada LINE 61 (A8MVX) (jumlah 2)."
+    },
+    {
+      "type": "PROCESS_ALLOCATION_DIFFERENCE",
+      "severity": "REVIEW",
+      "line": null,
+      "message": "Proses 'Jahit dasar AB side back panel' memiliki rentang alokasi operator 1 dan rentang alokasi mesin 0 antar-line yang telah cocok."
+    },
+    {
+      "type": "PROCESS_ALLOCATION_DIFFERENCE",
+      "severity": "REVIEW",
+      "line": null,
+      "message": "Proses 'Kupnat MA front pocket A' memiliki rentang alokasi operator 1 dan rentang alokasi mesin 1 antar-line yang telah cocok."
+    },
+    {
+      "type": "PROCESS_ALLOCATION_DIFFERENCE",
+      "severity": "REVIEW",
+      "line": null,
+      "message": "Proses 'Bartack handle main entry 2x' memiliki rentang alokasi operator 1 dan rentang alokasi mesin 0 antar-line yang telah cocok."
+    },
+    {
+      "type": "UNCONFIRMED_PROCESS_MATCHES",
+      "severity": "WARNING",
+      "line": null,
+      "message": "Masih ada 23 kandidat pencocokan dan 29 baris proses yang memerlukan review. Proses tersebut tidak diperlakukan sebagai proses yang sama."
+    }
+  ],
+  "quality": {
+    "valid": true,
+    "source_comparison_quality_valid": true,
+    "warnings_inherited_from_comparison": [
+      "Masih ada 23 kandidat nama proses yang belum dikonfirmasi. Baris terkait tetap dipisahkan; tidak ada penggabungan otomatis.",
+      "29 baris proses memiliki kandidat review yang belum diputuskan. Periksa kolom matching_status sebelum menggunakan laporan."
+    ],
+    "process_matching_review_count": 29,
+    "process_matching_candidate_count": 23,
+    "review_required_processes_excluded_from_semantic_comparison": true,
+    "bottleneck_assessment": "NOT_ASSESSED_PROCESS_CYCLE_TIME_NOT_AVAILABLE_IN_COMPARISON_DATA",
+    "limitations": [
+      "Analisis bottleneck per proses belum dapat disimpulkan karena comparison_data.json saat ini belum memuat cycle time tiap proses.",
+      "Perbedaan alokasi operator atau mesin adalah temuan deskriptif, bukan bukti penyebab bottleneck.",
+      "Proses yang belum dikonfirmasi tidak dianggap sama meskipun memiliki nama yang mirip."
+    ]
+  }
+}
